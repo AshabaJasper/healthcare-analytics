@@ -1,0 +1,113 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model ClaimRecord {
+  id                    Int       @id @default(autoincrement())
+  // Fields directly from DemoData.xlsx
+  practiceName          String?   // Maps to "Practice Name"
+  chargeCPTCode         String?   // Maps to "Charge CPT Code" 
+  revenueCode           Int?      // Maps to "Revenue Code"
+  LOC                   String?   // Maps to "LOC" in DemoData
+  chargeAmount          Float?    // Maps to "Charge Amount"
+  paymentAllowedAmount  Float?    // Maps to "Payment Allowed Amount"
+  primaryGroupNum       String?   // Maps to "Primary Group #" - Converted to String
+  claimPrimaryMemberID  String?   // Maps to "Primary Payer Member ID" in your Excel
+  payerName             String?   // Maps to "Payer Name"
+  payerGroup            String?   // Maps to "Payer Group"
+  paymentTotalPaid      Float?    // Maps to "Payment Total Paid"
+  paymentReceived       DateTime? // Maps to "Payment Received"
+  paymentEntered        DateTime? // Maps to "Payment Entered"
+  chargeFromDate        DateTime? // Maps to "Charge From Date"
+  chargeToDate          DateTime? // Maps to "Charge To Date"
+  primaryInsZip         String?   // Maps to "Primary Ins Zip" - Converted to String
+  primaryInsCity        String?   // Maps to "Primary Ins City"
+  primaryInsState       String?   // Maps to "Primary Ins State"
+  primaryInsAddr1       String?   // Maps to "Primary Ins Addr 1"
+  patientZip            String?   // Maps to "Patient Zip" - Converted to String
+  patientCity           String?   // Maps to "Patient City"
+  patientState          String?   // Maps to "Patient State"
+  patientAddress1       String?   // Maps to "Patient Address 1"
+  
+  // Derived fields that match Rev Model's filter categories
+  payerClass            String?   // Derived from "Payer Group" 
+  employerName          String?   // Could be derived from "Primary Group #"
+  prefix                String?   // Generated/derived field
+  group                 String?   // Generated/derived field
+  policyHolderState     String?   // Typically same as "Primary Ins State"
+  
+  // Derived temporal fields (for filtering/grouping)
+  serviceYear           Int?      // Year extracted from "Charge From Date"
+  paymentReceivedYear   Int?      // Year extracted from "Payment Received"
+  
+  // Standard timestamps
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+
+  // Define indexes for better query performance
+  @@index([LOC])
+  @@index([patientState])
+  @@index([primaryInsState])
+  @@index([payerName])
+  @@index([payerGroup])
+  @@index([paymentReceived])
+  @@index([chargeFromDate])
+  @@index([paymentTotalPaid])
+  @@index([paymentAllowedAmount])
+  @@index([serviceYear])
+  @@index([paymentReceivedYear])
+}
+
+model CalculatedMetrics {
+  id                     Int      @id @default(autoincrement())
+  // Core fields from Rev Model metrics
+  LOC                    String   // Maps to "LOC" in both Rev Model and DemoData
+  countOfObservation     Int      // Maps to "Count of observation" in Rev Model
+  
+  // Metrics calculations
+  averageAllowedAmount   Float    // Maps to "Average Allowed amount" in Rev Model
+  minAllowedAmount       Float    // Maps to "Min Allowed Amount" in Rev Model
+  maxAllowedAmount       Float    // Maps to "Max Allowed Amount" in Rev Model
+  medianAllowedAmount    Float    // Maps to "Median Allowed Amount" in Rev Model
+  modeAllowedAmount      Float    // Maps to "Mode Allowed Amount" in Rev Model
+  
+  // Filter dimensions from Rev Model
+  stateTreatedAt        String  @default("") // Default to empty string instead of null
+  payerName             String  @default("") // Default to empty string instead of null
+  payerClass            String  @default("") // Default to empty string instead of null
+  employerName          String  @default("") // Default to empty string instead of null
+  prefix                String  @default("") // Default to empty string instead of null
+  group                 String  @default("") // Default to empty string instead of null
+  policyHolderState     String  @default("") // Default to empty string instead of null
+  
+  // Temporal dimensions
+  dateOfServiceYear     Int     @default(0) // Default to 0 instead of null
+  paymentReceivedYear   Int     @default(0) // Default to 0 instead of null
+  
+  // Additional value metrics
+  allowedAmount         Float?   // Maps to "Allowed amount" - aggregated from ClaimRecord.paymentAllowedAmount
+  insurancePayment      Float?   // Maps to "Insurance payment" - aggregated from ClaimRecord.paymentTotalPaid
+  
+  // Standard timestamps
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+
+  // Unique constraint to prevent duplicate metrics for the same filter combination
+  @@unique([LOC, stateTreatedAt, payerName, payerClass, employerName, prefix, group, policyHolderState, dateOfServiceYear, paymentReceivedYear], name: "calculated_metrics_unique_filters")
+  
+  // Define indexes for commonly queried fields
+  @@index([LOC])
+  @@index([payerName])
+  @@index([payerClass])
+  @@index([stateTreatedAt])
+  @@index([dateOfServiceYear])
+  @@index([paymentReceivedYear])
+}
