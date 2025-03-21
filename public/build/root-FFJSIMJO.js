@@ -23,7 +23,7 @@ import {
 var cssBundleHref = void 0;
 
 // app/styles/tailwind.css
-var tailwind_default = "/build/_assets/tailwind-UWUJ2WE7.css";
+var tailwind_default = "/build/_assets/tailwind-6OL5K5Z7.css";
 
 // app/root.tsx
 var import_jsx_dev_runtime = __toESM(require_jsx_dev_runtime(), 1);
@@ -121,4 +121,4 @@ export {
   App as default,
   links
 };
-//# sourceMappingURL=/build/root-P56ZJNQJ.js.map
+//# sourceMappingURL=/build/root-FFJSIMJO.js.map

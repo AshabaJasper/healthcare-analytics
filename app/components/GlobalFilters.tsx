@@ -4,7 +4,12 @@ import { Button } from '~/components/ui/button';
 import { Card, CardContent } from '~/components/ui/card';
 import { X } from 'lucide-react';
 
-const GlobalFilters = ({ claimData, onFiltersChange }) => {
+interface GlobalFiltersProps {
+  claimData: any[];
+  onFiltersChange: (filters: Record<string, string>) => void;
+}
+
+const GlobalFilters = ({ claimData, onFiltersChange }: GlobalFiltersProps) => {
   const [filters, setFilters] = useState({
     levelOfCare: '',
     payer: '',
@@ -15,19 +20,19 @@ const GlobalFilters = ({ claimData, onFiltersChange }) => {
   });
 
   const [options, setOptions] = useState({
-    levelOfCare: [],
-    payer: [],
-    provider: [],
-    serviceType: [],
-    admitType: [],
-    dischargeDisposition: [],
+    levelOfCare: [] as string[],
+    payer: [] as string[],
+    provider: [] as string[],
+    serviceType: [] as string[],
+    admitType: [] as string[],
+    dischargeDisposition: [] as string[],
   });
 
   // Extract unique values for filter options
   useEffect(() => {
     if (!claimData || claimData.length === 0) return;
 
-    const extractUniqueValues = (field) => {
+    const extractUniqueValues = (field: string): string[] => {
       const values = [...new Set(claimData.map(claim => claim[field]).filter(Boolean))];
       return values.sort();
     };
@@ -43,7 +48,7 @@ const GlobalFilters = ({ claimData, onFiltersChange }) => {
   }, [claimData]);
 
   // Handle filter changes
-  const handleFilterChange = (field, value) => {
+  const handleFilterChange = (field: string, value: string) => {
     const newFilters = { ...filters, [field]: value };
     setFilters(newFilters);
     onFiltersChange(newFilters);
@@ -72,61 +77,45 @@ const GlobalFilters = ({ claimData, onFiltersChange }) => {
         <div className="flex flex-wrap gap-4 items-center">
           <div className="flex flex-col gap-2">
             <label className="text-sm font-medium">Level of Care</label>
-            <Select value={filters.levelOfCare} onValueChange={(value) => handleFilterChange('levelOfCare', value)}>
-              <SelectTrigger className="w-[160px]">
-                <SelectValue placeholder="Select LOC" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="">All</SelectItem>
-                {options.levelOfCare.map((loc) => (
-                  <SelectItem key={loc} value={loc}>{loc}</SelectItem>
-                ))}
-              </SelectContent>
+            <Select value={filters.levelOfCare} 
+                   onChange={(e) => handleFilterChange('levelOfCare', e.target.value)}>
+              <option value="">All</option>
+              {options.levelOfCare.map((loc) => (
+                <option key={loc} value={loc}>{loc}</option>
+              ))}
             </Select>
           </div>
 
           <div className="flex flex-col gap-2">
             <label className="text-sm font-medium">Payer</label>
-            <Select value={filters.payer} onValueChange={(value) => handleFilterChange('payer', value)}>
-              <SelectTrigger className="w-[160px]">
-                <SelectValue placeholder="Select Payer" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="">All</SelectItem>
-                {options.payer.map((payer) => (
-                  <SelectItem key={payer} value={payer}>{payer}</SelectItem>
-                ))}
-              </SelectContent>
+            <Select value={filters.payer} 
+                   onChange={(e) => handleFilterChange('payer', e.target.value)}>
+              <option value="">All</option>
+              {options.payer.map((payer) => (
+                <option key={payer} value={payer}>{payer}</option>
+              ))}
             </Select>
           </div>
 
           <div className="flex flex-col gap-2">
             <label className="text-sm font-medium">Provider</label>
-            <Select value={filters.provider} onValueChange={(value) => handleFilterChange('provider', value)}>
-              <SelectTrigger className="w-[160px]">
-                <SelectValue placeholder="Select Provider" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="">All</SelectItem>
-                {options.provider.map((provider) => (
-                  <SelectItem key={provider} value={provider}>{provider}</SelectItem>
-                ))}
-              </SelectContent>
+            <Select value={filters.provider} 
+                   onChange={(e) => handleFilterChange('provider', e.target.value)}>
+              <option value="">All</option>
+              {options.provider.map((provider) => (
+                <option key={provider} value={provider}>{provider}</option>
+              ))}
             </Select>
           </div>
 
           <div className="flex flex-col gap-2">
             <label className="text-sm font-medium">Service Type</label>
-            <Select value={filters.serviceType} onValueChange={(value) => handleFilterChange('serviceType', value)}>
-              <SelectTrigger className="w-[160px]">
-                <SelectValue placeholder="Select Type" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="">All</SelectItem>
-                {options.serviceType.map((type) => (
-                  <SelectItem key={type} value={type}>{type}</SelectItem>
-                ))}
-              </SelectContent>
+            <Select value={filters.serviceType} 
+                   onChange={(e) => handleFilterChange('serviceType', e.target.value)}>
+              <option value="">All</option>
+              {options.serviceType.map((type) => (
+                <option key={type} value={type}>{type}</option>
+              ))}
             </Select>
           </div>
 
@@ -137,7 +126,7 @@ const GlobalFilters = ({ claimData, onFiltersChange }) => {
               onClick={resetFilters} 
               className="mt-6 ml-auto"
             >
-              <X className="h-4 w-4 mr-1" />
+              <span className="mr-1">×</span>
               Clear Filters ({activeFilterCount})
             </Button>
           )}
