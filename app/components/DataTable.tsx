@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import type { LoaderFunctionArgs, MetaFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
-import { useLoaderData, Link, useNavigation } from "@remix-run/react";
+import { useLoaderData, useNavigation } from "@remix-run/react";
 import Layout from "~/components/Layout";
 import StatsCard from "~/components/StatsCard";
 import DashboardFilters from "~/components/DashboardFilters";
@@ -97,6 +97,23 @@ export default function Dashboard() {
     medianAllowedAmount: metric.medianAllowedAmount,
     modeAllowedAmount: metric.modeAllowedAmount || metric.averageAllowedAmount, // fallback
   }));
+
+  // Sort metricsData to ensure specific LOC order: DTX, RTC, PHP, IOP
+  const locOrder = ['DTX', 'RTC', 'PHP', 'IOP'];
+  metricsData.sort((a, b) => {
+    const indexA = locOrder.indexOf(a.LOC);
+    const indexB = locOrder.indexOf(b.LOC);
+    // If both are in the order list, sort by the order
+    if (indexA !== -1 && indexB !== -1) {
+      return indexA - indexB;
+    }
+    // If only a is in the order list, it comes first
+    if (indexA !== -1) return -1;
+    // If only b is in the order list, it comes first
+    if (indexB !== -1) return 1;
+    // If neither are in the order list, sort alphabetically
+    return a.LOC.localeCompare(b.LOC);
+  });
 
   // Callback when a filter is changed by the user
   const handleFilterChange = (name: string, value: string | number | null) => {
@@ -272,63 +289,6 @@ export default function Dashboard() {
               countOfObservation: metric.countOfObservation,
             }))}
           />
-        </div>
-
-        {/* LOC Breakdown */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-          <div className="bg-white rounded-lg shadow">
-            <div className="px-4 py-5 sm:px-6 border-b border-gray-200">
-              <h3 className="text-lg font-medium text-gray-900">Level of Care Breakdown</h3>
-              <p className="mt-1 text-sm text-gray-500">
-                Distribution of records by level of care
-              </p>
-            </div>
-            <div className="px-4 py-5 sm:p-6">
-              <div className="overflow-x-auto">
-                <table className="min-w-full divide-y divide-gray-200">
-                  <thead className="bg-gray-50">
-                    <tr>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Level of Care</th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Count</th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Percentage</th>
-                    </tr>
-                  </thead>
-                  <tbody className="bg-white divide-y divide-gray-200">
-                    {dashboardStats.locBreakdown.map((item) => (
-                      <tr key={item.LOC}>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                          <Link to={`/dashboard/${item.LOC}`} className="text-primary-600 hover:underline">{item.LOC}</Link>
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{item._count.id}</td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                          {((item._count.id / dashboardStats.totalRecords) * 100).toFixed(1)}%
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-
-          {/* Payer Distribution */}
-          <div className="bg-white rounded-lg shadow">
-            <div className="px-4 py-5 sm:px-6 border-b border-gray-200">
-              <h3 className="text-lg font-medium text-gray-900">Payer Distribution</h3>
-              <p className="mt-1 text-sm text-gray-500">Top payers by number of claims</p>
-            </div>
-            <div className="px-4 py-5 sm:p-6">
-              {filteredClaimData.length > 0 ? (
-                <div className="text-center text-gray-500">
-                  Payer Distribution Chart Removed
-                </div>
-              ) : (
-                <div className="h-64 flex items-center justify-center">
-                  <p className="text-gray-500">No data available</p>
-                </div>
-              )}
-            </div>
-          </div>
         </div>
       </div>
     </Layout>

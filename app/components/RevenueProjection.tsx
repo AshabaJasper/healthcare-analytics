@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from '@remix-run/react';
 import { formatCurrency } from '~/utils/dataUtils';
 
@@ -20,6 +20,8 @@ const defaultDaysMap = {
   'PHP': 18, 
   'IOP': 30
 };
+
+const locOrder = ['DTX', 'RTC', 'PHP', 'IOP'];
 
 type DaysMap = {
   [key: string]: number;
@@ -59,8 +61,24 @@ export default function RevenueProjection({ metrics }: RevenueProjectionProps) {
     }
   };
 
+  // Sort metrics based on the desired LOC order
+  const sortedMetrics = [...metrics].sort((a, b) => {
+    const indexA = locOrder.indexOf(a.LOC);
+    const indexB = locOrder.indexOf(b.LOC);
+    // If both are in the order list, sort by the order
+    if (indexA !== -1 && indexB !== -1) {
+      return indexA - indexB;
+    }
+    // If only a is in the order list, it comes first
+    if (indexA !== -1) return -1;
+    // If only b is in the order list, it comes first
+    if (indexB !== -1) return 1;
+    // If neither are in the order list, sort alphabetically
+    return a.LOC.localeCompare(b.LOC);
+  });
+
   // Calculate projections
-  const projections = metrics.map(metric => {
+  const projections = sortedMetrics.map(metric => {
     const days = daysMap[metric.LOC] || 0;
     const metricValue = getMetricValue(metric, metricType);
     const projectedRevenue = metricValue * days;
@@ -144,9 +162,7 @@ export default function RevenueProjection({ metrics }: RevenueProjectionProps) {
               {projections.map((projection) => (
                 <tr key={projection.LOC}>
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                    <Link to={`/dashboard/${projection.LOC}`} className="text-primary-600 hover:underline">
-                      {projection.LOC}
-                    </Link>
+                    {projection.LOC}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                     {formatCurrency(projection.metricValue)}

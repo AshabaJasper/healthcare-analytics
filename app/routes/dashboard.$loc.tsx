@@ -15,65 +15,100 @@ export const meta: MetaFunction = ({ params }) => {
 };
 
 export async function loader({ params }: LoaderFunctionArgs) {
-  const loc = params.loc;
-  
-  if (!loc) {
-    throw new Response("Level of Care parameter is required", { status: 400 });
-  }
-  
-  // Get metrics for this LOC
-  const metrics = await prisma.calculatedMetrics.findFirst({
-    where: { LOC: loc },
-  });
-  
-  if (!metrics) {
-    throw new Response(`No metrics found for LOC: ${loc}`, { status: 404 });
-  }
-  
-  // Get claims data for this LOC
-  const claims = await prisma.claimRecord.findMany({
-    where: { LOC: loc },
-    take: 50,
-    orderBy: { id: "desc" },
-  });
-  
-  // Get payer breakdown for this LOC
-  const payerBreakdown = await prisma.claimRecord.groupBy({
-    by: ['payerName'],
-    _count: { id: true },
-    where: { 
-      LOC: loc,
-      payerName: { not: null }
+  try {
+    const loc = params.loc;
+    
+    if (!loc) {
+      throw new Response("Level of Care parameter is required", { status: 400 });
     }
-  });
-  
-  // Get state breakdown for this LOC
-  const stateBreakdown = await prisma.claimRecord.groupBy({
-    by: ['patientState'],
-    _count: { id: true },
-    where: { 
-      LOC: loc,
-      patientState: { not: null }
+    
+    // Get metrics for this LOC
+    const metrics = await prisma.calculatedMetrics.findFirst({
+      where: { LOC: loc },
+    });
+    
+    if (!metrics) {
+      throw new Response(`No metrics found for LOC: ${loc}`, { status: 404 });
     }
-  });
-  
-  // Total claims for this LOC
-  const totalClaims = await prisma.claimRecord.count({
-    where: { LOC: loc }
-  });
+    
+    // Get claims data for this LOC
+    const claims = await prisma.claimRecord.findMany({
+      where: { LOC: loc },
+      take: 50,
+      orderBy: { id: "desc" },
+    });
+    
+    // Get payer breakdown for this LOC
+    const payerBreakdown = await prisma.claimRecord.groupBy({
+      by: ['payerName'],
+      _count: { id: true },
+      where: { 
+        LOC: loc,
+        payerName: { not: null }
+      }
+    });
+    
+    // Get state breakdown for this LOC
+    const stateBreakdown = await prisma.claimRecord.groupBy({
+      by: ['patientState'],
+      _count: { id: true },
+      where: { 
+        LOC: loc,
+        patientState: { not: null }
+      }
+    });
+    
+    // Total claims for this LOC
+    const totalClaims = await prisma.claimRecord.count({
+      where: { LOC: loc }
+    });
 
-  return json({
-    loc,
-    metrics,
-    claims,
-    payerBreakdown,
-    stateBreakdown,
-    totalClaims
-  });
+    return json({
+      loc,
+      metrics,
+      claims,
+      payerBreakdown,
+      stateBreakdown,
+      totalClaims
+    });
+  } catch (error) {
+    console.error(`Error loading metrics for LOC ${params.loc}:`, error);
+    if (error instanceof Response) {
+      throw error;
+    }
+    throw new Response("Error loading LOC metrics", { status: 500 });
+  }
 }
 
 export default function LocDetailsPage() {
-  const { loc, metrics, claims, payerBreakdown, stateBreakdown, totalClaims } = useLoaderData<typeof loader>();
+  // Explicitly define the loader return type
+  type LoaderData = {
+    loc: string;
+    metrics: {
+      LOC: string;
+      countOfObservation: number;
+      averageAllowedAmount: number;
+      minAllowedAmount: number;
+      maxAllowedAmount: number;
+      medianAllowedAmount: number;
+      modeAllowedAmount: number;
+      [key: string]: any;
+    };
+    claims: any[];
+    payerBreakdown: Array<{
+      payerName: string;
+      _count: { id: number };
+    }>;
+    stateBreakdown: Array<{
+      patientState: string;
+      _count: { id: number };
+    }>;
+    totalClaims: number;
+  };
+  
+  const { loc, metrics, claims, payerBreakdown, stateBreakdown, totalClaims } = useLoaderData<LoaderData>();
+  
+  // Set default days based on LOC
   const [days, setDays] = useState(
     loc === 'DTX' ? 7 : 
     loc === 'RTC' ? 21 : 
@@ -188,38 +223,42 @@ export default function LocDetailsPage() {
               </p>
             </div>
             <div className="px-4 py-5 sm:p-6">
-              <div className="overflow-x-auto">
-                <table className="min-w-full divide-y divide-gray-200">
-                  <thead className="bg-gray-50">
-                    <tr>
-                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Payer
-                      </th>
-                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Count
-                      </th>
-                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Percentage
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody className="bg-white divide-y divide-gray-200">
-                    {payerBreakdown.sort((a, b) => b._count.id - a._count.id).slice(0, 10).map((item) => (
-                      <tr key={item.payerName}>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                          {item.payerName}
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                          {item._count.id}
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                          {((item._count.id / totalClaims) * 100).toFixed(1)}%
-                        </td>
+              {payerBreakdown && payerBreakdown.length > 0 ? (
+                <div className="overflow-x-auto">
+                  <table className="min-w-full divide-y divide-gray-200">
+                    <thead className="bg-gray-50">
+                      <tr>
+                        <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                          Payer
+                        </th>
+                        <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                          Count
+                        </th>
+                        <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                          Percentage
+                        </th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+                    </thead>
+                    <tbody className="bg-white divide-y divide-gray-200">
+                      {payerBreakdown.sort((a, b) => b._count.id - a._count.id).slice(0, 10).map((item) => (
+                        <tr key={item.payerName}>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                            {item.payerName}
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            {item._count.id}
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            {((item._count.id / totalClaims) * 100).toFixed(1)}%
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              ) : (
+                <div className="py-4 text-center text-gray-500">No payer data available</div>
+              )}
             </div>
           </div>
           
@@ -232,38 +271,42 @@ export default function LocDetailsPage() {
               </p>
             </div>
             <div className="px-4 py-5 sm:p-6">
-              <div className="overflow-x-auto">
-                <table className="min-w-full divide-y divide-gray-200">
-                  <thead className="bg-gray-50">
-                    <tr>
-                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        State
-                      </th>
-                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Count
-                      </th>
-                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Percentage
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody className="bg-white divide-y divide-gray-200">
-                    {stateBreakdown.sort((a, b) => b._count.id - a._count.id).slice(0, 10).map((item) => (
-                      <tr key={item.patientState}>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                          {item.patientState}
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                          {item._count.id}
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                          {((item._count.id / totalClaims) * 100).toFixed(1)}%
-                        </td>
+              {stateBreakdown && stateBreakdown.length > 0 ? (
+                <div className="overflow-x-auto">
+                  <table className="min-w-full divide-y divide-gray-200">
+                    <thead className="bg-gray-50">
+                      <tr>
+                        <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                          State
+                        </th>
+                        <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                          Count
+                        </th>
+                        <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                          Percentage
+                        </th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+                    </thead>
+                    <tbody className="bg-white divide-y divide-gray-200">
+                      {stateBreakdown.sort((a, b) => b._count.id - a._count.id).slice(0, 10).map((item) => (
+                        <tr key={item.patientState}>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                            {item.patientState}
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            {item._count.id}
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            {((item._count.id / totalClaims) * 100).toFixed(1)}%
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              ) : (
+                <div className="py-4 text-center text-gray-500">No state data available</div>
+              )}
             </div>
           </div>
         </div>
@@ -277,50 +320,54 @@ export default function LocDetailsPage() {
             </p>
           </div>
           <div className="px-4 py-5 sm:p-6">
-            <div className="overflow-x-auto">
-              <table className="min-w-full divide-y divide-gray-200">
-                <thead className="bg-gray-50">
-                  <tr>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Practice
-                    </th>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Payer
-                    </th>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Allowed Amount
-                    </th>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Payment
-                    </th>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Service Date
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
-                  {claims.map((claim) => (
-                    <tr key={claim.id}>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                        {claim.practiceName}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {claim.payerName}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {formatCurrency(claim.paymentAllowedAmount || 0)}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {formatCurrency(claim.paymentTotalPaid || 0)}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {claim.chargeFromDate ? new Date(claim.chargeFromDate).toLocaleDateString() : '-'}
-                      </td>
+            {claims && claims.length > 0 ? (
+              <div className="overflow-x-auto">
+                <table className="min-w-full divide-y divide-gray-200">
+                  <thead className="bg-gray-50">
+                    <tr>
+                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Practice
+                      </th>
+                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Payer
+                      </th>
+                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Allowed Amount
+                      </th>
+                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Payment
+                      </th>
+                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Service Date
+                      </th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+                  </thead>
+                  <tbody className="bg-white divide-y divide-gray-200">
+                    {claims.map((claim) => (
+                      <tr key={claim.id}>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                          {claim.practiceName || '-'}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                          {claim.payerName || '-'}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                          {formatCurrency(claim.paymentAllowedAmount || 0)}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                          {formatCurrency(claim.paymentTotalPaid || 0)}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                          {claim.chargeFromDate ? new Date(claim.chargeFromDate).toLocaleDateString() : '-'}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            ) : (
+              <div className="py-4 text-center text-gray-500">No recent claims available</div>
+            )}
           </div>
         </div>
       </div>

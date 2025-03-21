@@ -3,10 +3,8 @@ import { NavLink } from "@remix-run/react";
 export default function Navbar() {
   const navLinks = [
     { title: "Home", path: "/" },
-    { title: "Upload", path: "/upload" },
     { title: "Data", path: "/data" },
     { title: "Dashboard", path: "/dashboard" },
-    { title: "Manage Metrics", path: "/manage-metrics" },
   ];
 
   return (
@@ -33,9 +31,6 @@ export default function Navbar() {
               ))}
             </div>
           </div>
-          <div className="hidden sm:ml-6 sm:flex sm:items-center">
-            {/* Add profile/account dropdown here if needed */}
-          </div>
           <div className="-mr-2 flex items-center sm:hidden">
             {/* Mobile menu button */}
             <button
@@ -45,7 +40,6 @@ export default function Navbar() {
               aria-expanded="false"
             >
               <span className="sr-only">Open main menu</span>
-              {/* Icon for menu */}
               <svg
                 className="block h-6 w-6"
                 xmlns="http://www.w3.org/2000/svg"
