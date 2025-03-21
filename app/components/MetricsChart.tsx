@@ -42,20 +42,29 @@ export default function MetricsChart({ data, title }: MetricsChartProps) {
   };
 
   return (
-    <div className="w-full h-80">
+    <div className="w-full h-[500px]">
       {title && <h3 className="text-lg font-medium text-gray-900 mb-4">{title}</h3>}
-      <ResponsiveContainer width="100%" height="100%">
+      <ResponsiveContainer width="100%" height="90%">
         <BarChart
           data={chartData}
-          margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+          margin={{ top: 20, right: 30, left: 20, bottom: 50 }}
         >
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="name" />
           <YAxis 
             tickFormatter={(value) => formatCurrency(value, { notation: 'compact' })} 
+            domain={[0, 'dataMax + 10000']}
           />
           <Tooltip content={<CustomTooltip />} />
-          <Legend />
+          <Legend 
+            layout="horizontal" 
+            align="center" 
+            verticalAlign="bottom" 
+            wrapperStyle={{ 
+              paddingTop: '10px',
+              paddingBottom: '10px'
+            }}
+          />
           <Bar dataKey="Average" fill="#8884d8" name="Average" />
           <Bar dataKey="Minimum" fill="#82ca9d" name="Minimum" />
           <Bar dataKey="Maximum" fill="#ffc658" name="Maximum" />

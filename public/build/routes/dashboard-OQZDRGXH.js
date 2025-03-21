@@ -25154,7 +25154,7 @@ if (import.meta) {
     //@ts-expect-error
     "app\\components\\MetricsChart.tsx"
   );
-  import.meta.hot.lastModified = "1742393458235.34";
+  import.meta.hot.lastModified = "1742557827626.6577";
 }
 function MetricsChart({
   data,
@@ -25195,17 +25195,17 @@ function MetricsChart({
     }
     return null;
   };
-  return /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("div", { className: "w-full h-80", children: [
+  return /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("div", { className: "w-full h-[500px]", children: [
     title && /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("h3", { className: "text-lg font-medium text-gray-900 mb-4", children: title }, void 0, false, {
       fileName: "app/components/MetricsChart.tsx",
       lineNumber: 56,
       columnNumber: 17
     }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(ResponsiveContainer, { width: "100%", height: "100%", children: /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(BarChart, { data: chartData, margin: {
-      top: 5,
+    /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(ResponsiveContainer, { width: "100%", height: "90%", children: /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(BarChart, { data: chartData, margin: {
+      top: 20,
       right: 30,
       left: 20,
-      bottom: 5
+      bottom: 50
     }, children: [
       /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(CartesianGrid, { strokeDasharray: "3 3" }, void 0, false, {
         fileName: "app/components/MetricsChart.tsx",
@@ -25219,7 +25219,7 @@ function MetricsChart({
       }, this),
       /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(YAxis, { tickFormatter: (value) => formatCurrency(value, {
         notation: "compact"
-      }) }, void 0, false, {
+      }), domain: [0, "dataMax + 10000"] }, void 0, false, {
         fileName: "app/components/MetricsChart.tsx",
         lineNumber: 66,
         columnNumber: 11
@@ -25233,34 +25233,37 @@ function MetricsChart({
         lineNumber: 69,
         columnNumber: 11
       }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(Legend, {}, void 0, false, {
+      /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(Legend, { layout: "horizontal", align: "center", verticalAlign: "bottom", wrapperStyle: {
+        paddingTop: "10px",
+        paddingBottom: "10px"
+      } }, void 0, false, {
         fileName: "app/components/MetricsChart.tsx",
         lineNumber: 70,
         columnNumber: 11
       }, this),
       /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(Bar, { dataKey: "Average", fill: "#8884d8", name: "Average" }, void 0, false, {
         fileName: "app/components/MetricsChart.tsx",
-        lineNumber: 71,
+        lineNumber: 74,
         columnNumber: 11
       }, this),
       /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(Bar, { dataKey: "Minimum", fill: "#82ca9d", name: "Minimum" }, void 0, false, {
         fileName: "app/components/MetricsChart.tsx",
-        lineNumber: 72,
+        lineNumber: 75,
         columnNumber: 11
       }, this),
       /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(Bar, { dataKey: "Maximum", fill: "#ffc658", name: "Maximum" }, void 0, false, {
         fileName: "app/components/MetricsChart.tsx",
-        lineNumber: 73,
+        lineNumber: 76,
         columnNumber: 11
       }, this),
       /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(Bar, { dataKey: "Median", fill: "#ff8042", name: "Median" }, void 0, false, {
         fileName: "app/components/MetricsChart.tsx",
-        lineNumber: 74,
+        lineNumber: 77,
         columnNumber: 11
       }, this),
       /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(Bar, { dataKey: "Mode", fill: "#0088FE", name: "Mode" }, void 0, false, {
         fileName: "app/components/MetricsChart.tsx",
-        lineNumber: 75,
+        lineNumber: 78,
         columnNumber: 11
       }, this)
     ] }, void 0, true, {
@@ -26031,4 +26034,4 @@ object-assign/index.js:
   @license MIT
   *)
 */
-//# sourceMappingURL=/build/routes/dashboard-MOKA6TGZ.js.map
+//# sourceMappingURL=/build/routes/dashboard-OQZDRGXH.js.map
