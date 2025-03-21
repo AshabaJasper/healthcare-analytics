@@ -47,17 +47,22 @@ export default function DashboardFilters({
     onFilterChange("paymentYear", null);
   };
 
+  // Count active filters
+  const activeFilterCount = Object.values(currentFilters).filter(v => v !== null).length;
+
   return (
     <div className="bg-white rounded-lg shadow mb-6 p-4">
       <div className="mb-4 flex items-center justify-between">
         <h2 className="text-lg font-medium text-gray-900">Dashboard Filters</h2>
-        <button
-          type="button"
-          onClick={handleResetFilters}
-          className="text-sm text-blue-500 hover:underline"
-        >
-          Reset Filters
-        </button>
+        {activeFilterCount > 0 && (
+          <button
+            type="button"
+            onClick={handleResetFilters}
+            className="text-sm text-blue-500 hover:underline"
+          >
+            Reset Filters ({activeFilterCount})
+          </button>
+        )}
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {/* Level of Care Filter */}

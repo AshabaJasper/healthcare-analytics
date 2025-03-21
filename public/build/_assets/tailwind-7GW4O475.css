@@ -444,20 +444,20 @@ video {
     var(--tw-ring-shadow, 0 0 #0000),
     var(--tw-shadow);
 }
-.table {
+.\!table {
   min-width: 100%;
 }
-.table > :not([hidden]) ~ :not([hidden]) {
+.\!table > :not([hidden]) ~ :not([hidden]) {
   --tw-divide-y-reverse: 0;
   border-top-width: calc(1px * calc(1 - var(--tw-divide-y-reverse)));
   border-bottom-width: calc(1px * var(--tw-divide-y-reverse));
   --tw-divide-opacity: 1;
   border-color: rgb(229 231 235 / var(--tw-divide-opacity, 1));
 }
-.\!table {
+.table {
   min-width: 100%;
 }
-.\!table > :not([hidden]) ~ :not([hidden]) {
+.table > :not([hidden]) ~ :not([hidden]) {
   --tw-divide-y-reverse: 0;
   border-top-width: calc(1px * calc(1 - var(--tw-divide-y-reverse)));
   border-bottom-width: calc(1px * var(--tw-divide-y-reverse));
@@ -541,6 +541,12 @@ video {
 .mb-8 {
   margin-bottom: 2rem;
 }
+.ml-1 {
+  margin-left: .25rem;
+}
+.ml-2 {
+  margin-left: .5rem;
+}
 .ml-3 {
   margin-left: .75rem;
 }
@@ -577,12 +583,6 @@ video {
 .mt-8 {
   margin-top: 2rem;
 }
-.ml-1 {
-  margin-left: .25rem;
-}
-.ml-2 {
-  margin-left: .5rem;
-}
 .block {
   display: block;
 }
@@ -592,11 +592,11 @@ video {
 .inline-flex {
   display: inline-flex;
 }
-.table {
-  display: table;
-}
 .\!table {
   display: table !important;
+}
+.table {
+  display: table;
 }
 .table-cell {
   display: table-cell;
@@ -657,9 +657,6 @@ video {
 }
 .w-6 {
   width: 1.5rem;
-}
-.w-\[160px\] {
-  width: 160px;
 }
 .w-full {
   width: 100%;
@@ -781,14 +778,14 @@ video {
 .whitespace-pre-wrap {
   white-space: pre-wrap;
 }
+.rounded {
+  border-radius: .25rem;
+}
 .rounded-lg {
   border-radius: .5rem;
 }
 .rounded-md {
   border-radius: .375rem;
-}
-.rounded {
-  border-radius: .25rem;
 }
 .rounded-l-md {
   border-top-left-radius: .375rem;
@@ -899,6 +896,10 @@ video {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
 }
+.py-1 {
+  padding-top: .25rem;
+  padding-bottom: .25rem;
+}
 .py-10 {
   padding-top: 2.5rem;
   padding-bottom: 2.5rem;
@@ -930,10 +931,6 @@ video {
 .py-8 {
   padding-top: 2rem;
   padding-bottom: 2rem;
-}
-.py-1 {
-  padding-top: .25rem;
-  padding-bottom: .25rem;
 }
 .pb-3 {
   padding-bottom: .75rem;
@@ -1295,4 +1292,4 @@ video {
     line-height: 1;
   }
 }
-/*# sourceMappingURL=/build/_assets/tailwind-HJQGB3LE.css.map */
+/*# sourceMappingURL=/build/_assets/tailwind-2RTGAVQR.css.map */

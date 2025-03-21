@@ -10,7 +10,7 @@ export async function calculateMetricsForLOC(
   filters: {
     stateTreatedAt?: string;
     payerName?: string;
-    payerClass?: string;
+    payerClass?: string; 
     employerName?: string;
     prefix?: string;
     group?: string;
@@ -20,13 +20,10 @@ export async function calculateMetricsForLOC(
   }
 ): Promise<Partial<CalculatedMetrics>> {
   // Build the query conditions
-  const where: Prisma.ClaimRecordWhereInput = { LOC };
+  const where: Prisma.ClaimRecordWhereInput = { LOC: LOC };
   
   if (filters.stateTreatedAt) {
-    where.OR = [
-      { primaryInsState: filters.stateTreatedAt },
-      { patientState: filters.stateTreatedAt }
-    ];
+    where.primaryInsState = filters.stateTreatedAt;
   }
   
   if (filters.payerName) {
@@ -34,7 +31,7 @@ export async function calculateMetricsForLOC(
   }
   
   if (filters.payerClass) {
-    where.payerClass = filters.payerClass;
+    where.payerGroup = filters.payerClass;
   }
   
   if (filters.employerName) {
@@ -83,17 +80,15 @@ export async function calculateMetricsForLOC(
     .map(r => r.paymentAllowedAmount)
     .filter((amount): amount is number => amount !== null && amount !== undefined);
   
-  // Calculate count and average
+  // Calculate metrics
   const count = records.length;
   const average = allowedAmounts.length > 0
     ? _.meanBy(allowedAmounts, a => a)
     : 0;
   
-  // Calculate min and max
   const min = allowedAmounts.length > 0 ? _.min(allowedAmounts) || 0 : 0;
   const max = allowedAmounts.length > 0 ? _.max(allowedAmounts) || 0 : 0;
   
-  // Calculate median
   const sortedAmounts = [...allowedAmounts].sort((a, b) => a - b);
   const median = sortedAmounts.length > 0
     ? sortedAmounts.length % 2 === 0
@@ -101,11 +96,9 @@ export async function calculateMetricsForLOC(
       : sortedAmounts[Math.floor(sortedAmounts.length / 2)]
     : 0;
   
-  // Calculate mode (the most frequent value)
   const frequencyMap = _.countBy(allowedAmounts);
   const mode = _.maxBy(Object.entries(frequencyMap), ([, count]) => count)?.[0] || "0";
   
-  // Calculate total payment amount
   const totalPayment = _.sumBy(
     records,
     r => (r.paymentTotalPaid !== null && r.paymentTotalPaid !== undefined) ? r.paymentTotalPaid : 0
@@ -113,7 +106,6 @@ export async function calculateMetricsForLOC(
   
   const avgPayment = count > 0 ? totalPayment / count : 0;
   
-  // Prepare the metrics object
   return {
     LOC,
     countOfObservation: count,

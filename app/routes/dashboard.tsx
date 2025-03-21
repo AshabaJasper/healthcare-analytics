@@ -87,9 +87,24 @@ export default function Dashboard() {
   });
   
   const [filteredClaimData, setFilteredClaimData] = useState(allClaimData || []);
+  const [filteredStats, setFilteredStats] = useState(dashboardStats);
+
+  // Add debugging log when component mounts
+  useEffect(() => {
+    console.log("Dashboard loaded with options:", {
+      filterOptions,
+      totalClaimRecords: allClaimData?.length || 0,
+      metricsStatus,
+    });
+    
+    // Sample the first few records to understand the data structure
+    if (allClaimData && allClaimData.length > 0) {
+      console.log("Sample claim record:", allClaimData[0]);
+    }
+  }, [allClaimData, filterOptions, metricsStatus]);
 
   // Format the metrics data for MetricsChart
-  const metricsData = dashboardStats.locMetrics.map((metric) => ({
+  const metricsData = filteredStats.locMetrics.map((metric) => ({
     LOC: metric.LOC,
     averageAllowedAmount: metric.averageAllowedAmount,
     minAllowedAmount: metric.minAllowedAmount,
@@ -101,10 +116,14 @@ export default function Dashboard() {
   // Callback when a filter is changed by the user
   const handleFilterChange = (name: string, value: string | number | null) => {
     console.log(`Filter changed: ${name} = ${value}`);
-    setCurrentFilters(prev => ({
-      ...prev,
-      [name]: value,
-    }));
+    setCurrentFilters(prev => {
+      const newFilters = {
+        ...prev,
+        [name]: value,
+      };
+      console.log("New filters state:", newFilters);
+      return newFilters;
+    });
   };
 
   // Apply filters whenever currentFilters or claim data change
@@ -155,7 +174,83 @@ export default function Dashboard() {
     
     console.log(`Final filtered data: ${filtered.length} records`);
     setFilteredClaimData(filtered);
-  }, [allClaimData, currentFilters]);
+    
+    // Also update filtered statistics
+    if (filtered.length === allClaimData.length) {
+      // If no filters are applied, use the original stats
+      setFilteredStats(dashboardStats);
+    } else {
+      // Calculate filtered stats
+      updateFilteredStats(filtered);
+    }
+  }, [allClaimData, currentFilters, dashboardStats]);
+  
+  // Calculate new stats based on filtered data
+  const updateFilteredStats = (filteredData: any[]) => {
+    if (filteredData.length === 0) {
+      // If no data passes the filter, keep the original stats but show zeroes for counts
+      const emptyStats = {
+        ...dashboardStats,
+        totalRecords: 0,
+        uniquePatients: 0,
+        uniquePayers: 0,
+        totalPayments: 0,
+        totalAllowed: 0,
+      };
+      setFilteredStats(emptyStats);
+      return;
+    }
+    
+    // Count unique patients and payers in filtered data
+    const uniquePatientIds = new Set(filteredData.map(claim => claim.patientId).filter(Boolean));
+    const uniquePayerNames = new Set(filteredData.map(claim => claim.payer).filter(Boolean));
+    
+    // Calculate sums
+    const totalPaid = filteredData.reduce((sum, claim) => {
+      const paidAmount = parseFloat(claim.paidAmount) || 0;
+      return sum + paidAmount;
+    }, 0);
+    
+    const totalAllowed = filteredData.reduce((sum, claim) => {
+      const allowedAmount = parseFloat(claim.allowedAmount) || 0;
+      return sum + allowedAmount;
+    }, 0);
+    
+    // Calculate LOC breakdown
+    const locCounts: Record<string, number> = {};
+    filteredData.forEach(claim => {
+      if (claim.levelOfCare) {
+        locCounts[claim.levelOfCare] = (locCounts[claim.levelOfCare] || 0) + 1;
+      }
+    });
+    
+    const locBreakdown = Object.keys(locCounts).map(LOC => ({
+      LOC,
+      _count: { id: locCounts[LOC] },
+      _sum: {
+        paymentAllowedAmount: 0, // We'd need to calculate this but for now we can leave it at 0
+        paymentTotalPaid: 0,
+      }
+    }));
+    
+    // Filter metrics to only include LOCs in the filtered data
+    const filteredLOCs = new Set(filteredData.map(claim => claim.levelOfCare).filter(Boolean));
+    const filteredMetrics = dashboardStats.locMetrics.filter(metric => 
+      filteredLOCs.has(metric.LOC)
+    );
+    
+    // Update filtered stats
+    setFilteredStats({
+      ...dashboardStats,
+      totalRecords: filteredData.length,
+      uniquePatients: uniquePatientIds.size,
+      uniquePayers: uniquePayerNames.size,
+      totalPayments: totalPaid,
+      totalAllowed: totalAllowed,
+      locBreakdown: locBreakdown,
+      locMetrics: filteredMetrics.length > 0 ? filteredMetrics : dashboardStats.locMetrics,
+    });
+  };
 
   return (
     <Layout>
@@ -214,7 +309,7 @@ export default function Dashboard() {
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 mb-8">
           <StatsCard
             title="Total Records"
-            value={dashboardStats.totalRecords.toLocaleString()}
+            value={filteredStats.totalRecords.toLocaleString()}
             description="Total number of claims"
             icon={
               <svg className="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -224,7 +319,7 @@ export default function Dashboard() {
           />
           <StatsCard
             title="Unique Patients"
-            value={dashboardStats.uniquePatients.toLocaleString()}
+            value={filteredStats.uniquePatients.toLocaleString()}
             description="Distinct patient count"
             icon={
               <svg className="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -234,7 +329,7 @@ export default function Dashboard() {
           />
           <StatsCard
             title="Total Payments"
-            value={formatCurrency(dashboardStats.totalPayments)}
+            value={formatCurrency(filteredStats.totalPayments)}
             description="Sum of all payments"
             icon={
               <svg className="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -244,7 +339,11 @@ export default function Dashboard() {
           />
           <StatsCard
             title="Average Allowed Amount"
-            value={formatCurrency(dashboardStats.totalAllowed / dashboardStats.totalRecords)}
+            value={formatCurrency(
+              filteredStats.totalRecords > 0 
+                ? filteredStats.totalAllowed / filteredStats.totalRecords 
+                : 0
+            )}
             description="Average allowed per claim"
             icon={
               <svg className="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -262,7 +361,7 @@ export default function Dashboard() {
         {/* Revenue Projection */}
         <div className="mb-8">
           <RevenueProjection 
-            metrics={dashboardStats.locMetrics.map(metric => ({
+            metrics={filteredStats.locMetrics.map(metric => ({
               LOC: metric.LOC,
               averageAllowedAmount: metric.averageAllowedAmount,
               minAllowedAmount: metric.minAllowedAmount,
@@ -294,14 +393,14 @@ export default function Dashboard() {
                     </tr>
                   </thead>
                   <tbody className="bg-white divide-y divide-gray-200">
-                    {dashboardStats.locBreakdown.map((item) => (
+                    {filteredStats.locBreakdown.map((item) => (
                       <tr key={item.LOC}>
                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                           <Link to={`/dashboard/${item.LOC}`} className="text-primary-600 hover:underline">{item.LOC}</Link>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{item._count.id}</td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                          {((item._count.id / dashboardStats.totalRecords) * 100).toFixed(1)}%
+                          {((item._count.id / filteredStats.totalRecords) * 100).toFixed(1)}%
                         </td>
                       </tr>
                     ))}
