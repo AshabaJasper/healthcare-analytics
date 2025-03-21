@@ -5644,7 +5644,7 @@ var require_metricsService = __commonJS({
 });
 
 // app/routes/dashboard.tsx
-var import_react40 = __toESM(require_react(), 1);
+var import_react41 = __toESM(require_react(), 1);
 var import_node = __toESM(require_node(), 1);
 
 // app/components/DashboardFilters.tsx
@@ -5944,6 +5944,9 @@ var _c;
 $RefreshReg$(_c, "DashboardFilters");
 window.$RefreshReg$ = prevRefreshReg;
 window.$RefreshSig$ = prevRefreshSig;
+
+// app/components/MetricsChart.tsx
+var import_react39 = __toESM(require_react(), 1);
 
 // node_modules/recharts/es6/container/Surface.js
 var import_react4 = __toESM(require_react());
@@ -13662,8 +13665,8 @@ function _iterableToArrayLimit5(arr, i) {
   var _d = false;
   var _e = void 0;
   try {
-    for (var _i = arr[Symbol.iterator](), _s4; !(_n = (_s4 = _i.next()).done); _n = true) {
-      _arr.push(_s4.value);
+    for (var _i = arr[Symbol.iterator](), _s5; !(_n = (_s5 = _i.next()).done); _n = true) {
+      _arr.push(_s5.value);
       if (i && _arr.length === i)
         break;
     }
@@ -25149,17 +25152,26 @@ if (!window.$RefreshReg$ || !window.$RefreshSig$ || !window.$RefreshRuntime$) {
 }
 var prevRefreshReg;
 var prevRefreshSig;
+var _s2 = $RefreshSig$();
 if (import.meta) {
   import.meta.hot = createHotContext(
     //@ts-expect-error
     "app\\components\\MetricsChart.tsx"
   );
-  import.meta.hot.lastModified = "1742557827626.6577";
+  import.meta.hot.lastModified = "1742559944002.9595";
 }
 function MetricsChart({
   data,
   title
 }) {
+  _s2();
+  const maxValue = (0, import_react39.useMemo)(() => {
+    return Math.max(...data.map((item) => Math.max(item.averageAllowedAmount, item.minAllowedAmount, item.maxAllowedAmount, item.medianAllowedAmount, item.modeAllowedAmount)));
+  }, [data]);
+  const roundedMaxValue = (0, import_react39.useMemo)(() => {
+    return Math.ceil(maxValue / 5e4) * 5e4;
+  }, [maxValue]);
+  const [yAxisScale, setYAxisScale] = (0, import_react39.useState)(1);
   const chartData = data.map((item) => ({
     name: item.LOC,
     Average: item.averageAllowedAmount,
@@ -25177,110 +25189,148 @@ function MetricsChart({
       return /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("div", { className: "bg-white p-3 border border-gray-200 shadow-md rounded-md", children: [
         /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("p", { className: "font-bold text-gray-700", children: label }, void 0, false, {
           fileName: "app/components/MetricsChart.tsx",
-          lineNumber: 45,
+          lineNumber: 61,
           columnNumber: 11
         }, this),
         payload.map((entry, index) => /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("p", { style: {
           color: entry.color
         }, children: `${entry.name}: ${formatCurrency(entry.value)}` }, `item-${index}`, false, {
           fileName: "app/components/MetricsChart.tsx",
-          lineNumber: 46,
+          lineNumber: 62,
           columnNumber: 42
         }, this))
       ] }, void 0, true, {
         fileName: "app/components/MetricsChart.tsx",
-        lineNumber: 44,
+        lineNumber: 60,
         columnNumber: 14
       }, this);
     }
     return null;
   };
-  return /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("div", { className: "w-full h-[500px]", children: [
-    title && /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("h3", { className: "text-lg font-medium text-gray-900 mb-4", children: title }, void 0, false, {
-      fileName: "app/components/MetricsChart.tsx",
-      lineNumber: 56,
-      columnNumber: 17
-    }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(ResponsiveContainer, { width: "100%", height: "90%", children: /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(BarChart, { data: chartData, margin: {
-      top: 20,
-      right: 30,
-      left: 20,
-      bottom: 50
-    }, children: [
-      /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(CartesianGrid, { strokeDasharray: "3 3" }, void 0, false, {
+  const calculatedYAxisMax = (0, import_react39.useMemo)(() => {
+    return roundedMaxValue * yAxisScale;
+  }, [roundedMaxValue, yAxisScale]);
+  return /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("div", { className: "w-full", children: [
+    /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("div", { className: "flex items-center space-x-4", children: /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("div", { className: "flex-grow h-[500px]", children: [
+      title && /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("h3", { className: "text-lg font-medium text-gray-900 mb-4", children: title }, void 0, false, {
         fileName: "app/components/MetricsChart.tsx",
-        lineNumber: 64,
-        columnNumber: 11
+        lineNumber: 79,
+        columnNumber: 21
       }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(XAxis, { dataKey: "name" }, void 0, false, {
+      /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(ResponsiveContainer, { width: "100%", height: "90%", children: /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(BarChart, { data: chartData, margin: {
+        top: 20,
+        right: 30,
+        left: 20,
+        bottom: 50
+      }, children: [
+        /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(CartesianGrid, { strokeDasharray: "3 3" }, void 0, false, {
+          fileName: "app/components/MetricsChart.tsx",
+          lineNumber: 87,
+          columnNumber: 15
+        }, this),
+        /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(XAxis, { dataKey: "name" }, void 0, false, {
+          fileName: "app/components/MetricsChart.tsx",
+          lineNumber: 88,
+          columnNumber: 15
+        }, this),
+        /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(YAxis, { domain: [0, calculatedYAxisMax], ticks: [0, calculatedYAxisMax * 0.25, calculatedYAxisMax * 0.5, calculatedYAxisMax * 0.75, calculatedYAxisMax], tickFormatter: (value) => formatCurrency(value, {
+          notation: "compact"
+        }) }, void 0, false, {
+          fileName: "app/components/MetricsChart.tsx",
+          lineNumber: 89,
+          columnNumber: 15
+        }, this),
+        /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(Tooltip, { content: /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(CustomTooltip, {}, void 0, false, {
+          fileName: "app/components/MetricsChart.tsx",
+          lineNumber: 92,
+          columnNumber: 33
+        }, this) }, void 0, false, {
+          fileName: "app/components/MetricsChart.tsx",
+          lineNumber: 92,
+          columnNumber: 15
+        }, this),
+        /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(Legend, { layout: "horizontal", align: "center", verticalAlign: "bottom", wrapperStyle: {
+          paddingTop: "10px",
+          paddingBottom: "10px"
+        } }, void 0, false, {
+          fileName: "app/components/MetricsChart.tsx",
+          lineNumber: 93,
+          columnNumber: 15
+        }, this),
+        /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(Bar, { dataKey: "Average", fill: "#8884d8", name: "Average" }, void 0, false, {
+          fileName: "app/components/MetricsChart.tsx",
+          lineNumber: 97,
+          columnNumber: 15
+        }, this),
+        /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(Bar, { dataKey: "Minimum", fill: "#82ca9d", name: "Minimum" }, void 0, false, {
+          fileName: "app/components/MetricsChart.tsx",
+          lineNumber: 98,
+          columnNumber: 15
+        }, this),
+        /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(Bar, { dataKey: "Maximum", fill: "#ffc658", name: "Maximum" }, void 0, false, {
+          fileName: "app/components/MetricsChart.tsx",
+          lineNumber: 99,
+          columnNumber: 15
+        }, this),
+        /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(Bar, { dataKey: "Median", fill: "#ff8042", name: "Median" }, void 0, false, {
+          fileName: "app/components/MetricsChart.tsx",
+          lineNumber: 100,
+          columnNumber: 15
+        }, this),
+        /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(Bar, { dataKey: "Mode", fill: "#0088FE", name: "Mode" }, void 0, false, {
+          fileName: "app/components/MetricsChart.tsx",
+          lineNumber: 101,
+          columnNumber: 15
+        }, this)
+      ] }, void 0, true, {
         fileName: "app/components/MetricsChart.tsx",
-        lineNumber: 65,
-        columnNumber: 11
-      }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(YAxis, { tickFormatter: (value) => formatCurrency(value, {
-        notation: "compact"
-      }), domain: [0, "dataMax + 10000"] }, void 0, false, {
-        fileName: "app/components/MetricsChart.tsx",
-        lineNumber: 66,
-        columnNumber: 11
-      }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(Tooltip, { content: /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(CustomTooltip, {}, void 0, false, {
-        fileName: "app/components/MetricsChart.tsx",
-        lineNumber: 69,
-        columnNumber: 29
+        lineNumber: 81,
+        columnNumber: 13
       }, this) }, void 0, false, {
         fileName: "app/components/MetricsChart.tsx",
-        lineNumber: 69,
-        columnNumber: 11
-      }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(Legend, { layout: "horizontal", align: "center", verticalAlign: "bottom", wrapperStyle: {
-        paddingTop: "10px",
-        paddingBottom: "10px"
-      } }, void 0, false, {
-        fileName: "app/components/MetricsChart.tsx",
-        lineNumber: 70,
-        columnNumber: 11
-      }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(Bar, { dataKey: "Average", fill: "#8884d8", name: "Average" }, void 0, false, {
-        fileName: "app/components/MetricsChart.tsx",
-        lineNumber: 74,
-        columnNumber: 11
-      }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(Bar, { dataKey: "Minimum", fill: "#82ca9d", name: "Minimum" }, void 0, false, {
-        fileName: "app/components/MetricsChart.tsx",
-        lineNumber: 75,
-        columnNumber: 11
-      }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(Bar, { dataKey: "Maximum", fill: "#ffc658", name: "Maximum" }, void 0, false, {
-        fileName: "app/components/MetricsChart.tsx",
-        lineNumber: 76,
-        columnNumber: 11
-      }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(Bar, { dataKey: "Median", fill: "#ff8042", name: "Median" }, void 0, false, {
-        fileName: "app/components/MetricsChart.tsx",
-        lineNumber: 77,
-        columnNumber: 11
-      }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(Bar, { dataKey: "Mode", fill: "#0088FE", name: "Mode" }, void 0, false, {
-        fileName: "app/components/MetricsChart.tsx",
-        lineNumber: 78,
+        lineNumber: 80,
         columnNumber: 11
       }, this)
     ] }, void 0, true, {
       fileName: "app/components/MetricsChart.tsx",
-      lineNumber: 58,
+      lineNumber: 78,
       columnNumber: 9
     }, this) }, void 0, false, {
       fileName: "app/components/MetricsChart.tsx",
-      lineNumber: 57,
+      lineNumber: 77,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("div", { className: "flex items-center justify-center space-x-4 mt-4", children: [
+      /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("span", { className: "text-sm text-gray-600", children: "Scale:" }, void 0, false, {
+        fileName: "app/components/MetricsChart.tsx",
+        lineNumber: 109,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("input", { type: "range", min: "0.5", max: "2", step: "0.1", value: yAxisScale, onChange: (e) => setYAxisScale(parseFloat(e.target.value)), className: "w-64" }, void 0, false, {
+        fileName: "app/components/MetricsChart.tsx",
+        lineNumber: 110,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("span", { className: "text-sm text-gray-600 w-12 text-center", children: [
+        yAxisScale.toFixed(1),
+        "x"
+      ] }, void 0, true, {
+        fileName: "app/components/MetricsChart.tsx",
+        lineNumber: 111,
+        columnNumber: 9
+      }, this)
+    ] }, void 0, true, {
+      fileName: "app/components/MetricsChart.tsx",
+      lineNumber: 108,
       columnNumber: 7
     }, this)
   ] }, void 0, true, {
     fileName: "app/components/MetricsChart.tsx",
-    lineNumber: 55,
+    lineNumber: 76,
     columnNumber: 10
   }, this);
 }
+_s2(MetricsChart, "tGj2bDrCvh0FwvL9Pnxe8rEC3ek=");
 _c2 = MetricsChart;
 var _c2;
 $RefreshReg$(_c2, "MetricsChart");
@@ -25288,7 +25338,7 @@ window.$RefreshReg$ = prevRefreshReg;
 window.$RefreshSig$ = prevRefreshSig;
 
 // app/components/RevenueProjection.tsx
-var import_react39 = __toESM(require_react(), 1);
+var import_react40 = __toESM(require_react(), 1);
 var import_jsx_dev_runtime3 = __toESM(require_jsx_dev_runtime(), 1);
 if (!window.$RefreshReg$ || !window.$RefreshSig$ || !window.$RefreshRuntime$) {
   console.warn("remix:hmr: React Fast Refresh only works when the Remix compiler is running in development mode.");
@@ -25302,7 +25352,7 @@ if (!window.$RefreshReg$ || !window.$RefreshSig$ || !window.$RefreshRuntime$) {
 }
 var prevRefreshReg;
 var prevRefreshSig;
-var _s2 = $RefreshSig$();
+var _s3 = $RefreshSig$();
 if (import.meta) {
   import.meta.hot = createHotContext(
     //@ts-expect-error
@@ -25320,12 +25370,12 @@ var locOrder = ["DTX", "RTC", "PHP", "IOP"];
 function RevenueProjection({
   metrics
 }) {
-  _s2();
-  const [daysMap, setDaysMap] = (0, import_react39.useState)(() => {
+  _s3();
+  const [daysMap, setDaysMap] = (0, import_react40.useState)(() => {
     const storedDaysMap = typeof window !== "undefined" ? localStorage.getItem("revenueDaysMap") : null;
     return storedDaysMap ? JSON.parse(storedDaysMap) : defaultDaysMap;
   });
-  const [metricType, setMetricType] = (0, import_react39.useState)("average");
+  const [metricType, setMetricType] = (0, import_react40.useState)("average");
   const getMetricValue = (metric, type) => {
     switch (type) {
       case "average":
@@ -25556,7 +25606,7 @@ function RevenueProjection({
     columnNumber: 10
   }, this);
 }
-_s2(RevenueProjection, "LxBodEmCThrrO0MqhdHyO5sGjKY=");
+_s3(RevenueProjection, "LxBodEmCThrrO0MqhdHyO5sGjKY=");
 _c3 = RevenueProjection;
 var _c3;
 $RefreshReg$(_c3, "RevenueProjection");
@@ -25579,7 +25629,7 @@ if (!window.$RefreshReg$ || !window.$RefreshSig$ || !window.$RefreshRuntime$) {
 }
 var prevRefreshReg;
 var prevRefreshSig;
-var _s3 = $RefreshSig$();
+var _s4 = $RefreshSig$();
 if (import.meta) {
   import.meta.hot = createHotContext(
     //@ts-expect-error
@@ -25596,7 +25646,7 @@ var meta = () => {
   }];
 };
 function Dashboard() {
-  _s3();
+  _s4();
   const {
     dashboardStats,
     metricsStatus,
@@ -25606,7 +25656,7 @@ function Dashboard() {
   } = useLoaderData();
   const navigation = useNavigation();
   const isLoading = navigation.state === "loading";
-  const [currentFilters, setCurrentFilters] = (0, import_react40.useState)({
+  const [currentFilters, setCurrentFilters] = (0, import_react41.useState)({
     levelOfCare: null,
     payer: null,
     payerClass: null,
@@ -25614,9 +25664,9 @@ function Dashboard() {
     serviceYear: null,
     paymentYear: null
   });
-  const [filteredClaimData, setFilteredClaimData] = (0, import_react40.useState)(allClaimData || []);
-  const [filteredStats, setFilteredStats] = (0, import_react40.useState)(dashboardStats);
-  (0, import_react40.useEffect)(() => {
+  const [filteredClaimData, setFilteredClaimData] = (0, import_react41.useState)(allClaimData || []);
+  const [filteredStats, setFilteredStats] = (0, import_react41.useState)(dashboardStats);
+  (0, import_react41.useEffect)(() => {
     console.log("Dashboard loaded with options:", {
       filterOptions,
       totalClaimRecords: allClaimData?.length || 0,
@@ -25662,7 +25712,7 @@ function Dashboard() {
   const handlePrint = () => {
     window.print();
   };
-  (0, import_react40.useEffect)(() => {
+  (0, import_react41.useEffect)(() => {
     if (!allClaimData || allClaimData.length === 0) {
       console.log("No claim data available for filtering");
       return;
@@ -25989,7 +26039,7 @@ function Dashboard() {
     columnNumber: 10
   }, this);
 }
-_s3(Dashboard, "k5aR7kVJK98zFOofWiTMKNgmx+A=", false, function() {
+_s4(Dashboard, "k5aR7kVJK98zFOofWiTMKNgmx+A=", false, function() {
   return [useLoaderData, useNavigation];
 });
 _c4 = Dashboard;
@@ -26034,4 +26084,4 @@ object-assign/index.js:
   @license MIT
   *)
 */
-//# sourceMappingURL=/build/routes/dashboard-OQZDRGXH.js.map
+//# sourceMappingURL=/build/routes/dashboard-VMFVRFEP.js.map
