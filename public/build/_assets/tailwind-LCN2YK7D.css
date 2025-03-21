@@ -434,6 +434,13 @@ video {
     var(--tw-ring-shadow, 0 0 #0000),
     var(--tw-shadow);
 }
+@media print {
+  .card {
+    background-color: #fff;
+    color: #000;
+    box-shadow: none;
+  }
+}
 .table-container {
   overflow-x: auto;
   border-radius: .5rem;
@@ -443,6 +450,11 @@ video {
     var(--tw-ring-offset-shadow, 0 0 #0000),
     var(--tw-ring-shadow, 0 0 #0000),
     var(--tw-shadow);
+}
+@media print {
+  .table-container {
+    box-shadow: none;
+  }
 }
 .\!table {
   min-width: 100%;
@@ -468,6 +480,12 @@ video {
   --tw-bg-opacity: 1;
   background-color: rgb(249 250 251 / var(--tw-bg-opacity, 1));
 }
+@media print {
+  .table-header {
+    background-color: #fff;
+    color: #000;
+  }
+}
 .table-header-cell {
   padding: .75rem 1.5rem;
   text-align: left;
@@ -478,6 +496,11 @@ video {
   letter-spacing: .05em;
   --tw-text-opacity: 1;
   color: rgb(107 114 128 / var(--tw-text-opacity, 1));
+}
+@media print {
+  .table-header-cell {
+    color: #333;
+  }
 }
 .table-body > :not([hidden]) ~ :not([hidden]) {
   --tw-divide-y-reverse: 0;
@@ -490,6 +513,12 @@ video {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
 }
+@media print {
+  .table-body {
+    background-color: #fff;
+    color: #000;
+  }
+}
 .table-row:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(249 250 251 / var(--tw-bg-opacity, 1));
@@ -501,6 +530,11 @@ video {
   line-height: 1.25rem;
   --tw-text-opacity: 1;
   color: rgb(107 114 128 / var(--tw-text-opacity, 1));
+}
+@media print {
+  .table-cell {
+    color: #333;
+  }
 }
 .sr-only {
   position: absolute;
@@ -558,6 +592,9 @@ video {
 }
 .mr-1 {
   margin-right: .25rem;
+}
+.mr-1\.5 {
+  margin-right: .375rem;
 }
 .mr-2 {
   margin-right: .5rem;
@@ -627,9 +664,6 @@ video {
 }
 .h-6 {
   height: 1.5rem;
-}
-.h-64 {
-  height: 16rem;
 }
 .h-80 {
   height: 20rem;
@@ -747,6 +781,11 @@ video {
   margin-right: calc(.75rem * var(--tw-space-x-reverse));
   margin-left: calc(.75rem * calc(1 - var(--tw-space-x-reverse)));
 }
+.space-x-4 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 0;
+  margin-right: calc(1rem * var(--tw-space-x-reverse));
+  margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
+}
 .space-y-1 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-y-reverse: 0;
   margin-top: calc(.25rem * calc(1 - var(--tw-space-y-reverse)));
@@ -825,6 +864,10 @@ video {
 .border-transparent {
   border-color: transparent;
 }
+.bg-blue-600 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(37 99 235 / var(--tw-bg-opacity, 1));
+}
 .bg-gray-50 {
   --tw-bg-opacity: 1;
   background-color: rgb(249 250 251 / var(--tw-bg-opacity, 1));
@@ -899,6 +942,10 @@ video {
 .py-1 {
   padding-top: .25rem;
   padding-bottom: .25rem;
+}
+.py-1\.5 {
+  padding-top: .375rem;
+  padding-bottom: .375rem;
 }
 .py-10 {
   padding-top: 2.5rem;
@@ -1016,10 +1063,6 @@ video {
 .tracking-wider {
   letter-spacing: .05em;
 }
-.text-blue-500 {
-  --tw-text-opacity: 1;
-  color: rgb(59 130 246 / var(--tw-text-opacity, 1));
-}
 .text-gray-400 {
   --tw-text-opacity: 1;
   color: rgb(156 163 175 / var(--tw-text-opacity, 1));
@@ -1128,9 +1171,68 @@ video {
 .filter {
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
+@media print {
+  nav,
+  footer,
+  button,
+  .print:hidden {
+    display: none !important;
+  }
+  body,
+  .bg-gray-50,
+  .bg-gray-100,
+  .bg-white {
+    background-color: #fff !important;
+    color: #000 !important;
+  }
+  .shadow,
+  .shadow-md,
+  .shadow-lg,
+  .shadow-xl {
+    box-shadow: none !important;
+  }
+  .mb-8 {
+    margin-bottom: 1.5rem !important;
+    page-break-inside: avoid;
+  }
+  .container,
+  .max-w-7xl {
+    max-width: 100% !important;
+    padding: 0 !important;
+  }
+  .text-gray-500,
+  .text-gray-600,
+  .text-gray-700 {
+    color: #333 !important;
+  }
+  .recharts-wrapper,
+  table {
+    width: 100% !important;
+    page-break-inside: avoid;
+  }
+  h1.text-3xl:before {
+    content: "Healthcare Analytics Dashboard";
+    display: block;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+  .mb-8:last-child:after {
+    content: "Printed on " attr(data-print-date);
+    display: block;
+    text-align: center;
+    font-size: 12px;
+    margin-top: 2rem;
+  }
+}
 .hover\:border-gray-300:hover {
   --tw-border-opacity: 1;
   border-color: rgb(209 213 219 / var(--tw-border-opacity, 1));
+}
+.hover\:bg-blue-700:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(29 78 216 / var(--tw-bg-opacity, 1));
 }
 .hover\:bg-gray-100:hover {
   --tw-bg-opacity: 1;
@@ -1164,9 +1266,6 @@ video {
   --tw-text-opacity: 1;
   color: rgb(12 74 110 / var(--tw-text-opacity, 1));
 }
-.hover\:underline:hover {
-  text-decoration-line: underline;
-}
 .focus\:border-primary-500:focus {
   --tw-border-opacity: 1;
   border-color: rgb(14 165 233 / var(--tw-border-opacity, 1));
@@ -1185,6 +1284,10 @@ video {
 }
 .focus\:ring-inset:focus {
   --tw-ring-inset: inset;
+}
+.focus\:ring-blue-500:focus {
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(59 130 246 / var(--tw-ring-opacity, 1));
 }
 .focus\:ring-primary-500:focus {
   --tw-ring-opacity: 1;
@@ -1292,4 +1395,9 @@ video {
     line-height: 1;
   }
 }
-/*# sourceMappingURL=/build/_assets/tailwind-2RTGAVQR.css.map */
+@media print {
+  .print\:hidden {
+    display: none;
+  }
+}
+/*# sourceMappingURL=/build/_assets/tailwind-NK4CTSWS.css.map */

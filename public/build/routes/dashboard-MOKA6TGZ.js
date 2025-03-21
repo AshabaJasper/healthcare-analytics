@@ -1,6 +1,6 @@
 import {
   StatsCard
-} from "/build/_shared/chunk-WVHI3FEJ.js";
+} from "/build/_shared/chunk-CMIXI72N.js";
 import {
   formatCurrency,
   require_node
@@ -9,7 +9,6 @@ import {
   Layout
 } from "/build/_shared/chunk-THKS2TCD.js";
 import {
-  Link,
   useLoaderData,
   useNavigation
 } from "/build/_shared/chunk-W6MB5U2T.js";
@@ -5669,7 +5668,7 @@ if (import.meta) {
     //@ts-expect-error
     "app\\components\\DashboardFilters.tsx"
   );
-  import.meta.hot.lastModified = "1742551864511.1855";
+  import.meta.hot.lastModified = "1742557068294.3628";
 }
 function DashboardFilters({
   filterOptions,
@@ -5687,6 +5686,20 @@ function DashboardFilters({
       paymentYears: filterOptions.paymentYears?.length || 0
     });
   }, [filterOptions]);
+  const sortedLOCOptions = [...filterOptions.levelOfCare || []];
+  const locOrder2 = ["DTX", "RTC", "PHP", "IOP"];
+  sortedLOCOptions.sort((a2, b) => {
+    const indexA = locOrder2.indexOf(a2);
+    const indexB = locOrder2.indexOf(b);
+    if (indexA !== -1 && indexB !== -1) {
+      return indexA - indexB;
+    }
+    if (indexA !== -1)
+      return -1;
+    if (indexB !== -1)
+      return 1;
+    return a2.localeCompare(b);
+  });
   const handleResetFilters = () => {
     console.log("Resetting all filters");
     onFilterChange("levelOfCare", null);
@@ -5701,28 +5714,37 @@ function DashboardFilters({
     /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { className: "mb-4 flex items-center justify-between", children: [
       /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("h2", { className: "text-lg font-medium text-gray-900", children: "Dashboard Filters" }, void 0, false, {
         fileName: "app/components/DashboardFilters.tsx",
-        lineNumber: 54,
+        lineNumber: 72,
         columnNumber: 9
       }, this),
-      activeFilterCount > 0 && /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("button", { type: "button", onClick: handleResetFilters, className: "text-sm text-blue-500 hover:underline", children: [
+      activeFilterCount > 0 && /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("button", { type: "button", onClick: handleResetFilters, className: "flex items-center px-3 py-1.5 text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500", children: [
+        /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("svg", { className: "h-4 w-4 mr-1.5", xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M6 18L18 6M6 6l12 12" }, void 0, false, {
+          fileName: "app/components/DashboardFilters.tsx",
+          lineNumber: 75,
+          columnNumber: 15
+        }, this) }, void 0, false, {
+          fileName: "app/components/DashboardFilters.tsx",
+          lineNumber: 74,
+          columnNumber: 13
+        }, this),
         "Reset Filters (",
         activeFilterCount,
         ")"
       ] }, void 0, true, {
         fileName: "app/components/DashboardFilters.tsx",
-        lineNumber: 55,
+        lineNumber: 73,
         columnNumber: 35
       }, this)
     ] }, void 0, true, {
       fileName: "app/components/DashboardFilters.tsx",
-      lineNumber: 53,
+      lineNumber: 71,
       columnNumber: 7
     }, this),
     /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4", children: [
       /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { children: [
         /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("label", { htmlFor: "levelOfCare", className: "block text-sm font-medium text-gray-700", children: "Level of Care" }, void 0, false, {
           fileName: "app/components/DashboardFilters.tsx",
-          lineNumber: 62,
+          lineNumber: 83,
           columnNumber: 11
         }, this),
         /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("select", { id: "levelOfCare", className: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm", value: currentFilters.levelOfCare || "", onChange: (e) => {
@@ -5732,28 +5754,28 @@ function DashboardFilters({
         }, children: [
           /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("option", { value: "", children: "All" }, void 0, false, {
             fileName: "app/components/DashboardFilters.tsx",
-            lineNumber: 70,
+            lineNumber: 91,
             columnNumber: 13
           }, this),
-          Array.isArray(filterOptions.levelOfCare) && filterOptions.levelOfCare.map((loc) => /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("option", { value: loc, children: loc }, loc, false, {
+          sortedLOCOptions.map((loc) => /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("option", { value: loc, children: loc }, loc, false, {
             fileName: "app/components/DashboardFilters.tsx",
-            lineNumber: 71,
-            columnNumber: 95
+            lineNumber: 92,
+            columnNumber: 42
           }, this))
         ] }, void 0, true, {
           fileName: "app/components/DashboardFilters.tsx",
-          lineNumber: 65,
+          lineNumber: 86,
           columnNumber: 11
         }, this)
       ] }, void 0, true, {
         fileName: "app/components/DashboardFilters.tsx",
-        lineNumber: 61,
+        lineNumber: 82,
         columnNumber: 9
       }, this),
       /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { children: [
         /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("label", { htmlFor: "payer", className: "block text-sm font-medium text-gray-700", children: "Payer" }, void 0, false, {
           fileName: "app/components/DashboardFilters.tsx",
-          lineNumber: 79,
+          lineNumber: 100,
           columnNumber: 11
         }, this),
         /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("select", { id: "payer", className: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm", value: currentFilters.payer || "", onChange: (e) => {
@@ -5763,28 +5785,28 @@ function DashboardFilters({
         }, children: [
           /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("option", { value: "", children: "All" }, void 0, false, {
             fileName: "app/components/DashboardFilters.tsx",
-            lineNumber: 87,
+            lineNumber: 108,
             columnNumber: 13
           }, this),
           Array.isArray(filterOptions.payer) && filterOptions.payer.map((payer) => /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("option", { value: payer, children: payer }, payer, false, {
             fileName: "app/components/DashboardFilters.tsx",
-            lineNumber: 88,
+            lineNumber: 109,
             columnNumber: 85
           }, this))
         ] }, void 0, true, {
           fileName: "app/components/DashboardFilters.tsx",
-          lineNumber: 82,
+          lineNumber: 103,
           columnNumber: 11
         }, this)
       ] }, void 0, true, {
         fileName: "app/components/DashboardFilters.tsx",
-        lineNumber: 78,
+        lineNumber: 99,
         columnNumber: 9
       }, this),
       Array.isArray(filterOptions.payerClass) && filterOptions.payerClass.length > 0 && /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { children: [
         /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("label", { htmlFor: "payerClass", className: "block text-sm font-medium text-gray-700", children: "Payer Class" }, void 0, false, {
           fileName: "app/components/DashboardFilters.tsx",
-          lineNumber: 96,
+          lineNumber: 117,
           columnNumber: 13
         }, this),
         /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("select", { id: "payerClass", className: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm", value: currentFilters.payerClass || "", onChange: (e) => {
@@ -5794,28 +5816,28 @@ function DashboardFilters({
         }, children: [
           /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("option", { value: "", children: "All" }, void 0, false, {
             fileName: "app/components/DashboardFilters.tsx",
-            lineNumber: 104,
+            lineNumber: 125,
             columnNumber: 15
           }, this),
           filterOptions.payerClass.map((cls) => /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("option", { value: cls, children: cls }, cls, false, {
             fileName: "app/components/DashboardFilters.tsx",
-            lineNumber: 105,
+            lineNumber: 126,
             columnNumber: 52
           }, this))
         ] }, void 0, true, {
           fileName: "app/components/DashboardFilters.tsx",
-          lineNumber: 99,
+          lineNumber: 120,
           columnNumber: 13
         }, this)
       ] }, void 0, true, {
         fileName: "app/components/DashboardFilters.tsx",
-        lineNumber: 95,
+        lineNumber: 116,
         columnNumber: 92
       }, this),
       /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { children: [
         /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("label", { htmlFor: "stateTreatedAt", className: "block text-sm font-medium text-gray-700", children: "State Treated At" }, void 0, false, {
           fileName: "app/components/DashboardFilters.tsx",
-          lineNumber: 113,
+          lineNumber: 134,
           columnNumber: 11
         }, this),
         /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("select", { id: "stateTreatedAt", className: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm", value: currentFilters.stateTreatedAt || "", onChange: (e) => {
@@ -5825,28 +5847,28 @@ function DashboardFilters({
         }, children: [
           /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("option", { value: "", children: "All" }, void 0, false, {
             fileName: "app/components/DashboardFilters.tsx",
-            lineNumber: 121,
+            lineNumber: 142,
             columnNumber: 13
           }, this),
           Array.isArray(filterOptions.stateTreatedAt) && filterOptions.stateTreatedAt.map((state) => /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("option", { value: state, children: state }, state, false, {
             fileName: "app/components/DashboardFilters.tsx",
-            lineNumber: 122,
+            lineNumber: 143,
             columnNumber: 103
           }, this))
         ] }, void 0, true, {
           fileName: "app/components/DashboardFilters.tsx",
-          lineNumber: 116,
+          lineNumber: 137,
           columnNumber: 11
         }, this)
       ] }, void 0, true, {
         fileName: "app/components/DashboardFilters.tsx",
-        lineNumber: 112,
+        lineNumber: 133,
         columnNumber: 9
       }, this),
       /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { children: [
         /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("label", { htmlFor: "serviceYear", className: "block text-sm font-medium text-gray-700", children: "Service Year" }, void 0, false, {
           fileName: "app/components/DashboardFilters.tsx",
-          lineNumber: 130,
+          lineNumber: 151,
           columnNumber: 11
         }, this),
         /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("select", { id: "serviceYear", className: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm", value: currentFilters.serviceYear || "", onChange: (e) => {
@@ -5856,28 +5878,28 @@ function DashboardFilters({
         }, children: [
           /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("option", { value: "", children: "All" }, void 0, false, {
             fileName: "app/components/DashboardFilters.tsx",
-            lineNumber: 138,
+            lineNumber: 159,
             columnNumber: 13
           }, this),
           Array.isArray(filterOptions.serviceYears) && filterOptions.serviceYears.map((year) => /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("option", { value: year, children: year }, year, false, {
             fileName: "app/components/DashboardFilters.tsx",
-            lineNumber: 139,
+            lineNumber: 160,
             columnNumber: 98
           }, this))
         ] }, void 0, true, {
           fileName: "app/components/DashboardFilters.tsx",
-          lineNumber: 133,
+          lineNumber: 154,
           columnNumber: 11
         }, this)
       ] }, void 0, true, {
         fileName: "app/components/DashboardFilters.tsx",
-        lineNumber: 129,
+        lineNumber: 150,
         columnNumber: 9
       }, this),
       /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { children: [
         /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("label", { htmlFor: "paymentYear", className: "block text-sm font-medium text-gray-700", children: "Payment Year" }, void 0, false, {
           fileName: "app/components/DashboardFilters.tsx",
-          lineNumber: 147,
+          lineNumber: 168,
           columnNumber: 11
         }, this),
         /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("select", { id: "paymentYear", className: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm", value: currentFilters.paymentYear || "", onChange: (e) => {
@@ -5887,32 +5909,32 @@ function DashboardFilters({
         }, children: [
           /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("option", { value: "", children: "All" }, void 0, false, {
             fileName: "app/components/DashboardFilters.tsx",
-            lineNumber: 155,
+            lineNumber: 176,
             columnNumber: 13
           }, this),
           Array.isArray(filterOptions.paymentYears) && filterOptions.paymentYears.map((year) => /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("option", { value: year, children: year }, year, false, {
             fileName: "app/components/DashboardFilters.tsx",
-            lineNumber: 156,
+            lineNumber: 177,
             columnNumber: 98
           }, this))
         ] }, void 0, true, {
           fileName: "app/components/DashboardFilters.tsx",
-          lineNumber: 150,
+          lineNumber: 171,
           columnNumber: 11
         }, this)
       ] }, void 0, true, {
         fileName: "app/components/DashboardFilters.tsx",
-        lineNumber: 146,
+        lineNumber: 167,
         columnNumber: 9
       }, this)
     ] }, void 0, true, {
       fileName: "app/components/DashboardFilters.tsx",
-      lineNumber: 59,
+      lineNumber: 80,
       columnNumber: 7
     }, this)
   ] }, void 0, true, {
     fileName: "app/components/DashboardFilters.tsx",
-    lineNumber: 52,
+    lineNumber: 70,
     columnNumber: 10
   }, this);
 }
@@ -25560,7 +25582,7 @@ if (import.meta) {
     //@ts-expect-error
     "app\\routes\\dashboard.tsx"
   );
-  import.meta.hot.lastModified = "1742551766041.5957";
+  import.meta.hot.lastModified = "1742557462042.0432";
 }
 var meta = () => {
   return [{
@@ -25610,6 +25632,19 @@ function Dashboard() {
     modeAllowedAmount: metric.modeAllowedAmount || metric.averageAllowedAmount
     // fallback
   }));
+  const locOrder2 = ["DTX", "RTC", "PHP", "IOP"];
+  metricsData.sort((a2, b) => {
+    const indexA = locOrder2.indexOf(a2.LOC);
+    const indexB = locOrder2.indexOf(b.LOC);
+    if (indexA !== -1 && indexB !== -1) {
+      return indexA - indexB;
+    }
+    if (indexA !== -1)
+      return -1;
+    if (indexB !== -1)
+      return 1;
+    return a2.LOC.localeCompare(b.LOC);
+  });
   const handleFilterChange = (name, value) => {
     console.log(`Filter changed: ${name} = ${value}`);
     setCurrentFilters((prev) => {
@@ -25621,6 +25656,9 @@ function Dashboard() {
       return newFilters;
     });
   };
+  const handlePrint = () => {
+    window.print();
+  };
   (0, import_react40.useEffect)(() => {
     if (!allClaimData || allClaimData.length === 0) {
       console.log("No claim data available for filtering");
@@ -25628,6 +25666,13 @@ function Dashboard() {
     }
     console.log("Applying filters:", currentFilters);
     let filtered = [...allClaimData];
+    if (filtered.length > 0) {
+      console.log("Sample data for year fields:", filtered.slice(0, 5).map((claim) => ({
+        id: claim.id,
+        serviceYear: claim.serviceYear,
+        paymentYear: claim.paymentYear
+      })));
+    }
     if (currentFilters.levelOfCare) {
       filtered = filtered.filter((claim) => claim.levelOfCare === currentFilters.levelOfCare);
       console.log(`After levelOfCare filter: ${filtered.length} records`);
@@ -25645,11 +25690,17 @@ function Dashboard() {
       console.log(`After stateTreatedAt filter: ${filtered.length} records`);
     }
     if (currentFilters.serviceYear !== null) {
-      filtered = filtered.filter((claim) => claim.serviceYear === currentFilters.serviceYear);
+      filtered = filtered.filter((claim) => {
+        const claimYear = typeof claim.serviceYear === "string" ? parseInt(claim.serviceYear) : claim.serviceYear;
+        return claimYear === currentFilters.serviceYear;
+      });
       console.log(`After serviceYear filter: ${filtered.length} records`);
     }
     if (currentFilters.paymentYear !== null) {
-      filtered = filtered.filter((claim) => claim.paymentYear === currentFilters.paymentYear);
+      filtered = filtered.filter((claim) => {
+        const claimYear = typeof claim.paymentYear === "string" ? parseInt(claim.paymentYear) : claim.paymentYear;
+        return claimYear === currentFilters.paymentYear;
+      });
       console.log(`After paymentYear filter: ${filtered.length} records`);
     }
     console.log(`Final filtered data: ${filtered.length} records`);
@@ -25700,8 +25751,32 @@ function Dashboard() {
         paymentTotalPaid: 0
       }
     }));
+    locBreakdown.sort((a2, b) => {
+      const indexA = locOrder2.indexOf(a2.LOC);
+      const indexB = locOrder2.indexOf(b.LOC);
+      if (indexA !== -1 && indexB !== -1) {
+        return indexA - indexB;
+      }
+      if (indexA !== -1)
+        return -1;
+      if (indexB !== -1)
+        return 1;
+      return a2.LOC.localeCompare(b.LOC);
+    });
     const filteredLOCs = new Set(filteredData.map((claim) => claim.levelOfCare).filter(Boolean));
     const filteredMetrics = dashboardStats.locMetrics.filter((metric) => filteredLOCs.has(metric.LOC));
+    filteredMetrics.sort((a2, b) => {
+      const indexA = locOrder2.indexOf(a2.LOC);
+      const indexB = locOrder2.indexOf(b.LOC);
+      if (indexA !== -1 && indexB !== -1) {
+        return indexA - indexB;
+      }
+      if (indexA !== -1)
+        return -1;
+      if (indexB !== -1)
+        return 1;
+      return a2.LOC.localeCompare(b.LOC);
+    });
     setFilteredStats({
       ...dashboardStats,
       totalRecords: filteredData.length,
@@ -25718,144 +25793,170 @@ function Dashboard() {
       /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { children: [
         /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("h1", { className: "text-3xl font-bold text-gray-900", children: "Analytics Dashboard" }, void 0, false, {
           fileName: "app/routes/dashboard.tsx",
-          lineNumber: 277,
+          lineNumber: 348,
           columnNumber: 13
         }, this),
         /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("p", { className: "mt-2 text-gray-600", children: "Overview of key metrics and revenue projections from your healthcare data." }, void 0, false, {
           fileName: "app/routes/dashboard.tsx",
-          lineNumber: 278,
+          lineNumber: 349,
           columnNumber: 13
         }, this)
       ] }, void 0, true, {
         fileName: "app/routes/dashboard.tsx",
-        lineNumber: 276,
+        lineNumber: 347,
         columnNumber: 11
       }, this),
-      (isLoading || calculationResult) && /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { className: "flex items-center", children: isLoading ? /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { className: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-primary-600", children: [
-        /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("svg", { className: "animate-spin -ml-1 mr-2 h-4 w-4 text-white", xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", children: [
-          /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("circle", { className: "opacity-25", cx: "12", cy: "12", r: "10", stroke: "currentColor", strokeWidth: "4" }, void 0, false, {
+      /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { className: "flex space-x-4", children: [
+        /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("button", { onClick: handlePrint, className: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500", children: [
+          /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("svg", { className: "h-5 w-5 mr-2", xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" }, void 0, false, {
             fileName: "app/routes/dashboard.tsx",
-            lineNumber: 287,
-            columnNumber: 21
+            lineNumber: 358,
+            columnNumber: 17
+          }, this) }, void 0, false, {
+            fileName: "app/routes/dashboard.tsx",
+            lineNumber: 357,
+            columnNumber: 15
           }, this),
-          /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("path", { className: "opacity-75", fill: "currentColor", d: "M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" }, void 0, false, {
-            fileName: "app/routes/dashboard.tsx",
-            lineNumber: 288,
-            columnNumber: 21
-          }, this)
+          "Print Dashboard"
         ] }, void 0, true, {
           fileName: "app/routes/dashboard.tsx",
-          lineNumber: 286,
-          columnNumber: 19
+          lineNumber: 356,
+          columnNumber: 13
         }, this),
-        "Loading metrics..."
-      ] }, void 0, true, {
-        fileName: "app/routes/dashboard.tsx",
-        lineNumber: 285,
-        columnNumber: 28
-      }, this) : calculationResult && /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { className: `inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md ${calculationResult.success ? "text-green-800 bg-green-100" : "text-red-800 bg-red-100"}`, children: [
-        calculationResult.success ? /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("svg", { className: "h-5 w-5 mr-2 text-green-500", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: "2", d: "M5 13l4 4L19 7" }, void 0, false, {
+        (isLoading || calculationResult) && /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { className: "flex items-center", children: isLoading ? /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { className: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-primary-600", children: [
+          /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("svg", { className: "animate-spin -ml-1 mr-2 h-4 w-4 text-white", xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", children: [
+            /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("circle", { className: "opacity-25", cx: "12", cy: "12", r: "10", stroke: "currentColor", strokeWidth: "4" }, void 0, false, {
+              fileName: "app/routes/dashboard.tsx",
+              lineNumber: 367,
+              columnNumber: 23
+            }, this),
+            /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("path", { className: "opacity-75", fill: "currentColor", d: "M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" }, void 0, false, {
+              fileName: "app/routes/dashboard.tsx",
+              lineNumber: 368,
+              columnNumber: 23
+            }, this)
+          ] }, void 0, true, {
+            fileName: "app/routes/dashboard.tsx",
+            lineNumber: 366,
+            columnNumber: 21
+          }, this),
+          "Loading metrics..."
+        ] }, void 0, true, {
           fileName: "app/routes/dashboard.tsx",
-          lineNumber: 293,
-          columnNumber: 23
-        }, this) }, void 0, false, {
-          fileName: "app/routes/dashboard.tsx",
-          lineNumber: 292,
-          columnNumber: 48
-        }, this) : /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("svg", { className: "h-5 w-5 mr-2 text-red-500", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: "2", d: "M6 18L18 6M6 6l12 12" }, void 0, false, {
-          fileName: "app/routes/dashboard.tsx",
-          lineNumber: 295,
-          columnNumber: 23
-        }, this) }, void 0, false, {
-          fileName: "app/routes/dashboard.tsx",
-          lineNumber: 294,
+          lineNumber: 365,
           columnNumber: 30
-        }, this),
-        calculationResult.success ? "Metrics calculated" : "Calculation error"
+        }, this) : calculationResult && /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { className: `inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md ${calculationResult.success ? "text-green-800 bg-green-100" : "text-red-800 bg-red-100"}`, children: [
+          calculationResult.success ? /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("svg", { className: "h-5 w-5 mr-2 text-green-500", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: "2", d: "M5 13l4 4L19 7" }, void 0, false, {
+            fileName: "app/routes/dashboard.tsx",
+            lineNumber: 373,
+            columnNumber: 25
+          }, this) }, void 0, false, {
+            fileName: "app/routes/dashboard.tsx",
+            lineNumber: 372,
+            columnNumber: 50
+          }, this) : /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("svg", { className: "h-5 w-5 mr-2 text-red-500", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: "2", d: "M6 18L18 6M6 6l12 12" }, void 0, false, {
+            fileName: "app/routes/dashboard.tsx",
+            lineNumber: 375,
+            columnNumber: 25
+          }, this) }, void 0, false, {
+            fileName: "app/routes/dashboard.tsx",
+            lineNumber: 374,
+            columnNumber: 32
+          }, this),
+          calculationResult.success ? "Metrics calculated" : "Calculation error"
+        ] }, void 0, true, {
+          fileName: "app/routes/dashboard.tsx",
+          lineNumber: 371,
+          columnNumber: 49
+        }, this) }, void 0, false, {
+          fileName: "app/routes/dashboard.tsx",
+          lineNumber: 364,
+          columnNumber: 50
+        }, this)
       ] }, void 0, true, {
         fileName: "app/routes/dashboard.tsx",
-        lineNumber: 291,
-        columnNumber: 47
-      }, this) }, void 0, false, {
-        fileName: "app/routes/dashboard.tsx",
-        lineNumber: 284,
-        columnNumber: 48
+        lineNumber: 354,
+        columnNumber: 11
       }, this)
     ] }, void 0, true, {
       fileName: "app/routes/dashboard.tsx",
-      lineNumber: 275,
+      lineNumber: 346,
       columnNumber: 9
     }, this),
-    filterOptions && Object.keys(filterOptions).length > 0 && /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(DashboardFilters, { filterOptions, currentFilters, onFilterChange: handleFilterChange }, void 0, false, {
+    /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { className: "print:hidden", children: filterOptions && Object.keys(filterOptions).length > 0 && /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(DashboardFilters, { filterOptions, currentFilters, onFilterChange: handleFilterChange }, void 0, false, {
       fileName: "app/routes/dashboard.tsx",
-      lineNumber: 303,
-      columnNumber: 68
+      lineNumber: 385,
+      columnNumber: 70
+    }, this) }, void 0, false, {
+      fileName: "app/routes/dashboard.tsx",
+      lineNumber: 384,
+      columnNumber: 9
     }, this),
     /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { className: "grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 mb-8", children: [
-      /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(StatsCard, { title: "Total Records", value: filteredStats.totalRecords.toLocaleString(), description: "Total number of claims", icon: /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("svg", { className: "h-6 w-6", xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" }, void 0, false, {
+      /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(StatsCard, { title: "Total Records", value: filteredStats.totalRecords.toLocaleString(), description: "", icon: /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("svg", { className: "h-6 w-6", xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" }, void 0, false, {
         fileName: "app/routes/dashboard.tsx",
-        lineNumber: 308,
+        lineNumber: 391,
         columnNumber: 17
       }, this) }, void 0, false, {
         fileName: "app/routes/dashboard.tsx",
-        lineNumber: 307,
-        columnNumber: 139
+        lineNumber: 390,
+        columnNumber: 117
       }, this) }, void 0, false, {
         fileName: "app/routes/dashboard.tsx",
-        lineNumber: 307,
+        lineNumber: 390,
         columnNumber: 11
       }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(StatsCard, { title: "Unique Patients", value: filteredStats.uniquePatients.toLocaleString(), description: "Distinct patient count", icon: /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("svg", { className: "h-6 w-6", xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" }, void 0, false, {
+      /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(StatsCard, { title: "Unique Patients", value: filteredStats.uniquePatients.toLocaleString(), description: "", icon: /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("svg", { className: "h-6 w-6", xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" }, void 0, false, {
         fileName: "app/routes/dashboard.tsx",
-        lineNumber: 311,
+        lineNumber: 394,
         columnNumber: 17
       }, this) }, void 0, false, {
         fileName: "app/routes/dashboard.tsx",
-        lineNumber: 310,
-        columnNumber: 143
+        lineNumber: 393,
+        columnNumber: 121
       }, this) }, void 0, false, {
         fileName: "app/routes/dashboard.tsx",
-        lineNumber: 310,
+        lineNumber: 393,
         columnNumber: 11
       }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(StatsCard, { title: "Total Payments", value: formatCurrency(filteredStats.totalPayments), description: "Sum of all payments", icon: /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("svg", { className: "h-6 w-6", xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" }, void 0, false, {
+      /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(StatsCard, { title: "Total Payments", value: formatCurrency(filteredStats.totalPayments), description: "", icon: /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("svg", { className: "h-6 w-6", xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" }, void 0, false, {
         fileName: "app/routes/dashboard.tsx",
-        lineNumber: 314,
+        lineNumber: 397,
         columnNumber: 17
       }, this) }, void 0, false, {
         fileName: "app/routes/dashboard.tsx",
-        lineNumber: 313,
-        columnNumber: 137
+        lineNumber: 396,
+        columnNumber: 118
       }, this) }, void 0, false, {
         fileName: "app/routes/dashboard.tsx",
-        lineNumber: 313,
+        lineNumber: 396,
         columnNumber: 11
       }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(StatsCard, { title: "Average Allowed Amount", value: formatCurrency(filteredStats.totalRecords > 0 ? filteredStats.totalAllowed / filteredStats.totalRecords : 0), description: "Average allowed per claim", icon: /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("svg", { className: "h-6 w-6", xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" }, void 0, false, {
+      /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(StatsCard, { title: "Average Allowed Amount", value: formatCurrency(filteredStats.totalRecords > 0 ? filteredStats.totalAllowed / filteredStats.totalRecords : 0), description: "", icon: /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("svg", { className: "h-6 w-6", xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" }, void 0, false, {
         fileName: "app/routes/dashboard.tsx",
-        lineNumber: 317,
+        lineNumber: 400,
         columnNumber: 17
       }, this) }, void 0, false, {
         fileName: "app/routes/dashboard.tsx",
-        lineNumber: 316,
-        columnNumber: 216
+        lineNumber: 399,
+        columnNumber: 191
       }, this) }, void 0, false, {
         fileName: "app/routes/dashboard.tsx",
-        lineNumber: 316,
+        lineNumber: 399,
         columnNumber: 11
       }, this)
     ] }, void 0, true, {
       fileName: "app/routes/dashboard.tsx",
-      lineNumber: 306,
+      lineNumber: 389,
       columnNumber: 9
     }, this),
     /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { className: "mb-8 bg-white rounded-lg shadow p-6", children: /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(MetricsChart, { data: metricsData, title: "Amount Metrics by Level of Care" }, void 0, false, {
       fileName: "app/routes/dashboard.tsx",
-      lineNumber: 323,
+      lineNumber: 406,
       columnNumber: 11
     }, this) }, void 0, false, {
       fileName: "app/routes/dashboard.tsx",
-      lineNumber: 322,
+      lineNumber: 405,
       columnNumber: 9
     }, this),
     /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { className: "mb-8", children: /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(RevenueProjection, { metrics: filteredStats.locMetrics.map((metric) => ({
@@ -25868,158 +25969,20 @@ function Dashboard() {
       countOfObservation: metric.countOfObservation
     })) }, void 0, false, {
       fileName: "app/routes/dashboard.tsx",
-      lineNumber: 328,
+      lineNumber: 411,
       columnNumber: 11
     }, this) }, void 0, false, {
       fileName: "app/routes/dashboard.tsx",
-      lineNumber: 327,
-      columnNumber: 9
-    }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { className: "grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8", children: [
-      /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { className: "bg-white rounded-lg shadow", children: [
-        /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { className: "px-4 py-5 sm:px-6 border-b border-gray-200", children: [
-          /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("h3", { className: "text-lg font-medium text-gray-900", children: "Level of Care Breakdown" }, void 0, false, {
-            fileName: "app/routes/dashboard.tsx",
-            lineNumber: 343,
-            columnNumber: 15
-          }, this),
-          /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("p", { className: "mt-1 text-sm text-gray-500", children: "Distribution of records by level of care" }, void 0, false, {
-            fileName: "app/routes/dashboard.tsx",
-            lineNumber: 344,
-            columnNumber: 15
-          }, this)
-        ] }, void 0, true, {
-          fileName: "app/routes/dashboard.tsx",
-          lineNumber: 342,
-          columnNumber: 13
-        }, this),
-        /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { className: "px-4 py-5 sm:p-6", children: /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { className: "overflow-x-auto", children: /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("table", { className: "min-w-full divide-y divide-gray-200", children: [
-          /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("thead", { className: "bg-gray-50", children: /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("tr", { children: [
-            /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("th", { className: "px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider", children: "Level of Care" }, void 0, false, {
-              fileName: "app/routes/dashboard.tsx",
-              lineNumber: 353,
-              columnNumber: 23
-            }, this),
-            /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("th", { className: "px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider", children: "Count" }, void 0, false, {
-              fileName: "app/routes/dashboard.tsx",
-              lineNumber: 354,
-              columnNumber: 23
-            }, this),
-            /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("th", { className: "px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider", children: "Percentage" }, void 0, false, {
-              fileName: "app/routes/dashboard.tsx",
-              lineNumber: 355,
-              columnNumber: 23
-            }, this)
-          ] }, void 0, true, {
-            fileName: "app/routes/dashboard.tsx",
-            lineNumber: 352,
-            columnNumber: 21
-          }, this) }, void 0, false, {
-            fileName: "app/routes/dashboard.tsx",
-            lineNumber: 351,
-            columnNumber: 19
-          }, this),
-          /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("tbody", { className: "bg-white divide-y divide-gray-200", children: filteredStats.locBreakdown.map((item) => /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("tr", { children: [
-            /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("td", { className: "px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900", children: /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(Link, { to: `/dashboard/${item.LOC}`, className: "text-primary-600 hover:underline", children: item.LOC }, void 0, false, {
-              fileName: "app/routes/dashboard.tsx",
-              lineNumber: 361,
-              columnNumber: 27
-            }, this) }, void 0, false, {
-              fileName: "app/routes/dashboard.tsx",
-              lineNumber: 360,
-              columnNumber: 25
-            }, this),
-            /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("td", { className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500", children: item._count.id }, void 0, false, {
-              fileName: "app/routes/dashboard.tsx",
-              lineNumber: 363,
-              columnNumber: 25
-            }, this),
-            /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("td", { className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500", children: [
-              (item._count.id / filteredStats.totalRecords * 100).toFixed(1),
-              "%"
-            ] }, void 0, true, {
-              fileName: "app/routes/dashboard.tsx",
-              lineNumber: 364,
-              columnNumber: 25
-            }, this)
-          ] }, item.LOC, true, {
-            fileName: "app/routes/dashboard.tsx",
-            lineNumber: 359,
-            columnNumber: 61
-          }, this)) }, void 0, false, {
-            fileName: "app/routes/dashboard.tsx",
-            lineNumber: 358,
-            columnNumber: 19
-          }, this)
-        ] }, void 0, true, {
-          fileName: "app/routes/dashboard.tsx",
-          lineNumber: 350,
-          columnNumber: 17
-        }, this) }, void 0, false, {
-          fileName: "app/routes/dashboard.tsx",
-          lineNumber: 349,
-          columnNumber: 15
-        }, this) }, void 0, false, {
-          fileName: "app/routes/dashboard.tsx",
-          lineNumber: 348,
-          columnNumber: 13
-        }, this)
-      ] }, void 0, true, {
-        fileName: "app/routes/dashboard.tsx",
-        lineNumber: 341,
-        columnNumber: 11
-      }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { className: "bg-white rounded-lg shadow", children: [
-        /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { className: "px-4 py-5 sm:px-6 border-b border-gray-200", children: [
-          /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("h3", { className: "text-lg font-medium text-gray-900", children: "Payer Distribution" }, void 0, false, {
-            fileName: "app/routes/dashboard.tsx",
-            lineNumber: 377,
-            columnNumber: 15
-          }, this),
-          /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("p", { className: "mt-1 text-sm text-gray-500", children: "Top payers by number of claims" }, void 0, false, {
-            fileName: "app/routes/dashboard.tsx",
-            lineNumber: 378,
-            columnNumber: 15
-          }, this)
-        ] }, void 0, true, {
-          fileName: "app/routes/dashboard.tsx",
-          lineNumber: 376,
-          columnNumber: 13
-        }, this),
-        /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { className: "px-4 py-5 sm:p-6", children: filteredClaimData.length > 0 ? /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { className: "text-center text-gray-500", children: "Payer Distribution Chart Removed" }, void 0, false, {
-          fileName: "app/routes/dashboard.tsx",
-          lineNumber: 381,
-          columnNumber: 47
-        }, this) : /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { className: "h-64 flex items-center justify-center", children: /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("p", { className: "text-gray-500", children: "No data available" }, void 0, false, {
-          fileName: "app/routes/dashboard.tsx",
-          lineNumber: 384,
-          columnNumber: 19
-        }, this) }, void 0, false, {
-          fileName: "app/routes/dashboard.tsx",
-          lineNumber: 383,
-          columnNumber: 26
-        }, this) }, void 0, false, {
-          fileName: "app/routes/dashboard.tsx",
-          lineNumber: 380,
-          columnNumber: 13
-        }, this)
-      ] }, void 0, true, {
-        fileName: "app/routes/dashboard.tsx",
-        lineNumber: 375,
-        columnNumber: 11
-      }, this)
-    ] }, void 0, true, {
-      fileName: "app/routes/dashboard.tsx",
-      lineNumber: 340,
+      lineNumber: 410,
       columnNumber: 9
     }, this)
   ] }, void 0, true, {
     fileName: "app/routes/dashboard.tsx",
-    lineNumber: 274,
+    lineNumber: 345,
     columnNumber: 7
   }, this) }, void 0, false, {
     fileName: "app/routes/dashboard.tsx",
-    lineNumber: 273,
+    lineNumber: 344,
     columnNumber: 10
   }, this);
 }
@@ -26068,4 +26031,4 @@ object-assign/index.js:
   @license MIT
   *)
 */
-//# sourceMappingURL=/build/routes/dashboard-2B25W4AR.js.map
+//# sourceMappingURL=/build/routes/dashboard-MOKA6TGZ.js.map

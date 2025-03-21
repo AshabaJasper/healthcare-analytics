@@ -27,7 +27,7 @@ if (import.meta) {
     //@ts-expect-error
     "app\\components\\StatsCard.tsx"
   );
-  import.meta.hot.lastModified = "1742373718814.1538";
+  import.meta.hot.lastModified = "1742557552170.3933";
 }
 function StatsCard({
   title,
@@ -61,10 +61,10 @@ function StatsCard({
         lineNumber: 41,
         columnNumber: 15
       }, this),
-      description && /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("dd", { className: "mt-1 text-sm text-gray-500", children: description }, void 0, false, {
+      description && description.length > 0 && /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("dd", { className: "mt-1 text-sm text-gray-500", children: description }, void 0, false, {
         fileName: "app/components/StatsCard.tsx",
         lineNumber: 46,
-        columnNumber: 31
+        columnNumber: 57
       }, this),
       change && /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("dd", { className: `mt-2 text-sm ${change.isPositive ? "text-green-600" : "text-red-600"}`, children: [
         /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("span", { className: "font-medium", children: [
@@ -119,4 +119,4 @@ window.$RefreshSig$ = prevRefreshSig;
 export {
   StatsCard
 };
-//# sourceMappingURL=/build/_shared/chunk-WVHI3FEJ.js.map
+//# sourceMappingURL=/build/_shared/chunk-CMIXI72N.js.map

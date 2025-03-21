@@ -50,14 +50,18 @@ export async function getFilterOptions() {
       distinct: ['paymentReceivedYear'],
     });
 
+    // Log the year values to help with debugging
+    console.log("Service Years from DB:", serviceYearOptions.map(y => y.serviceYear));
+    console.log("Payment Years from DB:", paymentYearOptions.map(y => y.paymentReceivedYear));
+
     // Map database field names to frontend field names
     return {
       levelOfCare: locOptions.map(option => option.LOC).filter(Boolean).sort(),
       payer: payerOptions.map(option => option.payerName).filter(Boolean).sort(),
       payerClass: payerClassOptions.map(option => option.payerGroup).filter(Boolean).sort(),
       stateTreatedAt: stateOptions.map(option => option.primaryInsState).filter(Boolean).sort(),
-      serviceYears: serviceYearOptions.map(option => option.serviceYear).filter(Boolean).sort((a, b) => b - a),
-      paymentYears: paymentYearOptions.map(option => option.paymentReceivedYear).filter(Boolean).sort((a, b) => b - a),
+      serviceYears: serviceYearOptions.map(option => Number(option.serviceYear)).filter(Boolean).sort((a, b) => b - a),
+      paymentYears: paymentYearOptions.map(option => Number(option.paymentReceivedYear)).filter(Boolean).sort((a, b) => b - a),
     };
   } catch (error) {
     console.error("Error fetching filter options:", error);
@@ -101,7 +105,7 @@ export async function getAllClaimData() {
     });
     
     // Map database field names to frontend field names
-    return records.map(record => ({
+    const mappedRecords = records.map(record => ({
       id: record.id,
       levelOfCare: record.LOC,
       payer: record.payerName,
@@ -114,10 +118,17 @@ export async function getAllClaimData() {
       paidAmount: record.paymentTotalPaid?.toString() || "0",
       allowedAmount: record.paymentAllowedAmount?.toString() || "0",
       patientId: record.claimPrimaryMemberID,
-      // Include the year fields directly to avoid extracting in the frontend
-      serviceYear: record.serviceYear,
-      paymentYear: record.paymentReceivedYear,
+      // Ensure year fields are numbers
+      serviceYear: record.serviceYear ? Number(record.serviceYear) : null,
+      paymentYear: record.paymentReceivedYear ? Number(record.paymentReceivedYear) : null,
     }));
+    
+    // Log some sample records to help with debugging
+    if (mappedRecords.length > 0) {
+      console.log("Sample mapped claim record:", mappedRecords[0]);
+    }
+    
+    return mappedRecords;
   } catch (error) {
     console.error("Error fetching all claim data:", error);
     return [];

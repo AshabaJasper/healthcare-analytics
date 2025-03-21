@@ -51,3 +51,83 @@
     @apply px-6 py-4 whitespace-nowrap text-sm text-gray-500;
   }
 }
+
+/* Add these styles to your tailwind.css file */
+
+@media print {
+  /* Hide navigation and elements not needed for printing */
+  nav, 
+  footer, 
+  button,
+  .print:hidden {
+    display: none !important;
+  }
+  
+  /* Make sure white background is used for all elements */
+  body, 
+  .bg-gray-50, 
+  .bg-gray-100, 
+  .bg-white {
+    background-color: white !important;
+    color: black !important;
+  }
+  
+  /* Remove shadows for printing */
+  .shadow, 
+  .shadow-md, 
+  .shadow-lg,
+  .shadow-xl {
+    box-shadow: none !important;
+  }
+  
+  /* Ensure proper page breaks */
+  .mb-8 {
+    margin-bottom: 1.5rem !important;
+    page-break-inside: avoid;
+  }
+  
+  /* Adjust container for full page width */
+  .container,
+  .max-w-7xl {
+    max-width: 100% !important;
+    padding: 0 !important;
+  }
+  
+  /* Make text darker for better printing */
+  .text-gray-500,
+  .text-gray-600,
+  .text-gray-700 {
+    color: #333 !important;
+  }
+  
+  /* Ensure charts print at a reasonable size */
+  .recharts-wrapper {
+    width: 100% !important;
+    page-break-inside: avoid;
+  }
+  
+  /* Force table layout to fit printed page */
+  table {
+    width: 100% !important;
+    page-break-inside: avoid;
+  }
+  
+  /* Add page title */
+  h1.text-3xl::before {
+    content: "Healthcare Analytics Dashboard";
+    display: block;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+  
+  /* Add print date at the bottom */
+  .mb-8:last-child::after {
+    content: "Printed on " attr(data-print-date);
+    display: block;
+    text-align: center;
+    font-size: 12px;
+    margin-top: 2rem;
+  }
+}

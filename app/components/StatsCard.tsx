@@ -33,7 +33,7 @@ export default function StatsCard({ title, value, description, icon, change }: S
                   {value}
                 </div>
               </dd>
-              {description && (
+              {description && description.length > 0 && (
                 <dd className="mt-1 text-sm text-gray-500">
                   {description}
                 </dd>
