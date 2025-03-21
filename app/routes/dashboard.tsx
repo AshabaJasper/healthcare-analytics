@@ -20,6 +20,8 @@ export const meta: MetaFunction = () => {
 };
 
 export async function loader({ request }: LoaderFunctionArgs) {
+  console.log("Loading dashboard data...");
+  
   // Check if metrics need to be calculated
   const metricsStatus = await checkMetricsStatus();
   
@@ -44,52 +46,30 @@ export async function loader({ request }: LoaderFunctionArgs) {
     }
   }
 
-  const dashboardStats = await getDashboardStats();
-  const filterOptions = await getFilterOptions();
-  const allClaimData = await getAllClaimData();
-
-  // Extract service and payment years from claim data
-  const serviceYears: number[] = [];
-  const paymentYears: number[] = [];
   
-  allClaimData.forEach(claim => {
-    if (claim.serviceDate) {
-      const year = new Date(claim.serviceDate).getFullYear();
-      if (!serviceYears.includes(year)) {
-        serviceYears.push(year);
-      }
-    }
-    if (claim.paymentDate) {
-      const year = new Date(claim.paymentDate).getFullYear();
-      if (!paymentYears.includes(year)) {
-        paymentYears.push(year);
-      }
-    }
+
+  // Load all data required for the dashboard
+  const [dashboardStats, filterOptions, allClaimData] = await Promise.all([
+    getDashboardStats(),
+    getFilterOptions(),
+    getAllClaimData()
+  ]);
+  
+  // Log filter options to help with debugging
+  console.log("Filter options loaded:", {
+    levelOfCare: filterOptions.levelOfCare?.length || 0,
+    payer: filterOptions.payer?.length || 0,
+    payerClass: filterOptions.payerClass?.length || 0,
+    stateTreatedAt: filterOptions.stateTreatedAt?.length || 0,
+    serviceYears: filterOptions.serviceYears?.length || 0,
+    paymentYears: filterOptions.paymentYears?.length || 0,
   });
-  
-  // Sort years (newest first)
-  serviceYears.sort((a, b) => b - a);
-  paymentYears.sort((a, b) => b - a);
-
-  // Format filter options to match DashboardFilters expectations.
-  // Here we map:
-  // - backend "loc" to "levelOfCare"
-  // - backend "payerName" to "payer"
-  // - backend "insuranceState" to "stateTreatedAt"
-  const formattedFilterOptions = {
-    levelOfCare: filterOptions.loc || [],
-    payer: filterOptions.payerName || [],
-    payerClass: filterOptions.payerClass || [], // May be empty if not returned from the service
-    stateTreatedAt: filterOptions.stateTreatedAt || filterOptions.insuranceState || [],
-    serviceYears,
-    paymentYears,
-  };
 
   return json({ 
     dashboardStats, 
     metricsStatus,
     calculationResult,
-    filterOptions: formattedFilterOptions,
+    filterOptions,
     allClaimData,
   });
 }
@@ -99,21 +79,19 @@ export default function Dashboard() {
   const navigation = useNavigation();
   const isLoading = navigation.state === "loading";
   
-  // Note: Adjust the filter keys to match your claim data.
-  // In this example, our claim data mapping returns keys such as:
-  //   levelOfCare, payer, payerClass, stateTreatedAt, serviceDate, paymentDate, etc.
+  // Define filter state that matches the DashboardFilters component
   const [currentFilters, setCurrentFilters] = useState({
-    levelOfCare: null,
-    payer: null,
-    payerClass: null,
-    stateTreatedAt: null,
-    serviceYear: null,
-    paymentYear: null,
+    levelOfCare: null as string | null,
+    payer: null as string | null,
+    payerClass: null as string | null,
+    stateTreatedAt: null as string | null,
+    serviceYear: null as number | null,
+    paymentYear: null as number | null,
   });
   
   const [filteredClaimData, setFilteredClaimData] = useState(allClaimData || []);
 
-  // Format the metrics data for MetricsChart.
+  // Format the metrics data for MetricsChart
   const metricsData = dashboardStats.locMetrics.map((metric) => ({
     LOC: metric.LOC,
     averageAllowedAmount: metric.averageAllowedAmount,
@@ -123,7 +101,7 @@ export default function Dashboard() {
     modeAllowedAmount: metric.modeAllowedAmount || metric.averageAllowedAmount, // fallback
   }));
 
-  // Callback when a filter is changed.
+  // Callback when a filter is changed by the user
   const handleFilterChange = (name: string, value: string | number | null) => {
     console.log(`Filter changed: ${name} = ${value}`);
     setCurrentFilters(prev => ({
@@ -132,37 +110,53 @@ export default function Dashboard() {
     }));
   };
 
-  // Apply filters whenever currentFilters or claim data change.
+  // Apply filters whenever currentFilters or claim data change
   useEffect(() => {
-    if (!allClaimData || allClaimData.length === 0) return;
+    if (!allClaimData || allClaimData.length === 0) {
+      console.log("No claim data available for filtering");
+      return;
+    }
+    
+    console.log("Applying filters:", currentFilters);
     let filtered = [...allClaimData];
     
+    // Filter by levelOfCare (maps to LOC in database)
     if (currentFilters.levelOfCare) {
       filtered = filtered.filter(claim => claim.levelOfCare === currentFilters.levelOfCare);
-    }
-    if (currentFilters.payer) {
-      filtered = filtered.filter(claim => claim.payer === currentFilters.payer);
-    }
-    if (currentFilters.payerClass) {
-      filtered = filtered.filter(claim => claim.payerClass === currentFilters.payerClass);
-    }
-    if (currentFilters.stateTreatedAt) {
-      filtered = filtered.filter(claim => claim.stateTreatedAt === currentFilters.stateTreatedAt);
-    }
-    if (currentFilters.serviceYear) {
-      filtered = filtered.filter(claim => {
-        if (!claim.serviceDate) return false;
-        return new Date(claim.serviceDate).getFullYear() === currentFilters.serviceYear;
-      });
-    }
-    if (currentFilters.paymentYear) {
-      filtered = filtered.filter(claim => {
-        if (!claim.paymentDate) return false;
-        return new Date(claim.paymentDate).getFullYear() === currentFilters.paymentYear;
-      });
+      console.log(`After levelOfCare filter: ${filtered.length} records`);
     }
     
-    console.log("Filtered claim data count:", filtered.length);
+    // Filter by payer (maps to payerName in database)
+    if (currentFilters.payer) {
+      filtered = filtered.filter(claim => claim.payer === currentFilters.payer);
+      console.log(`After payer filter: ${filtered.length} records`);
+    }
+    
+    // Filter by payerClass (maps to payerGroup in database)
+    if (currentFilters.payerClass) {
+      filtered = filtered.filter(claim => claim.payerClass === currentFilters.payerClass);
+      console.log(`After payerClass filter: ${filtered.length} records`);
+    }
+    
+    // Filter by stateTreatedAt (maps to primaryInsState in database)
+    if (currentFilters.stateTreatedAt) {
+      filtered = filtered.filter(claim => claim.stateTreatedAt === currentFilters.stateTreatedAt);
+      console.log(`After stateTreatedAt filter: ${filtered.length} records`);
+    }
+    
+    // Filter by serviceYear 
+    if (currentFilters.serviceYear !== null) {
+      filtered = filtered.filter(claim => claim.serviceYear === currentFilters.serviceYear);
+      console.log(`After serviceYear filter: ${filtered.length} records`);
+    }
+    
+    // Filter by paymentYear
+    if (currentFilters.paymentYear !== null) {
+      filtered = filtered.filter(claim => claim.paymentYear === currentFilters.paymentYear);
+      console.log(`After paymentYear filter: ${filtered.length} records`);
+    }
+    
+    console.log(`Final filtered data: ${filtered.length} records`);
     setFilteredClaimData(filtered);
   }, [allClaimData, currentFilters]);
 
@@ -210,7 +204,7 @@ export default function Dashboard() {
           )}
         </div>
 
-        {/* Dashboard Filters */}
+        {/* Dashboard Filters - only render if we have filter options */}
         {filterOptions && Object.keys(filterOptions).length > 0 && (
           <DashboardFilters 
             filterOptions={filterOptions}
@@ -218,6 +212,8 @@ export default function Dashboard() {
             onFilterChange={handleFilterChange}
           />
         )}
+
+        
 
         {/* Summary Stats Cards */}
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 mb-8">

@@ -10,12 +10,12 @@ interface DashboardFiltersProps {
     paymentYears: number[];
   };
   currentFilters: {
-    levelOfCare?: string;
-    payer?: string;
-    payerClass?: string;
-    stateTreatedAt?: string;
-    serviceYear?: number;
-    paymentYear?: number;
+    levelOfCare?: string | null;
+    payer?: string | null;
+    payerClass?: string | null;
+    stateTreatedAt?: string | null;
+    serviceYear?: number | null;
+    paymentYear?: number | null;
   };
   onFilterChange: (name: string, value: string | number | null) => void;
 }
@@ -25,7 +25,20 @@ export default function DashboardFilters({
   currentFilters,
   onFilterChange,
 }: DashboardFiltersProps) {
+  // Add debugging effect to log when filter options change
+  useEffect(() => {
+    console.log("DashboardFilters component received filter options:", {
+      levelOfCare: filterOptions.levelOfCare?.length || 0,
+      payer: filterOptions.payer?.length || 0,
+      payerClass: filterOptions.payerClass?.length || 0,
+      stateTreatedAt: filterOptions.stateTreatedAt?.length || 0,
+      serviceYears: filterOptions.serviceYears?.length || 0,
+      paymentYears: filterOptions.paymentYears?.length || 0,
+    });
+  }, [filterOptions]);
+
   const handleResetFilters = () => {
+    console.log("Resetting all filters");
     onFilterChange("levelOfCare", null);
     onFilterChange("payer", null);
     onFilterChange("payerClass", null);
@@ -56,16 +69,21 @@ export default function DashboardFilters({
             id="levelOfCare"
             className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm"
             value={currentFilters.levelOfCare || ""}
-            onChange={(e) => onFilterChange("levelOfCare", e.target.value || null)}
+            onChange={(e) => {
+              const value = e.target.value || null;
+              console.log(`Changed levelOfCare filter to: ${value}`);
+              onFilterChange("levelOfCare", value);
+            }}
           >
             <option value="">All</option>
-            {filterOptions.levelOfCare.map((loc) => (
+            {Array.isArray(filterOptions.levelOfCare) && filterOptions.levelOfCare.map((loc) => (
               <option key={loc} value={loc}>
                 {loc}
               </option>
             ))}
           </select>
         </div>
+        
         {/* Payer Filter */}
         <div>
           <label htmlFor="payer" className="block text-sm font-medium text-gray-700">
@@ -75,18 +93,23 @@ export default function DashboardFilters({
             id="payer"
             className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm"
             value={currentFilters.payer || ""}
-            onChange={(e) => onFilterChange("payer", e.target.value || null)}
+            onChange={(e) => {
+              const value = e.target.value || null;
+              console.log(`Changed payer filter to: ${value}`);
+              onFilterChange("payer", value);
+            }}
           >
             <option value="">All</option>
-            {filterOptions.payer.map((payer) => (
+            {Array.isArray(filterOptions.payer) && filterOptions.payer.map((payer) => (
               <option key={payer} value={payer}>
                 {payer}
               </option>
             ))}
           </select>
         </div>
-        {/* Payer Class Filter (conditionally rendered) */}
-        {filterOptions.payerClass.length > 0 && (
+        
+        {/* Payer Class Filter */}
+        {Array.isArray(filterOptions.payerClass) && filterOptions.payerClass.length > 0 && (
           <div>
             <label htmlFor="payerClass" className="block text-sm font-medium text-gray-700">
               Payer Class
@@ -95,7 +118,11 @@ export default function DashboardFilters({
               id="payerClass"
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm"
               value={currentFilters.payerClass || ""}
-              onChange={(e) => onFilterChange("payerClass", e.target.value || null)}
+              onChange={(e) => {
+                const value = e.target.value || null;
+                console.log(`Changed payerClass filter to: ${value}`);
+                onFilterChange("payerClass", value);
+              }}
             >
               <option value="">All</option>
               {filterOptions.payerClass.map((cls) => (
@@ -106,6 +133,7 @@ export default function DashboardFilters({
             </select>
           </div>
         )}
+        
         {/* State Treated At Filter */}
         <div>
           <label htmlFor="stateTreatedAt" className="block text-sm font-medium text-gray-700">
@@ -115,16 +143,21 @@ export default function DashboardFilters({
             id="stateTreatedAt"
             className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm"
             value={currentFilters.stateTreatedAt || ""}
-            onChange={(e) => onFilterChange("stateTreatedAt", e.target.value || null)}
+            onChange={(e) => {
+              const value = e.target.value || null;
+              console.log(`Changed stateTreatedAt filter to: ${value}`);
+              onFilterChange("stateTreatedAt", value);
+            }}
           >
             <option value="">All</option>
-            {filterOptions.stateTreatedAt.map((state) => (
+            {Array.isArray(filterOptions.stateTreatedAt) && filterOptions.stateTreatedAt.map((state) => (
               <option key={state} value={state}>
                 {state}
               </option>
             ))}
           </select>
         </div>
+        
         {/* Service Year Filter */}
         <div>
           <label htmlFor="serviceYear" className="block text-sm font-medium text-gray-700">
@@ -134,16 +167,21 @@ export default function DashboardFilters({
             id="serviceYear"
             className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm"
             value={currentFilters.serviceYear || ""}
-            onChange={(e) => onFilterChange("serviceYear", e.target.value ? parseInt(e.target.value) : null)}
+            onChange={(e) => {
+              const value = e.target.value ? parseInt(e.target.value) : null;
+              console.log(`Changed serviceYear filter to: ${value}`);
+              onFilterChange("serviceYear", value);
+            }}
           >
             <option value="">All</option>
-            {filterOptions.serviceYears.map((year) => (
+            {Array.isArray(filterOptions.serviceYears) && filterOptions.serviceYears.map((year) => (
               <option key={year} value={year}>
                 {year}
               </option>
             ))}
           </select>
         </div>
+        
         {/* Payment Year Filter */}
         <div>
           <label htmlFor="paymentYear" className="block text-sm font-medium text-gray-700">
@@ -153,10 +191,14 @@ export default function DashboardFilters({
             id="paymentYear"
             className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm"
             value={currentFilters.paymentYear || ""}
-            onChange={(e) => onFilterChange("paymentYear", e.target.value ? parseInt(e.target.value) : null)}
+            onChange={(e) => {
+              const value = e.target.value ? parseInt(e.target.value) : null;
+              console.log(`Changed paymentYear filter to: ${value}`);
+              onFilterChange("paymentYear", value);
+            }}
           >
             <option value="">All</option>
-            {filterOptions.paymentYears.map((year) => (
+            {Array.isArray(filterOptions.paymentYears) && filterOptions.paymentYears.map((year) => (
               <option key={year} value={year}>
                 {year}
               </option>
