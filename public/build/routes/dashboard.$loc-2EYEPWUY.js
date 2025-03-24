@@ -5,12 +5,14 @@ import {
   require_prisma
 } from "/build/_shared/chunk-YNNVZ6EB.js";
 import {
-  formatCurrency,
+  formatCurrency
+} from "/build/_shared/chunk-7CY77EVC.js";
+import {
   require_node
-} from "/build/_shared/chunk-SQT7BTI5.js";
+} from "/build/_shared/chunk-G7CHZRZX.js";
 import {
   Layout
-} from "/build/_shared/chunk-THKS2TCD.js";
+} from "/build/_shared/chunk-KLH2AQKO.js";
 import {
   Link,
   useLoaderData
@@ -18,6 +20,7 @@ import {
 import {
   createHotContext
 } from "/build/_shared/chunk-QKULS72H.js";
+import "/build/_shared/chunk-UWV35TSL.js";
 import "/build/_shared/chunk-U4FRFQSK.js";
 import {
   require_jsx_dev_runtime
@@ -25,7 +28,6 @@ import {
 import {
   require_react
 } from "/build/_shared/chunk-7M6SC7J5.js";
-import "/build/_shared/chunk-UWV35TSL.js";
 import {
   __toESM
 } from "/build/_shared/chunk-PNG5AS42.js";
@@ -571,4 +573,4 @@ export {
   LocDetailsPage as default,
   meta
 };
-//# sourceMappingURL=/build/routes/dashboard.$loc-KW6IJY2N.js.map
+//# sourceMappingURL=/build/routes/dashboard.$loc-2EYEPWUY.js.map

@@ -114,3 +114,21 @@ model CalculatedMetrics {
   @@index([dateOfServiceYear])
   @@index([paymentReceivedYear])
 }
+
+model ProjectAllowedAmount {
+  id                    Int       @id @default(autoincrement())
+  payerGroup            String    
+  LOC                   String    
+  countOfObservation    Int       
+  averageAllowedAmount  Float     
+  maxAllowedAmount      Float     
+  medianAllowedAmount   Float     
+  modeAllowedAmount     Float     
+  
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+
+  @@unique([payerGroup, LOC])  // Updated unique constraint
+  @@index([payerGroup])        // Updated index
+  @@index([LOC])
+}

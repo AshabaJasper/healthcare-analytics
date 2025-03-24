@@ -30,7 +30,7 @@ if (import.meta) {
     //@ts-expect-error
     "app\\components\\Navbar.tsx"
   );
-  import.meta.hot.lastModified = "1742540454859.7842";
+  import.meta.hot.lastModified = "1742743869325.769";
 }
 function Navbar() {
   const navLinks = [{
@@ -198,4 +198,4 @@ window.$RefreshSig$ = prevRefreshSig;
 export {
   Layout
 };
-//# sourceMappingURL=/build/_shared/chunk-THKS2TCD.js.map
+//# sourceMappingURL=/build/_shared/chunk-KLH2AQKO.js.map

@@ -1,13 +1,19 @@
 import {
+  DashboardFilters,
+  require_dataService
+} from "/build/_shared/chunk-4VSQ4HN6.js";
+import {
   StatsCard
 } from "/build/_shared/chunk-CMIXI72N.js";
 import {
-  formatCurrency,
+  formatCurrency
+} from "/build/_shared/chunk-7CY77EVC.js";
+import {
   require_node
-} from "/build/_shared/chunk-SQT7BTI5.js";
+} from "/build/_shared/chunk-G7CHZRZX.js";
 import {
   Layout
-} from "/build/_shared/chunk-THKS2TCD.js";
+} from "/build/_shared/chunk-KLH2AQKO.js";
 import {
   useLoaderData,
   useNavigation
@@ -15,6 +21,7 @@ import {
 import {
   createHotContext
 } from "/build/_shared/chunk-QKULS72H.js";
+import "/build/_shared/chunk-UWV35TSL.js";
 import "/build/_shared/chunk-U4FRFQSK.js";
 import {
   require_jsx_dev_runtime
@@ -22,7 +29,6 @@ import {
 import {
   require_react
 } from "/build/_shared/chunk-7M6SC7J5.js";
-import "/build/_shared/chunk-UWV35TSL.js";
 import {
   __commonJS,
   __export,
@@ -5629,13 +5635,6 @@ var require_eventemitter3 = __commonJS({
   }
 });
 
-// empty-module:~/services/dataService.server
-var require_dataService = __commonJS({
-  "empty-module:~/services/dataService.server"(exports, module) {
-    module.exports = {};
-  }
-});
-
 // empty-module:~/services/metricsService.server
 var require_metricsService = __commonJS({
   "empty-module:~/services/metricsService.server"(exports, module) {
@@ -5644,312 +5643,14 @@ var require_metricsService = __commonJS({
 });
 
 // app/routes/dashboard.tsx
-var import_react41 = __toESM(require_react(), 1);
+var import_react40 = __toESM(require_react(), 1);
 var import_node = __toESM(require_node(), 1);
 
-// app/components/DashboardFilters.tsx
-var import_react = __toESM(require_react(), 1);
-var import_jsx_dev_runtime = __toESM(require_jsx_dev_runtime(), 1);
-if (!window.$RefreshReg$ || !window.$RefreshSig$ || !window.$RefreshRuntime$) {
-  console.warn("remix:hmr: React Fast Refresh only works when the Remix compiler is running in development mode.");
-} else {
-  prevRefreshReg = window.$RefreshReg$;
-  prevRefreshSig = window.$RefreshSig$;
-  window.$RefreshReg$ = (type, id) => {
-    window.$RefreshRuntime$.register(type, '"app\\\\components\\\\DashboardFilters.tsx"' + id);
-  };
-  window.$RefreshSig$ = window.$RefreshRuntime$.createSignatureFunctionForTransform;
-}
-var prevRefreshReg;
-var prevRefreshSig;
-var _s = $RefreshSig$();
-if (import.meta) {
-  import.meta.hot = createHotContext(
-    //@ts-expect-error
-    "app\\components\\DashboardFilters.tsx"
-  );
-  import.meta.hot.lastModified = "1742557068294.3628";
-}
-function DashboardFilters({
-  filterOptions,
-  currentFilters,
-  onFilterChange
-}) {
-  _s();
-  (0, import_react.useEffect)(() => {
-    console.log("DashboardFilters component received filter options:", {
-      levelOfCare: filterOptions.levelOfCare?.length || 0,
-      payer: filterOptions.payer?.length || 0,
-      payerClass: filterOptions.payerClass?.length || 0,
-      stateTreatedAt: filterOptions.stateTreatedAt?.length || 0,
-      serviceYears: filterOptions.serviceYears?.length || 0,
-      paymentYears: filterOptions.paymentYears?.length || 0
-    });
-  }, [filterOptions]);
-  const sortedLOCOptions = [...filterOptions.levelOfCare || []];
-  const locOrder2 = ["DTX", "RTC", "PHP", "IOP"];
-  sortedLOCOptions.sort((a2, b) => {
-    const indexA = locOrder2.indexOf(a2);
-    const indexB = locOrder2.indexOf(b);
-    if (indexA !== -1 && indexB !== -1) {
-      return indexA - indexB;
-    }
-    if (indexA !== -1)
-      return -1;
-    if (indexB !== -1)
-      return 1;
-    return a2.localeCompare(b);
-  });
-  const handleResetFilters = () => {
-    console.log("Resetting all filters");
-    onFilterChange("levelOfCare", null);
-    onFilterChange("payer", null);
-    onFilterChange("payerClass", null);
-    onFilterChange("stateTreatedAt", null);
-    onFilterChange("serviceYear", null);
-    onFilterChange("paymentYear", null);
-  };
-  const activeFilterCount = Object.values(currentFilters).filter((v) => v !== null).length;
-  return /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { className: "bg-white rounded-lg shadow mb-6 p-4", children: [
-    /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { className: "mb-4 flex items-center justify-between", children: [
-      /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("h2", { className: "text-lg font-medium text-gray-900", children: "Dashboard Filters" }, void 0, false, {
-        fileName: "app/components/DashboardFilters.tsx",
-        lineNumber: 72,
-        columnNumber: 9
-      }, this),
-      activeFilterCount > 0 && /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("button", { type: "button", onClick: handleResetFilters, className: "flex items-center px-3 py-1.5 text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500", children: [
-        /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("svg", { className: "h-4 w-4 mr-1.5", xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M6 18L18 6M6 6l12 12" }, void 0, false, {
-          fileName: "app/components/DashboardFilters.tsx",
-          lineNumber: 75,
-          columnNumber: 15
-        }, this) }, void 0, false, {
-          fileName: "app/components/DashboardFilters.tsx",
-          lineNumber: 74,
-          columnNumber: 13
-        }, this),
-        "Reset Filters (",
-        activeFilterCount,
-        ")"
-      ] }, void 0, true, {
-        fileName: "app/components/DashboardFilters.tsx",
-        lineNumber: 73,
-        columnNumber: 35
-      }, this)
-    ] }, void 0, true, {
-      fileName: "app/components/DashboardFilters.tsx",
-      lineNumber: 71,
-      columnNumber: 7
-    }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4", children: [
-      /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { children: [
-        /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("label", { htmlFor: "levelOfCare", className: "block text-sm font-medium text-gray-700", children: "Level of Care" }, void 0, false, {
-          fileName: "app/components/DashboardFilters.tsx",
-          lineNumber: 83,
-          columnNumber: 11
-        }, this),
-        /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("select", { id: "levelOfCare", className: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm", value: currentFilters.levelOfCare || "", onChange: (e) => {
-          const value = e.target.value || null;
-          console.log(`Changed levelOfCare filter to: ${value}`);
-          onFilterChange("levelOfCare", value);
-        }, children: [
-          /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("option", { value: "", children: "All" }, void 0, false, {
-            fileName: "app/components/DashboardFilters.tsx",
-            lineNumber: 91,
-            columnNumber: 13
-          }, this),
-          sortedLOCOptions.map((loc) => /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("option", { value: loc, children: loc }, loc, false, {
-            fileName: "app/components/DashboardFilters.tsx",
-            lineNumber: 92,
-            columnNumber: 42
-          }, this))
-        ] }, void 0, true, {
-          fileName: "app/components/DashboardFilters.tsx",
-          lineNumber: 86,
-          columnNumber: 11
-        }, this)
-      ] }, void 0, true, {
-        fileName: "app/components/DashboardFilters.tsx",
-        lineNumber: 82,
-        columnNumber: 9
-      }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { children: [
-        /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("label", { htmlFor: "payer", className: "block text-sm font-medium text-gray-700", children: "Payer" }, void 0, false, {
-          fileName: "app/components/DashboardFilters.tsx",
-          lineNumber: 100,
-          columnNumber: 11
-        }, this),
-        /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("select", { id: "payer", className: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm", value: currentFilters.payer || "", onChange: (e) => {
-          const value = e.target.value || null;
-          console.log(`Changed payer filter to: ${value}`);
-          onFilterChange("payer", value);
-        }, children: [
-          /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("option", { value: "", children: "All" }, void 0, false, {
-            fileName: "app/components/DashboardFilters.tsx",
-            lineNumber: 108,
-            columnNumber: 13
-          }, this),
-          Array.isArray(filterOptions.payer) && filterOptions.payer.map((payer) => /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("option", { value: payer, children: payer }, payer, false, {
-            fileName: "app/components/DashboardFilters.tsx",
-            lineNumber: 109,
-            columnNumber: 85
-          }, this))
-        ] }, void 0, true, {
-          fileName: "app/components/DashboardFilters.tsx",
-          lineNumber: 103,
-          columnNumber: 11
-        }, this)
-      ] }, void 0, true, {
-        fileName: "app/components/DashboardFilters.tsx",
-        lineNumber: 99,
-        columnNumber: 9
-      }, this),
-      Array.isArray(filterOptions.payerClass) && filterOptions.payerClass.length > 0 && /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { children: [
-        /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("label", { htmlFor: "payerClass", className: "block text-sm font-medium text-gray-700", children: "Payer Class" }, void 0, false, {
-          fileName: "app/components/DashboardFilters.tsx",
-          lineNumber: 117,
-          columnNumber: 13
-        }, this),
-        /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("select", { id: "payerClass", className: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm", value: currentFilters.payerClass || "", onChange: (e) => {
-          const value = e.target.value || null;
-          console.log(`Changed payerClass filter to: ${value}`);
-          onFilterChange("payerClass", value);
-        }, children: [
-          /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("option", { value: "", children: "All" }, void 0, false, {
-            fileName: "app/components/DashboardFilters.tsx",
-            lineNumber: 125,
-            columnNumber: 15
-          }, this),
-          filterOptions.payerClass.map((cls) => /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("option", { value: cls, children: cls }, cls, false, {
-            fileName: "app/components/DashboardFilters.tsx",
-            lineNumber: 126,
-            columnNumber: 52
-          }, this))
-        ] }, void 0, true, {
-          fileName: "app/components/DashboardFilters.tsx",
-          lineNumber: 120,
-          columnNumber: 13
-        }, this)
-      ] }, void 0, true, {
-        fileName: "app/components/DashboardFilters.tsx",
-        lineNumber: 116,
-        columnNumber: 92
-      }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { children: [
-        /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("label", { htmlFor: "stateTreatedAt", className: "block text-sm font-medium text-gray-700", children: "State Treated At" }, void 0, false, {
-          fileName: "app/components/DashboardFilters.tsx",
-          lineNumber: 134,
-          columnNumber: 11
-        }, this),
-        /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("select", { id: "stateTreatedAt", className: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm", value: currentFilters.stateTreatedAt || "", onChange: (e) => {
-          const value = e.target.value || null;
-          console.log(`Changed stateTreatedAt filter to: ${value}`);
-          onFilterChange("stateTreatedAt", value);
-        }, children: [
-          /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("option", { value: "", children: "All" }, void 0, false, {
-            fileName: "app/components/DashboardFilters.tsx",
-            lineNumber: 142,
-            columnNumber: 13
-          }, this),
-          Array.isArray(filterOptions.stateTreatedAt) && filterOptions.stateTreatedAt.map((state) => /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("option", { value: state, children: state }, state, false, {
-            fileName: "app/components/DashboardFilters.tsx",
-            lineNumber: 143,
-            columnNumber: 103
-          }, this))
-        ] }, void 0, true, {
-          fileName: "app/components/DashboardFilters.tsx",
-          lineNumber: 137,
-          columnNumber: 11
-        }, this)
-      ] }, void 0, true, {
-        fileName: "app/components/DashboardFilters.tsx",
-        lineNumber: 133,
-        columnNumber: 9
-      }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { children: [
-        /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("label", { htmlFor: "serviceYear", className: "block text-sm font-medium text-gray-700", children: "Service Year" }, void 0, false, {
-          fileName: "app/components/DashboardFilters.tsx",
-          lineNumber: 151,
-          columnNumber: 11
-        }, this),
-        /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("select", { id: "serviceYear", className: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm", value: currentFilters.serviceYear || "", onChange: (e) => {
-          const value = e.target.value ? parseInt(e.target.value) : null;
-          console.log(`Changed serviceYear filter to: ${value}`);
-          onFilterChange("serviceYear", value);
-        }, children: [
-          /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("option", { value: "", children: "All" }, void 0, false, {
-            fileName: "app/components/DashboardFilters.tsx",
-            lineNumber: 159,
-            columnNumber: 13
-          }, this),
-          Array.isArray(filterOptions.serviceYears) && filterOptions.serviceYears.map((year) => /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("option", { value: year, children: year }, year, false, {
-            fileName: "app/components/DashboardFilters.tsx",
-            lineNumber: 160,
-            columnNumber: 98
-          }, this))
-        ] }, void 0, true, {
-          fileName: "app/components/DashboardFilters.tsx",
-          lineNumber: 154,
-          columnNumber: 11
-        }, this)
-      ] }, void 0, true, {
-        fileName: "app/components/DashboardFilters.tsx",
-        lineNumber: 150,
-        columnNumber: 9
-      }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { children: [
-        /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("label", { htmlFor: "paymentYear", className: "block text-sm font-medium text-gray-700", children: "Payment Year" }, void 0, false, {
-          fileName: "app/components/DashboardFilters.tsx",
-          lineNumber: 168,
-          columnNumber: 11
-        }, this),
-        /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("select", { id: "paymentYear", className: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm", value: currentFilters.paymentYear || "", onChange: (e) => {
-          const value = e.target.value ? parseInt(e.target.value) : null;
-          console.log(`Changed paymentYear filter to: ${value}`);
-          onFilterChange("paymentYear", value);
-        }, children: [
-          /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("option", { value: "", children: "All" }, void 0, false, {
-            fileName: "app/components/DashboardFilters.tsx",
-            lineNumber: 176,
-            columnNumber: 13
-          }, this),
-          Array.isArray(filterOptions.paymentYears) && filterOptions.paymentYears.map((year) => /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("option", { value: year, children: year }, year, false, {
-            fileName: "app/components/DashboardFilters.tsx",
-            lineNumber: 177,
-            columnNumber: 98
-          }, this))
-        ] }, void 0, true, {
-          fileName: "app/components/DashboardFilters.tsx",
-          lineNumber: 171,
-          columnNumber: 11
-        }, this)
-      ] }, void 0, true, {
-        fileName: "app/components/DashboardFilters.tsx",
-        lineNumber: 167,
-        columnNumber: 9
-      }, this)
-    ] }, void 0, true, {
-      fileName: "app/components/DashboardFilters.tsx",
-      lineNumber: 80,
-      columnNumber: 7
-    }, this)
-  ] }, void 0, true, {
-    fileName: "app/components/DashboardFilters.tsx",
-    lineNumber: 70,
-    columnNumber: 10
-  }, this);
-}
-_s(DashboardFilters, "OD7bBpZva5O2jO+Puf00hKivP7c=");
-_c = DashboardFilters;
-var _c;
-$RefreshReg$(_c, "DashboardFilters");
-window.$RefreshReg$ = prevRefreshReg;
-window.$RefreshSig$ = prevRefreshSig;
-
 // app/components/MetricsChart.tsx
-var import_react39 = __toESM(require_react(), 1);
+var import_react38 = __toESM(require_react(), 1);
 
 // node_modules/recharts/es6/container/Surface.js
-var import_react4 = __toESM(require_react());
+var import_react3 = __toESM(require_react());
 
 // node_modules/clsx/dist/clsx.mjs
 function r(e) {
@@ -5979,7 +5680,7 @@ var import_isNil = __toESM(require_isNil());
 var import_isString2 = __toESM(require_isString());
 var import_isFunction = __toESM(require_isFunction());
 var import_isObject2 = __toESM(require_isObject());
-var import_react3 = __toESM(require_react());
+var import_react2 = __toESM(require_react());
 var import_react_is = __toESM(require_react_is());
 
 // node_modules/recharts/es6/util/DataUtils.js
@@ -6091,7 +5792,7 @@ function shallowEqual(a2, b) {
 }
 
 // node_modules/recharts/es6/util/types.js
-var import_react2 = __toESM(require_react());
+var import_react = __toESM(require_react());
 var import_isObject = __toESM(require_isObject());
 function _typeof(o) {
   "@babel/helpers - typeof";
@@ -6424,7 +6125,7 @@ var adaptEventHandlers = function adaptEventHandlers2(props, newHandler) {
     return null;
   }
   var inputProps = props;
-  if (/* @__PURE__ */ (0, import_react2.isValidElement)(props)) {
+  if (/* @__PURE__ */ (0, import_react.isValidElement)(props)) {
     inputProps = props.props;
   }
   if (!(0, import_isObject.default)(inputProps)) {
@@ -6528,7 +6229,7 @@ var toArray = function toArray2(children) {
     return lastResult;
   }
   var result = [];
-  import_react3.Children.forEach(children, function(child) {
+  import_react2.Children.forEach(children, function(child) {
     if ((0, import_isNil.default)(child))
       return;
     if ((0, import_react_is.isFragment)(child)) {
@@ -6587,7 +6288,7 @@ var filterProps = function filterProps2(props, includeEvents, svgElementType) {
     return null;
   }
   var inputProps = props;
-  if (/* @__PURE__ */ (0, import_react3.isValidElement)(props)) {
+  if (/* @__PURE__ */ (0, import_react2.isValidElement)(props)) {
     inputProps = props.props;
   }
   if (!(0, import_isObject2.default)(inputProps)) {
@@ -6606,8 +6307,8 @@ var isChildrenEqual = function isChildrenEqual2(nextChildren, prevChildren) {
   if (nextChildren === prevChildren) {
     return true;
   }
-  var count = import_react3.Children.count(nextChildren);
-  if (count !== import_react3.Children.count(prevChildren)) {
+  var count = import_react2.Children.count(nextChildren);
+  if (count !== import_react2.Children.count(prevChildren)) {
     return false;
   }
   if (count === 0) {
@@ -6731,17 +6432,17 @@ function Surface(props) {
     y: 0
   };
   var layerClass = clsx_default("recharts-surface", className);
-  return /* @__PURE__ */ import_react4.default.createElement("svg", _extends({}, filterProps(others, true, "svg"), {
+  return /* @__PURE__ */ import_react3.default.createElement("svg", _extends({}, filterProps(others, true, "svg"), {
     className: layerClass,
     width,
     height,
     style,
     viewBox: "".concat(svgView.x, " ").concat(svgView.y, " ").concat(svgView.width, " ").concat(svgView.height)
-  }), /* @__PURE__ */ import_react4.default.createElement("title", null, title), /* @__PURE__ */ import_react4.default.createElement("desc", null, desc), children);
+  }), /* @__PURE__ */ import_react3.default.createElement("title", null, title), /* @__PURE__ */ import_react3.default.createElement("desc", null, desc), children);
 }
 
 // node_modules/recharts/es6/container/Layer.js
-var import_react5 = __toESM(require_react());
+var import_react4 = __toESM(require_react());
 var _excluded4 = ["children", "className"];
 function _extends2() {
   _extends2 = Object.assign ? Object.assign.bind() : function(target) {
@@ -6788,10 +6489,10 @@ function _objectWithoutPropertiesLoose3(source, excluded) {
   }
   return target;
 }
-var Layer = /* @__PURE__ */ import_react5.default.forwardRef(function(props, ref) {
+var Layer = /* @__PURE__ */ import_react4.default.forwardRef(function(props, ref) {
   var children = props.children, className = props.className, others = _objectWithoutProperties3(props, _excluded4);
   var layerClass = clsx_default("recharts-layer", className);
-  return /* @__PURE__ */ import_react5.default.createElement("g", _extends2({
+  return /* @__PURE__ */ import_react4.default.createElement("g", _extends2({
     className: layerClass
   }, filterProps(others, true), {
     ref
@@ -6799,10 +6500,10 @@ var Layer = /* @__PURE__ */ import_react5.default.forwardRef(function(props, ref
 });
 
 // node_modules/recharts/es6/component/Legend.js
-var import_react8 = __toESM(require_react());
+var import_react7 = __toESM(require_react());
 
 // node_modules/recharts/es6/component/DefaultLegendContent.js
-var import_react7 = __toESM(require_react());
+var import_react6 = __toESM(require_react());
 var import_isFunction2 = __toESM(require_isFunction());
 
 // node_modules/recharts/es6/util/LogUtils.js
@@ -6829,7 +6530,7 @@ var warn = function warn2(condition, format2) {
 };
 
 // node_modules/recharts/es6/shape/Symbols.js
-var import_react6 = __toESM(require_react());
+var import_react5 = __toESM(require_react());
 var import_upperFirst = __toESM(require_upperFirst());
 
 // node_modules/d3-shape/src/constant.js
@@ -8000,7 +7701,7 @@ var Symbols = function Symbols2(_ref) {
   var className = props.className, cx = props.cx, cy = props.cy;
   var filteredProps = filterProps(props, true);
   if (cx === +cx && cy === +cy && size === +size) {
-    return /* @__PURE__ */ import_react6.default.createElement("path", _extends3({}, filteredProps, {
+    return /* @__PURE__ */ import_react5.default.createElement("path", _extends3({}, filteredProps, {
       className: clsx_default("recharts-symbols", className),
       transform: "translate(".concat(cx, ", ").concat(cy, ")"),
       d: getPath5()
@@ -8173,7 +7874,7 @@ var DefaultLegendContent = /* @__PURE__ */ function(_PureComponent) {
         var thirdSize = SIZE / 3;
         var color2 = data.inactive ? inactiveColor : data.color;
         if (data.type === "plainline") {
-          return /* @__PURE__ */ import_react7.default.createElement("line", {
+          return /* @__PURE__ */ import_react6.default.createElement("line", {
             strokeWidth: 4,
             fill: "none",
             stroke: color2,
@@ -8186,7 +7887,7 @@ var DefaultLegendContent = /* @__PURE__ */ function(_PureComponent) {
           });
         }
         if (data.type === "line") {
-          return /* @__PURE__ */ import_react7.default.createElement("path", {
+          return /* @__PURE__ */ import_react6.default.createElement("path", {
             strokeWidth: 4,
             fill: "none",
             stroke: color2,
@@ -8195,19 +7896,19 @@ var DefaultLegendContent = /* @__PURE__ */ function(_PureComponent) {
           });
         }
         if (data.type === "rect") {
-          return /* @__PURE__ */ import_react7.default.createElement("path", {
+          return /* @__PURE__ */ import_react6.default.createElement("path", {
             stroke: "none",
             fill: color2,
             d: "M0,".concat(SIZE / 8, "h").concat(SIZE, "v").concat(SIZE * 3 / 4, "h").concat(-SIZE, "z"),
             className: "recharts-legend-icon"
           });
         }
-        if (/* @__PURE__ */ import_react7.default.isValidElement(data.legendIcon)) {
+        if (/* @__PURE__ */ import_react6.default.isValidElement(data.legendIcon)) {
           var iconProps = _objectSpread2({}, data);
           delete iconProps.legendIcon;
-          return /* @__PURE__ */ import_react7.default.cloneElement(data.legendIcon, iconProps);
+          return /* @__PURE__ */ import_react6.default.cloneElement(data.legendIcon, iconProps);
         }
-        return /* @__PURE__ */ import_react7.default.createElement(Symbols, {
+        return /* @__PURE__ */ import_react6.default.createElement(Symbols, {
           fill: color2,
           cx: halfSize,
           cy: halfSize,
@@ -8256,16 +7957,16 @@ var DefaultLegendContent = /* @__PURE__ */ function(_PureComponent) {
           // eslint-disable-line max-len
         );
         var color2 = entry.inactive ? inactiveColor : entry.color;
-        return /* @__PURE__ */ import_react7.default.createElement("li", _extends4({
+        return /* @__PURE__ */ import_react6.default.createElement("li", _extends4({
           className,
           style: itemStyle,
           key: "legend-item-".concat(i)
-        }, adaptEventsOfChild(_this.props, entry, i)), /* @__PURE__ */ import_react7.default.createElement(Surface, {
+        }, adaptEventsOfChild(_this.props, entry, i)), /* @__PURE__ */ import_react6.default.createElement(Surface, {
           width: iconSize,
           height: iconSize,
           viewBox,
           style: svgStyle
-        }, _this.renderIcon(entry)), /* @__PURE__ */ import_react7.default.createElement("span", {
+        }, _this.renderIcon(entry)), /* @__PURE__ */ import_react6.default.createElement("span", {
           className: "recharts-legend-item-text",
           style: {
             color: color2
@@ -8285,13 +7986,13 @@ var DefaultLegendContent = /* @__PURE__ */ function(_PureComponent) {
         margin: 0,
         textAlign: layout === "horizontal" ? align : "left"
       };
-      return /* @__PURE__ */ import_react7.default.createElement("ul", {
+      return /* @__PURE__ */ import_react6.default.createElement("ul", {
         className: "recharts-default-legend",
         style: finalStyle
       }, this.renderItems());
     }
   }]);
-}(import_react7.PureComponent);
+}(import_react6.PureComponent);
 _defineProperty2(DefaultLegendContent, "displayName", "Legend");
 _defineProperty2(DefaultLegendContent, "defaultProps", {
   iconSize: 14,
@@ -8477,14 +8178,14 @@ function defaultUniqBy(entry) {
   return entry.value;
 }
 function renderContent(content, props) {
-  if (/* @__PURE__ */ import_react8.default.isValidElement(content)) {
-    return /* @__PURE__ */ import_react8.default.cloneElement(content, props);
+  if (/* @__PURE__ */ import_react7.default.isValidElement(content)) {
+    return /* @__PURE__ */ import_react7.default.cloneElement(content, props);
   }
   if (typeof content === "function") {
-    return /* @__PURE__ */ import_react8.default.createElement(content, props);
+    return /* @__PURE__ */ import_react7.default.createElement(content, props);
   }
   var ref = props.ref, otherProps = _objectWithoutProperties5(props, _excluded6);
-  return /* @__PURE__ */ import_react8.default.createElement(DefaultLegendContent, otherProps);
+  return /* @__PURE__ */ import_react7.default.createElement(DefaultLegendContent, otherProps);
 }
 var EPS = 1;
 var Legend = /* @__PURE__ */ function(_PureComponent) {
@@ -8600,7 +8301,7 @@ var Legend = /* @__PURE__ */ function(_PureComponent) {
         width: width || "auto",
         height: height || "auto"
       }, this.getDefaultPosition(wrapperStyle)), wrapperStyle);
-      return /* @__PURE__ */ import_react8.default.createElement("div", {
+      return /* @__PURE__ */ import_react7.default.createElement("div", {
         className: "recharts-legend-wrapper",
         style: outerStyle,
         ref: function ref(node) {
@@ -8627,7 +8328,7 @@ var Legend = /* @__PURE__ */ function(_PureComponent) {
       return null;
     }
   }]);
-}(import_react8.PureComponent);
+}(import_react7.PureComponent);
 _defineProperty3(Legend, "displayName", "Legend");
 _defineProperty3(Legend, "defaultProps", {
   iconSize: 14,
@@ -8637,10 +8338,10 @@ _defineProperty3(Legend, "defaultProps", {
 });
 
 // node_modules/recharts/es6/component/Tooltip.js
-var import_react11 = __toESM(require_react());
+var import_react10 = __toESM(require_react());
 
 // node_modules/recharts/es6/component/DefaultTooltipContent.js
-var import_react9 = __toESM(require_react());
+var import_react8 = __toESM(require_react());
 var import_sortBy = __toESM(require_sortBy());
 var import_isNil2 = __toESM(require_isNil());
 function _typeof5(o) {
@@ -8804,22 +8505,22 @@ var DefaultTooltipContent = function DefaultTooltipContent2(props) {
         }
         return (
           // eslint-disable-next-line react/no-array-index-key
-          /* @__PURE__ */ import_react9.default.createElement("li", {
+          /* @__PURE__ */ import_react8.default.createElement("li", {
             className: "recharts-tooltip-item",
             key: "tooltip-item-".concat(i),
             style: finalItemStyle
-          }, isNumOrStr(finalName) ? /* @__PURE__ */ import_react9.default.createElement("span", {
+          }, isNumOrStr(finalName) ? /* @__PURE__ */ import_react8.default.createElement("span", {
             className: "recharts-tooltip-item-name"
-          }, finalName) : null, isNumOrStr(finalName) ? /* @__PURE__ */ import_react9.default.createElement("span", {
+          }, finalName) : null, isNumOrStr(finalName) ? /* @__PURE__ */ import_react8.default.createElement("span", {
             className: "recharts-tooltip-item-separator"
-          }, separator) : null, /* @__PURE__ */ import_react9.default.createElement("span", {
+          }, separator) : null, /* @__PURE__ */ import_react8.default.createElement("span", {
             className: "recharts-tooltip-item-value"
-          }, finalValue), /* @__PURE__ */ import_react9.default.createElement("span", {
+          }, finalValue), /* @__PURE__ */ import_react8.default.createElement("span", {
             className: "recharts-tooltip-item-unit"
           }, entry.unit || ""))
         );
       });
-      return /* @__PURE__ */ import_react9.default.createElement("ul", {
+      return /* @__PURE__ */ import_react8.default.createElement("ul", {
         className: "recharts-tooltip-item-list",
         style: listStyle
       }, items);
@@ -8847,17 +8548,17 @@ var DefaultTooltipContent = function DefaultTooltipContent2(props) {
     role: "status",
     "aria-live": "assertive"
   } : {};
-  return /* @__PURE__ */ import_react9.default.createElement("div", _extends5({
+  return /* @__PURE__ */ import_react8.default.createElement("div", _extends5({
     className: wrapperCN,
     style: finalStyle
-  }, accessibilityAttributes), /* @__PURE__ */ import_react9.default.createElement("p", {
+  }, accessibilityAttributes), /* @__PURE__ */ import_react8.default.createElement("p", {
     className: labelCN,
     style: finalLabelStyle
-  }, /* @__PURE__ */ import_react9.default.isValidElement(finalLabel) ? finalLabel : "".concat(finalLabel)), renderContent3());
+  }, /* @__PURE__ */ import_react8.default.isValidElement(finalLabel) ? finalLabel : "".concat(finalLabel)), renderContent3());
 };
 
 // node_modules/recharts/es6/component/TooltipBoundingBox.js
-var import_react10 = __toESM(require_react());
+var import_react9 = __toESM(require_react());
 
 // node_modules/recharts/es6/util/tooltip/translate.js
 function _typeof6(o) {
@@ -9212,7 +8913,7 @@ var TooltipBoundingBox = /* @__PURE__ */ function(_PureComponent) {
       return (
         // This element allow listening to the `Escape` key.
         // See https://github.com/recharts/recharts/pull/2925
-        /* @__PURE__ */ import_react10.default.createElement("div", {
+        /* @__PURE__ */ import_react9.default.createElement("div", {
           tabIndex: -1,
           className: cssClasses,
           style: outerStyle,
@@ -9223,7 +8924,7 @@ var TooltipBoundingBox = /* @__PURE__ */ function(_PureComponent) {
       );
     }
   }]);
-}(import_react10.PureComponent);
+}(import_react9.PureComponent);
 
 // node_modules/recharts/es6/util/Global.js
 var parseIsSsrByDefault = function parseIsSsrByDefault2() {
@@ -9379,13 +9080,13 @@ function defaultUniqBy2(entry) {
   return entry.dataKey;
 }
 function renderContent2(content, props) {
-  if (/* @__PURE__ */ import_react11.default.isValidElement(content)) {
-    return /* @__PURE__ */ import_react11.default.cloneElement(content, props);
+  if (/* @__PURE__ */ import_react10.default.isValidElement(content)) {
+    return /* @__PURE__ */ import_react10.default.cloneElement(content, props);
   }
   if (typeof content === "function") {
-    return /* @__PURE__ */ import_react11.default.createElement(content, props);
+    return /* @__PURE__ */ import_react10.default.createElement(content, props);
   }
-  return /* @__PURE__ */ import_react11.default.createElement(DefaultTooltipContent, props);
+  return /* @__PURE__ */ import_react10.default.createElement(DefaultTooltipContent, props);
 }
 var Tooltip = /* @__PURE__ */ function(_PureComponent) {
   function Tooltip2() {
@@ -9405,7 +9106,7 @@ var Tooltip = /* @__PURE__ */ function(_PureComponent) {
         }), payloadUniqBy, defaultUniqBy2);
       }
       var hasPayload = finalPayload.length > 0;
-      return /* @__PURE__ */ import_react11.default.createElement(TooltipBoundingBox, {
+      return /* @__PURE__ */ import_react10.default.createElement(TooltipBoundingBox, {
         allowEscapeViewBox,
         animationDuration,
         animationEasing,
@@ -9424,7 +9125,7 @@ var Tooltip = /* @__PURE__ */ function(_PureComponent) {
       })));
     }
   }]);
-}(import_react11.PureComponent);
+}(import_react10.PureComponent);
 _defineProperty7(Tooltip, "displayName", "Tooltip");
 _defineProperty7(Tooltip, "defaultProps", {
   accessibilityLayer: false,
@@ -9463,7 +9164,7 @@ _defineProperty7(Tooltip, "defaultProps", {
 });
 
 // node_modules/recharts/es6/component/ResponsiveContainer.js
-var import_react12 = __toESM(require_react());
+var import_react11 = __toESM(require_react());
 var import_throttle = __toESM(require_throttle());
 function _typeof9(o) {
   "@babel/helpers - typeof";
@@ -9575,15 +9276,15 @@ function _arrayWithHoles2(arr) {
   if (Array.isArray(arr))
     return arr;
 }
-var ResponsiveContainer = /* @__PURE__ */ (0, import_react12.forwardRef)(function(_ref, ref) {
+var ResponsiveContainer = /* @__PURE__ */ (0, import_react11.forwardRef)(function(_ref, ref) {
   var aspect = _ref.aspect, _ref$initialDimension = _ref.initialDimension, initialDimension = _ref$initialDimension === void 0 ? {
     width: -1,
     height: -1
   } : _ref$initialDimension, _ref$width = _ref.width, width = _ref$width === void 0 ? "100%" : _ref$width, _ref$height = _ref.height, height = _ref$height === void 0 ? "100%" : _ref$height, _ref$minWidth = _ref.minWidth, minWidth = _ref$minWidth === void 0 ? 0 : _ref$minWidth, minHeight = _ref.minHeight, maxHeight = _ref.maxHeight, children = _ref.children, _ref$debounce = _ref.debounce, debounce = _ref$debounce === void 0 ? 0 : _ref$debounce, id = _ref.id, className = _ref.className, onResize = _ref.onResize, _ref$style = _ref.style, style = _ref$style === void 0 ? {} : _ref$style;
-  var containerRef = (0, import_react12.useRef)(null);
-  var onResizeRef = (0, import_react12.useRef)();
+  var containerRef = (0, import_react11.useRef)(null);
+  var onResizeRef = (0, import_react11.useRef)();
   onResizeRef.current = onResize;
-  (0, import_react12.useImperativeHandle)(ref, function() {
+  (0, import_react11.useImperativeHandle)(ref, function() {
     return Object.defineProperty(containerRef.current, "current", {
       get: function get7() {
         console.warn("The usage of ref.current.current is deprecated and will no longer be supported.");
@@ -9592,11 +9293,11 @@ var ResponsiveContainer = /* @__PURE__ */ (0, import_react12.forwardRef)(functio
       configurable: true
     });
   });
-  var _useState = (0, import_react12.useState)({
+  var _useState = (0, import_react11.useState)({
     containerWidth: initialDimension.width,
     containerHeight: initialDimension.height
   }), _useState2 = _slicedToArray2(_useState, 2), sizes = _useState2[0], setSizes = _useState2[1];
-  var setContainerSize = (0, import_react12.useCallback)(function(newWidth, newHeight) {
+  var setContainerSize = (0, import_react11.useCallback)(function(newWidth, newHeight) {
     setSizes(function(prevState) {
       var roundedWidth = Math.round(newWidth);
       var roundedHeight = Math.round(newHeight);
@@ -9609,7 +9310,7 @@ var ResponsiveContainer = /* @__PURE__ */ (0, import_react12.forwardRef)(functio
       };
     });
   }, []);
-  (0, import_react12.useEffect)(function() {
+  (0, import_react11.useEffect)(function() {
     var callback = function callback2(entries) {
       var _onResizeRef$current;
       var _entries$0$contentRec = entries[0].contentRect, containerWidth2 = _entries$0$contentRec.width, containerHeight2 = _entries$0$contentRec.height;
@@ -9630,7 +9331,7 @@ var ResponsiveContainer = /* @__PURE__ */ (0, import_react12.forwardRef)(functio
       observer.disconnect();
     };
   }, [setContainerSize, debounce]);
-  var chartContent = (0, import_react12.useMemo)(function() {
+  var chartContent = (0, import_react11.useMemo)(function() {
     var containerWidth = sizes.containerWidth, containerHeight = sizes.containerHeight;
     if (containerWidth < 0 || containerHeight < 0) {
       return null;
@@ -9651,9 +9352,9 @@ var ResponsiveContainer = /* @__PURE__ */ (0, import_react12.forwardRef)(functio
     }
     warn(calculatedWidth > 0 || calculatedHeight > 0, "The width(%s) and height(%s) of chart should be greater than 0,\n       please check the style of container, or the props width(%s) and height(%s),\n       or add a minWidth(%s) or minHeight(%s) or use aspect(%s) to control the\n       height and width.", calculatedWidth, calculatedHeight, width, height, minWidth, minHeight, aspect);
     var isCharts = !Array.isArray(children) && getDisplayName(children.type).endsWith("Chart");
-    return import_react12.default.Children.map(children, function(child) {
-      if (/* @__PURE__ */ import_react12.default.isValidElement(child)) {
-        return /* @__PURE__ */ (0, import_react12.cloneElement)(child, _objectSpread7({
+    return import_react11.default.Children.map(children, function(child) {
+      if (/* @__PURE__ */ import_react11.default.isValidElement(child)) {
+        return /* @__PURE__ */ (0, import_react11.cloneElement)(child, _objectSpread7({
           width: calculatedWidth,
           height: calculatedHeight
         }, isCharts ? {
@@ -9668,7 +9369,7 @@ var ResponsiveContainer = /* @__PURE__ */ (0, import_react12.forwardRef)(functio
       return child;
     });
   }, [aspect, children, height, maxHeight, minHeight, minWidth, sizes, width]);
-  return /* @__PURE__ */ import_react12.default.createElement("div", {
+  return /* @__PURE__ */ import_react11.default.createElement("div", {
     id: id ? "".concat(id) : void 0,
     className: clsx_default("recharts-responsive-container", className),
     style: _objectSpread7(_objectSpread7({}, style), {}, {
@@ -9689,7 +9390,7 @@ var Cell = function Cell2(_props) {
 Cell.displayName = "Cell";
 
 // node_modules/recharts/es6/component/Text.js
-var import_react13 = __toESM(require_react());
+var import_react12 = __toESM(require_react());
 var import_isNil3 = __toESM(require_isNil());
 
 // node_modules/recharts/es6/util/DOMUtils.js
@@ -10305,7 +10006,7 @@ var getWordsByLines = function getWordsByLines2(_ref4) {
 var DEFAULT_FILL = "#808080";
 var Text = function Text2(_ref5) {
   var _ref5$x = _ref5.x, propsX = _ref5$x === void 0 ? 0 : _ref5$x, _ref5$y = _ref5.y, propsY = _ref5$y === void 0 ? 0 : _ref5$y, _ref5$lineHeight = _ref5.lineHeight, lineHeight = _ref5$lineHeight === void 0 ? "1em" : _ref5$lineHeight, _ref5$capHeight = _ref5.capHeight, capHeight = _ref5$capHeight === void 0 ? "0.71em" : _ref5$capHeight, _ref5$scaleToFit = _ref5.scaleToFit, scaleToFit = _ref5$scaleToFit === void 0 ? false : _ref5$scaleToFit, _ref5$textAnchor = _ref5.textAnchor, textAnchor = _ref5$textAnchor === void 0 ? "start" : _ref5$textAnchor, _ref5$verticalAnchor = _ref5.verticalAnchor, verticalAnchor = _ref5$verticalAnchor === void 0 ? "end" : _ref5$verticalAnchor, _ref5$fill = _ref5.fill, fill = _ref5$fill === void 0 ? DEFAULT_FILL : _ref5$fill, props = _objectWithoutProperties6(_ref5, _excluded7);
-  var wordsByLines = (0, import_react13.useMemo)(function() {
+  var wordsByLines = (0, import_react12.useMemo)(function() {
     return getWordsByLines({
       breakAll: props.breakAll,
       children: props.children,
@@ -10345,7 +10046,7 @@ var Text = function Text2(_ref5) {
   if (transforms.length) {
     textProps.transform = transforms.join(" ");
   }
-  return /* @__PURE__ */ import_react13.default.createElement("text", _extends6({}, filterProps(textProps, true), {
+  return /* @__PURE__ */ import_react12.default.createElement("text", _extends6({}, filterProps(textProps, true), {
     x: x2,
     y: y2,
     className: clsx_default("recharts-text", className),
@@ -10356,7 +10057,7 @@ var Text = function Text2(_ref5) {
     return (
       // duplicate words will cause duplicate keys
       // eslint-disable-next-line react/no-array-index-key
-      /* @__PURE__ */ import_react13.default.createElement("tspan", {
+      /* @__PURE__ */ import_react12.default.createElement("tspan", {
         x: x2,
         dy: index === 0 ? startDy : lineHeight,
         key: "".concat(words, "-").concat(index)
@@ -10366,14 +10067,14 @@ var Text = function Text2(_ref5) {
 };
 
 // node_modules/recharts/es6/component/Label.js
-var import_react16 = __toESM(require_react());
+var import_react15 = __toESM(require_react());
 var import_isNil6 = __toESM(require_isNil());
 var import_isFunction6 = __toESM(require_isFunction());
 var import_isObject3 = __toESM(require_isObject());
 
 // node_modules/recharts/es6/util/PolarUtils.js
 var import_isNil5 = __toESM(require_isNil());
-var import_react15 = __toESM(require_react());
+var import_react14 = __toESM(require_react());
 var import_isFunction5 = __toESM(require_isFunction());
 
 // node_modules/victory-vendor/es/d3-scale.js
@@ -13665,8 +13366,8 @@ function _iterableToArrayLimit5(arr, i) {
   var _d = false;
   var _e = void 0;
   try {
-    for (var _i = arr[Symbol.iterator](), _s5; !(_n = (_s5 = _i.next()).done); _n = true) {
-      _arr.push(_s5.value);
+    for (var _i = arr[Symbol.iterator](), _s4; !(_n = (_s4 = _i.next()).done); _n = true) {
+      _arr.push(_s4.value);
       if (i && _arr.length === i)
         break;
     }
@@ -13826,7 +13527,7 @@ var getTickValues = memoize(getTickValuesFn);
 var getTickValuesFixedDomain = memoize(getTickValuesFixedDomainFn);
 
 // node_modules/recharts/es6/cartesian/ErrorBar.js
-var import_react14 = __toESM(require_react());
+var import_react13 = __toESM(require_react());
 
 // node_modules/tiny-invariant/dist/esm/tiny-invariant.js
 var isProduction = false;
@@ -14128,23 +13829,23 @@ var ErrorBar = /* @__PURE__ */ function(_React$Component) {
             y2: _yMin
           });
         }
-        return /* @__PURE__ */ import_react14.default.createElement(Layer, _extends7({
+        return /* @__PURE__ */ import_react13.default.createElement(Layer, _extends7({
           className: "recharts-errorBar",
           key: "bar-".concat(lineCoordinates.map(function(c2) {
             return "".concat(c2.x1, "-").concat(c2.x2, "-").concat(c2.y1, "-").concat(c2.y2);
           }))
         }, svgProps), lineCoordinates.map(function(coordinates) {
-          return /* @__PURE__ */ import_react14.default.createElement("line", _extends7({}, coordinates, {
+          return /* @__PURE__ */ import_react13.default.createElement("line", _extends7({}, coordinates, {
             key: "line-".concat(coordinates.x1, "-").concat(coordinates.x2, "-").concat(coordinates.y1, "-").concat(coordinates.y2)
           }));
         }));
       });
-      return /* @__PURE__ */ import_react14.default.createElement(Layer, {
+      return /* @__PURE__ */ import_react13.default.createElement(Layer, {
         className: "recharts-errorBars"
       }, errorBars);
     }
   }]);
-}(import_react14.default.Component);
+}(import_react13.default.Component);
 _defineProperty10(ErrorBar, "defaultProps", {
   stroke: "black",
   strokeWidth: 1.5,
@@ -15461,13 +15162,13 @@ var renderRadialLabel = function renderRadialLabel2(labelProps, label, attrs) {
   var endPoint = polarToCartesian(cx, cy, radius, labelAngle + (direction ? 1 : -1) * 359);
   var path2 = "M".concat(startPoint.x, ",").concat(startPoint.y, "\n    A").concat(radius, ",").concat(radius, ",0,1,").concat(direction ? 0 : 1, ",\n    ").concat(endPoint.x, ",").concat(endPoint.y);
   var id = (0, import_isNil6.default)(labelProps.id) ? uniqueId("recharts-radial-line-") : labelProps.id;
-  return /* @__PURE__ */ import_react16.default.createElement("text", _extends8({}, attrs, {
+  return /* @__PURE__ */ import_react15.default.createElement("text", _extends8({}, attrs, {
     dominantBaseline: "central",
     className: clsx_default("recharts-radial-bar-label", className)
-  }), /* @__PURE__ */ import_react16.default.createElement("defs", null, /* @__PURE__ */ import_react16.default.createElement("path", {
+  }), /* @__PURE__ */ import_react15.default.createElement("defs", null, /* @__PURE__ */ import_react15.default.createElement("path", {
     id,
     d: path2
-  })), /* @__PURE__ */ import_react16.default.createElement("textPath", {
+  })), /* @__PURE__ */ import_react15.default.createElement("textPath", {
     xlinkHref: "#".concat(id)
   }, label));
 };
@@ -15668,16 +15369,16 @@ function Label(_ref4) {
     offset
   }, restProps);
   var viewBox = props.viewBox, position = props.position, value = props.value, children = props.children, content = props.content, _props$className = props.className, className = _props$className === void 0 ? "" : _props$className, textBreakAll = props.textBreakAll;
-  if (!viewBox || (0, import_isNil6.default)(value) && (0, import_isNil6.default)(children) && !/* @__PURE__ */ (0, import_react16.isValidElement)(content) && !(0, import_isFunction6.default)(content)) {
+  if (!viewBox || (0, import_isNil6.default)(value) && (0, import_isNil6.default)(children) && !/* @__PURE__ */ (0, import_react15.isValidElement)(content) && !(0, import_isFunction6.default)(content)) {
     return null;
   }
-  if (/* @__PURE__ */ (0, import_react16.isValidElement)(content)) {
-    return /* @__PURE__ */ (0, import_react16.cloneElement)(content, props);
+  if (/* @__PURE__ */ (0, import_react15.isValidElement)(content)) {
+    return /* @__PURE__ */ (0, import_react15.cloneElement)(content, props);
   }
   var label;
   if ((0, import_isFunction6.default)(content)) {
-    label = /* @__PURE__ */ (0, import_react16.createElement)(content, props);
-    if (/* @__PURE__ */ (0, import_react16.isValidElement)(label)) {
+    label = /* @__PURE__ */ (0, import_react15.createElement)(content, props);
+    if (/* @__PURE__ */ (0, import_react15.isValidElement)(label)) {
       return label;
     }
   } else {
@@ -15689,7 +15390,7 @@ function Label(_ref4) {
     return renderRadialLabel(props, label, attrs);
   }
   var positionAttrs = isPolarLabel ? getAttrsOfPolarLabel(props) : getAttrsOfCartesianLabel(props);
-  return /* @__PURE__ */ import_react16.default.createElement(Text, _extends8({
+  return /* @__PURE__ */ import_react15.default.createElement(Text, _extends8({
     className: clsx_default("recharts-label", className)
   }, attrs, positionAttrs, {
     breakAll: textBreakAll
@@ -15748,40 +15449,40 @@ var parseLabel = function parseLabel2(label, viewBox) {
     return null;
   }
   if (label === true) {
-    return /* @__PURE__ */ import_react16.default.createElement(Label, {
+    return /* @__PURE__ */ import_react15.default.createElement(Label, {
       key: "label-implicit",
       viewBox
     });
   }
   if (isNumOrStr(label)) {
-    return /* @__PURE__ */ import_react16.default.createElement(Label, {
+    return /* @__PURE__ */ import_react15.default.createElement(Label, {
       key: "label-implicit",
       viewBox,
       value: label
     });
   }
-  if (/* @__PURE__ */ (0, import_react16.isValidElement)(label)) {
+  if (/* @__PURE__ */ (0, import_react15.isValidElement)(label)) {
     if (label.type === Label) {
-      return /* @__PURE__ */ (0, import_react16.cloneElement)(label, {
+      return /* @__PURE__ */ (0, import_react15.cloneElement)(label, {
         key: "label-implicit",
         viewBox
       });
     }
-    return /* @__PURE__ */ import_react16.default.createElement(Label, {
+    return /* @__PURE__ */ import_react15.default.createElement(Label, {
       key: "label-implicit",
       content: label,
       viewBox
     });
   }
   if ((0, import_isFunction6.default)(label)) {
-    return /* @__PURE__ */ import_react16.default.createElement(Label, {
+    return /* @__PURE__ */ import_react15.default.createElement(Label, {
       key: "label-implicit",
       content: label,
       viewBox
     });
   }
   if ((0, import_isObject3.default)(label)) {
-    return /* @__PURE__ */ import_react16.default.createElement(Label, _extends8({
+    return /* @__PURE__ */ import_react15.default.createElement(Label, _extends8({
       viewBox
     }, label, {
       key: "label-implicit"
@@ -15797,7 +15498,7 @@ var renderCallByParent = function renderCallByParent2(parentProps, viewBox) {
   var children = parentProps.children;
   var parentViewBox = parseViewBox(parentProps);
   var explicitChildren = findAllByType(children, Label).map(function(child, index) {
-    return /* @__PURE__ */ (0, import_react16.cloneElement)(child, {
+    return /* @__PURE__ */ (0, import_react15.cloneElement)(child, {
       viewBox: viewBox || parentViewBox,
       // eslint-disable-next-line react/no-array-index-key
       key: "label-".concat(index)
@@ -15813,7 +15514,7 @@ Label.parseViewBox = parseViewBox;
 Label.renderCallByParent = renderCallByParent;
 
 // node_modules/recharts/es6/component/LabelList.js
-var import_react17 = __toESM(require_react());
+var import_react16 = __toESM(require_react());
 var import_isNil7 = __toESM(require_isNil());
 var import_isObject4 = __toESM(require_isObject());
 var import_isFunction7 = __toESM(require_isFunction());
@@ -15962,14 +15663,14 @@ function LabelList(_ref) {
   if (!data || !data.length) {
     return null;
   }
-  return /* @__PURE__ */ import_react17.default.createElement(Layer, {
+  return /* @__PURE__ */ import_react16.default.createElement(Layer, {
     className: "recharts-label-list"
   }, data.map(function(entry, index) {
     var value = (0, import_isNil7.default)(dataKey) ? valueAccessor(entry, index) : getValueByDataKey(entry && entry.payload, dataKey);
     var idProps = (0, import_isNil7.default)(id) ? {} : {
       id: "".concat(id, "-").concat(index)
     };
-    return /* @__PURE__ */ import_react17.default.createElement(Label, _extends9({}, filterProps(entry, true), others, idProps, {
+    return /* @__PURE__ */ import_react16.default.createElement(Label, _extends9({}, filterProps(entry, true), others, idProps, {
       parentViewBox: entry.parentViewBox,
       value,
       textBreakAll,
@@ -15987,20 +15688,20 @@ function parseLabelList(label, data) {
     return null;
   }
   if (label === true) {
-    return /* @__PURE__ */ import_react17.default.createElement(LabelList, {
+    return /* @__PURE__ */ import_react16.default.createElement(LabelList, {
       key: "labelList-implicit",
       data
     });
   }
-  if (/* @__PURE__ */ import_react17.default.isValidElement(label) || (0, import_isFunction7.default)(label)) {
-    return /* @__PURE__ */ import_react17.default.createElement(LabelList, {
+  if (/* @__PURE__ */ import_react16.default.isValidElement(label) || (0, import_isFunction7.default)(label)) {
+    return /* @__PURE__ */ import_react16.default.createElement(LabelList, {
       key: "labelList-implicit",
       data,
       content: label
     });
   }
   if ((0, import_isObject4.default)(label)) {
-    return /* @__PURE__ */ import_react17.default.createElement(LabelList, _extends9({
+    return /* @__PURE__ */ import_react16.default.createElement(LabelList, _extends9({
       data
     }, label, {
       key: "labelList-implicit"
@@ -16015,7 +15716,7 @@ function renderCallByParent3(parentProps, data) {
   }
   var children = parentProps.children;
   var explicitChildren = findAllByType(children, LabelList).map(function(child, index) {
-    return /* @__PURE__ */ (0, import_react17.cloneElement)(child, {
+    return /* @__PURE__ */ (0, import_react16.cloneElement)(child, {
       data,
       // eslint-disable-next-line react/no-array-index-key
       key: "labelList-".concat(index)
@@ -16030,7 +15731,7 @@ function renderCallByParent3(parentProps, data) {
 LabelList.renderCallByParent = renderCallByParent3;
 
 // node_modules/recharts/es6/shape/Sector.js
-var import_react18 = __toESM(require_react());
+var import_react17 = __toESM(require_react());
 function _typeof18(o) {
   "@babel/helpers - typeof";
   return _typeof18 = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(o2) {
@@ -16246,7 +15947,7 @@ var Sector = function Sector2(sectorProps) {
       endAngle
     });
   }
-  return /* @__PURE__ */ import_react18.default.createElement("path", _extends10({}, filterProps(props, true), {
+  return /* @__PURE__ */ import_react17.default.createElement("path", _extends10({}, filterProps(props, true), {
     className: layerClass,
     d: path2,
     role: "img"
@@ -16254,7 +15955,7 @@ var Sector = function Sector2(sectorProps) {
 };
 
 // node_modules/recharts/es6/shape/Curve.js
-var import_react19 = __toESM(require_react());
+var import_react18 = __toESM(require_react());
 var import_upperFirst3 = __toESM(require_upperFirst());
 var import_isFunction8 = __toESM(require_isFunction());
 function _typeof19(o) {
@@ -16403,7 +16104,7 @@ var Curve = function Curve2(props) {
     return null;
   }
   var realPath = points && points.length ? getPath(props) : path2;
-  return /* @__PURE__ */ import_react19.default.createElement("path", _extends11({}, filterProps(props, false), adaptEventHandlers(props), {
+  return /* @__PURE__ */ import_react18.default.createElement("path", _extends11({}, filterProps(props, false), adaptEventHandlers(props), {
     className: clsx_default("recharts-curve", className),
     d: realPath,
     ref: pathRef
@@ -16411,10 +16112,10 @@ var Curve = function Curve2(props) {
 };
 
 // node_modules/recharts/es6/shape/Rectangle.js
-var import_react21 = __toESM(require_react());
+var import_react20 = __toESM(require_react());
 
 // node_modules/react-smooth/es6/Animate.js
-var import_react20 = __toESM(require_react());
+var import_react19 = __toESM(require_react());
 var import_prop_types = __toESM(require_prop_types());
 
 // node_modules/fast-equals/dist/esm/index.mjs
@@ -17897,7 +17598,7 @@ var Animate = /* @__PURE__ */ function(_PureComponent) {
     key: "render",
     value: function render() {
       var _this$props4 = this.props, children = _this$props4.children, begin = _this$props4.begin, duration = _this$props4.duration, attributeName = _this$props4.attributeName, easing = _this$props4.easing, isActive = _this$props4.isActive, steps = _this$props4.steps, from = _this$props4.from, to = _this$props4.to, canBegin = _this$props4.canBegin, onAnimationEnd2 = _this$props4.onAnimationEnd, shouldReAnimate = _this$props4.shouldReAnimate, onAnimationReStart = _this$props4.onAnimationReStart, others = _objectWithoutProperties10(_this$props4, _excluded11);
-      var count = import_react20.Children.count(children);
+      var count = import_react19.Children.count(children);
       var stateStyle = this.state.style;
       if (typeof children === "function") {
         return children(stateStyle);
@@ -17907,22 +17608,22 @@ var Animate = /* @__PURE__ */ function(_PureComponent) {
       }
       var cloneContainer = function cloneContainer2(container) {
         var _container$props = container.props, _container$props$styl = _container$props.style, style = _container$props$styl === void 0 ? {} : _container$props$styl, className = _container$props.className;
-        var res = /* @__PURE__ */ (0, import_react20.cloneElement)(container, _objectSpread18(_objectSpread18({}, others), {}, {
+        var res = /* @__PURE__ */ (0, import_react19.cloneElement)(container, _objectSpread18(_objectSpread18({}, others), {}, {
           style: _objectSpread18(_objectSpread18({}, style), stateStyle),
           className
         }));
         return res;
       };
       if (count === 1) {
-        return cloneContainer(import_react20.Children.only(children));
+        return cloneContainer(import_react19.Children.only(children));
       }
-      return /* @__PURE__ */ import_react20.default.createElement("div", null, import_react20.Children.map(children, function(child) {
+      return /* @__PURE__ */ import_react19.default.createElement("div", null, import_react19.Children.map(children, function(child) {
         return cloneContainer(child);
       }));
     }
   }]);
   return Animate2;
-}(import_react20.PureComponent);
+}(import_react19.PureComponent);
 Animate.displayName = "Animate";
 Animate.defaultProps = {
   begin: 0,
@@ -18162,9 +17863,9 @@ var defaultProps2 = {
 };
 var Rectangle = function Rectangle2(rectangleProps) {
   var props = _objectSpread19(_objectSpread19({}, defaultProps2), rectangleProps);
-  var pathRef = (0, import_react21.useRef)();
-  var _useState = (0, import_react21.useState)(-1), _useState2 = _slicedToArray9(_useState, 2), totalLength = _useState2[0], setTotalLength = _useState2[1];
-  (0, import_react21.useEffect)(function() {
+  var pathRef = (0, import_react20.useRef)();
+  var _useState = (0, import_react20.useState)(-1), _useState2 = _slicedToArray9(_useState, 2), totalLength = _useState2[0], setTotalLength = _useState2[1];
+  (0, import_react20.useEffect)(function() {
     if (pathRef.current && pathRef.current.getTotalLength) {
       try {
         var pathTotalLength = pathRef.current.getTotalLength();
@@ -18182,12 +17883,12 @@ var Rectangle = function Rectangle2(rectangleProps) {
   }
   var layerClass = clsx_default("recharts-rectangle", className);
   if (!isUpdateAnimationActive) {
-    return /* @__PURE__ */ import_react21.default.createElement("path", _extends12({}, filterProps(props, true), {
+    return /* @__PURE__ */ import_react20.default.createElement("path", _extends12({}, filterProps(props, true), {
       className: layerClass,
       d: getRectanglePath(x2, y2, width, height, radius)
     }));
   }
-  return /* @__PURE__ */ import_react21.default.createElement(es6_default, {
+  return /* @__PURE__ */ import_react20.default.createElement(es6_default, {
     canBegin: totalLength > 0,
     from: {
       width,
@@ -18206,7 +17907,7 @@ var Rectangle = function Rectangle2(rectangleProps) {
     isActive: isUpdateAnimationActive
   }, function(_ref) {
     var currWidth = _ref.width, currHeight = _ref.height, currX = _ref.x, currY = _ref.y;
-    return /* @__PURE__ */ import_react21.default.createElement(es6_default, {
+    return /* @__PURE__ */ import_react20.default.createElement(es6_default, {
       canBegin: totalLength > 0,
       from: "0px ".concat(totalLength === -1 ? 1 : totalLength, "px"),
       to: "".concat(totalLength, "px 0px"),
@@ -18215,7 +17916,7 @@ var Rectangle = function Rectangle2(rectangleProps) {
       duration: animationDuration,
       isActive: isAnimationActive,
       easing: animationEasing
-    }, /* @__PURE__ */ import_react21.default.createElement("path", _extends12({}, filterProps(props, true), {
+    }, /* @__PURE__ */ import_react20.default.createElement("path", _extends12({}, filterProps(props, true), {
       className: layerClass,
       d: getRectanglePath(currX, currY, currWidth, currHeight, radius),
       ref: pathRef
@@ -18224,7 +17925,7 @@ var Rectangle = function Rectangle2(rectangleProps) {
 };
 
 // node_modules/recharts/es6/shape/Dot.js
-var import_react22 = __toESM(require_react());
+var import_react21 = __toESM(require_react());
 function _extends13() {
   _extends13 = Object.assign ? Object.assign.bind() : function(target) {
     for (var i = 1; i < arguments.length; i++) {
@@ -18243,7 +17944,7 @@ var Dot = function Dot2(props) {
   var cx = props.cx, cy = props.cy, r2 = props.r, className = props.className;
   var layerClass = clsx_default("recharts-dot", className);
   if (cx === +cx && cy === +cy && r2 === +r2) {
-    return /* @__PURE__ */ import_react22.default.createElement("circle", _extends13({}, filterProps(props, false), adaptEventHandlers(props), {
+    return /* @__PURE__ */ import_react21.default.createElement("circle", _extends13({}, filterProps(props, false), adaptEventHandlers(props), {
       className: layerClass,
       cx,
       cy,
@@ -18254,7 +17955,7 @@ var Dot = function Dot2(props) {
 };
 
 // node_modules/recharts/es6/shape/Cross.js
-var import_react23 = __toESM(require_react());
+var import_react22 = __toESM(require_react());
 function _typeof25(o) {
   "@babel/helpers - typeof";
   return _typeof25 = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(o2) {
@@ -18371,21 +18072,21 @@ var Cross = function Cross2(_ref) {
   if (!isNumber(x2) || !isNumber(y2) || !isNumber(width) || !isNumber(height) || !isNumber(top) || !isNumber(left)) {
     return null;
   }
-  return /* @__PURE__ */ import_react23.default.createElement("path", _extends14({}, filterProps(props, true), {
+  return /* @__PURE__ */ import_react22.default.createElement("path", _extends14({}, filterProps(props, true), {
     className: clsx_default("recharts-cross", className),
     d: getPath3(x2, y2, width, height, top, left)
   }));
 };
 
 // node_modules/recharts/es6/util/ActiveShapeUtils.js
-var import_react25 = __toESM(require_react());
+var import_react24 = __toESM(require_react());
 var import_isFunction9 = __toESM(require_isFunction());
 var import_isPlainObject = __toESM(require_isPlainObject());
 var import_isBoolean = __toESM(require_isBoolean());
 var import_isEqual2 = __toESM(require_isEqual());
 
 // node_modules/recharts/es6/shape/Trapezoid.js
-var import_react24 = __toESM(require_react());
+var import_react23 = __toESM(require_react());
 function _typeof26(o) {
   "@babel/helpers - typeof";
   return _typeof26 = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(o2) {
@@ -18533,9 +18234,9 @@ var defaultProps3 = {
 };
 var Trapezoid = function Trapezoid2(props) {
   var trapezoidProps = _objectSpread21(_objectSpread21({}, defaultProps3), props);
-  var pathRef = (0, import_react24.useRef)();
-  var _useState = (0, import_react24.useState)(-1), _useState2 = _slicedToArray10(_useState, 2), totalLength = _useState2[0], setTotalLength = _useState2[1];
-  (0, import_react24.useEffect)(function() {
+  var pathRef = (0, import_react23.useRef)();
+  var _useState = (0, import_react23.useState)(-1), _useState2 = _slicedToArray10(_useState, 2), totalLength = _useState2[0], setTotalLength = _useState2[1];
+  (0, import_react23.useEffect)(function() {
     if (pathRef.current && pathRef.current.getTotalLength) {
       try {
         var pathTotalLength = pathRef.current.getTotalLength();
@@ -18553,12 +18254,12 @@ var Trapezoid = function Trapezoid2(props) {
   }
   var layerClass = clsx_default("recharts-trapezoid", className);
   if (!isUpdateAnimationActive) {
-    return /* @__PURE__ */ import_react24.default.createElement("g", null, /* @__PURE__ */ import_react24.default.createElement("path", _extends15({}, filterProps(trapezoidProps, true), {
+    return /* @__PURE__ */ import_react23.default.createElement("g", null, /* @__PURE__ */ import_react23.default.createElement("path", _extends15({}, filterProps(trapezoidProps, true), {
       className: layerClass,
       d: getTrapezoidPath(x2, y2, upperWidth, lowerWidth, height)
     })));
   }
-  return /* @__PURE__ */ import_react24.default.createElement(es6_default, {
+  return /* @__PURE__ */ import_react23.default.createElement(es6_default, {
     canBegin: totalLength > 0,
     from: {
       upperWidth: 0,
@@ -18579,7 +18280,7 @@ var Trapezoid = function Trapezoid2(props) {
     isActive: isUpdateAnimationActive
   }, function(_ref) {
     var currUpperWidth = _ref.upperWidth, currLowerWidth = _ref.lowerWidth, currHeight = _ref.height, currX = _ref.x, currY = _ref.y;
-    return /* @__PURE__ */ import_react24.default.createElement(es6_default, {
+    return /* @__PURE__ */ import_react23.default.createElement(es6_default, {
       canBegin: totalLength > 0,
       from: "0px ".concat(totalLength === -1 ? 1 : totalLength, "px"),
       to: "".concat(totalLength, "px 0px"),
@@ -18587,7 +18288,7 @@ var Trapezoid = function Trapezoid2(props) {
       begin: animationBegin,
       duration: animationDuration,
       easing: animationEasing
-    }, /* @__PURE__ */ import_react24.default.createElement("path", _extends15({}, filterProps(trapezoidProps, true), {
+    }, /* @__PURE__ */ import_react23.default.createElement("path", _extends15({}, filterProps(trapezoidProps, true), {
       className: layerClass,
       d: getTrapezoidPath(currX, currY, currUpperWidth, currLowerWidth, currHeight),
       ref: pathRef
@@ -18692,14 +18393,14 @@ function ShapeSelector(_ref) {
   var shapeType = _ref.shapeType, elementProps = _ref.elementProps;
   switch (shapeType) {
     case "rectangle":
-      return /* @__PURE__ */ import_react25.default.createElement(Rectangle, elementProps);
+      return /* @__PURE__ */ import_react24.default.createElement(Rectangle, elementProps);
     case "trapezoid":
-      return /* @__PURE__ */ import_react25.default.createElement(Trapezoid, elementProps);
+      return /* @__PURE__ */ import_react24.default.createElement(Trapezoid, elementProps);
     case "sector":
-      return /* @__PURE__ */ import_react25.default.createElement(Sector, elementProps);
+      return /* @__PURE__ */ import_react24.default.createElement(Sector, elementProps);
     case "symbols":
       if (isSymbolsProps(shapeType, elementProps)) {
-        return /* @__PURE__ */ import_react25.default.createElement(Symbols, elementProps);
+        return /* @__PURE__ */ import_react24.default.createElement(Symbols, elementProps);
       }
       break;
     default:
@@ -18707,7 +18408,7 @@ function ShapeSelector(_ref) {
   }
 }
 function getPropsFromShapeOption(option) {
-  if (/* @__PURE__ */ (0, import_react25.isValidElement)(option)) {
+  if (/* @__PURE__ */ (0, import_react24.isValidElement)(option)) {
     return option.props;
   }
   return option;
@@ -18715,25 +18416,25 @@ function getPropsFromShapeOption(option) {
 function Shape(_ref2) {
   var option = _ref2.option, shapeType = _ref2.shapeType, _ref2$propTransformer = _ref2.propTransformer, propTransformer = _ref2$propTransformer === void 0 ? defaultPropTransformer : _ref2$propTransformer, _ref2$activeClassName = _ref2.activeClassName, activeClassName = _ref2$activeClassName === void 0 ? "recharts-active-shape" : _ref2$activeClassName, isActive = _ref2.isActive, props = _objectWithoutProperties12(_ref2, _excluded13);
   var shape;
-  if (/* @__PURE__ */ (0, import_react25.isValidElement)(option)) {
-    shape = /* @__PURE__ */ (0, import_react25.cloneElement)(option, _objectSpread22(_objectSpread22({}, props), getPropsFromShapeOption(option)));
+  if (/* @__PURE__ */ (0, import_react24.isValidElement)(option)) {
+    shape = /* @__PURE__ */ (0, import_react24.cloneElement)(option, _objectSpread22(_objectSpread22({}, props), getPropsFromShapeOption(option)));
   } else if ((0, import_isFunction9.default)(option)) {
     shape = option(props);
   } else if ((0, import_isPlainObject.default)(option) && !(0, import_isBoolean.default)(option)) {
     var nextProps = propTransformer(option, props);
-    shape = /* @__PURE__ */ import_react25.default.createElement(ShapeSelector, {
+    shape = /* @__PURE__ */ import_react24.default.createElement(ShapeSelector, {
       shapeType,
       elementProps: nextProps
     });
   } else {
     var elementProps = props;
-    shape = /* @__PURE__ */ import_react25.default.createElement(ShapeSelector, {
+    shape = /* @__PURE__ */ import_react24.default.createElement(ShapeSelector, {
       shapeType,
       elementProps
     });
   }
   if (isActive) {
-    return /* @__PURE__ */ import_react25.default.createElement(Layer, {
+    return /* @__PURE__ */ import_react24.default.createElement(Layer, {
       className: activeClassName
     }, shape);
   }
@@ -18820,7 +18521,7 @@ function getActiveShapeIndexForTooltip(_ref3) {
 }
 
 // node_modules/recharts/es6/cartesian/Brush.js
-var import_react26 = __toESM(require_react());
+var import_react25 = __toESM(require_react());
 var import_isFunction10 = __toESM(require_isFunction());
 var import_range2 = __toESM(require_range());
 
@@ -19270,7 +18971,7 @@ var Brush = /* @__PURE__ */ function(_PureComponent) {
     key: "renderBackground",
     value: function renderBackground() {
       var _this$props6 = this.props, x2 = _this$props6.x, y2 = _this$props6.y, width = _this$props6.width, height = _this$props6.height, fill = _this$props6.fill, stroke = _this$props6.stroke;
-      return /* @__PURE__ */ import_react26.default.createElement("rect", {
+      return /* @__PURE__ */ import_react25.default.createElement("rect", {
         stroke,
         fill,
         x: x2,
@@ -19283,11 +18984,11 @@ var Brush = /* @__PURE__ */ function(_PureComponent) {
     key: "renderPanorama",
     value: function renderPanorama() {
       var _this$props7 = this.props, x2 = _this$props7.x, y2 = _this$props7.y, width = _this$props7.width, height = _this$props7.height, data = _this$props7.data, children = _this$props7.children, padding = _this$props7.padding;
-      var chartElement = import_react26.Children.only(children);
+      var chartElement = import_react25.Children.only(children);
       if (!chartElement) {
         return null;
       }
-      return /* @__PURE__ */ import_react26.default.cloneElement(chartElement, {
+      return /* @__PURE__ */ import_react25.default.cloneElement(chartElement, {
         x: x2,
         y: y2,
         width,
@@ -19310,7 +19011,7 @@ var Brush = /* @__PURE__ */ function(_PureComponent) {
         height
       });
       var ariaLabelBrush = ariaLabel || "Min value: ".concat((_data$startIndex = data[startIndex]) === null || _data$startIndex === void 0 ? void 0 : _data$startIndex.name, ", Max value: ").concat((_data$endIndex = data[endIndex]) === null || _data$endIndex === void 0 ? void 0 : _data$endIndex.name);
-      return /* @__PURE__ */ import_react26.default.createElement(Layer, {
+      return /* @__PURE__ */ import_react25.default.createElement(Layer, {
         tabIndex: 0,
         role: "slider",
         "aria-label": ariaLabelBrush,
@@ -19349,7 +19050,7 @@ var Brush = /* @__PURE__ */ function(_PureComponent) {
       var _this$props9 = this.props, y2 = _this$props9.y, height = _this$props9.height, stroke = _this$props9.stroke, travellerWidth = _this$props9.travellerWidth;
       var x2 = Math.min(startX, endX) + travellerWidth;
       var width = Math.max(Math.abs(endX - startX) - travellerWidth, 0);
-      return /* @__PURE__ */ import_react26.default.createElement("rect", {
+      return /* @__PURE__ */ import_react25.default.createElement("rect", {
         className: "recharts-brush-slide",
         onMouseEnter: this.handleEnterSlideOrTraveller,
         onMouseLeave: this.handleLeaveSlideOrTraveller,
@@ -19377,14 +19078,14 @@ var Brush = /* @__PURE__ */ function(_PureComponent) {
         pointerEvents: "none",
         fill: stroke
       };
-      return /* @__PURE__ */ import_react26.default.createElement(Layer, {
+      return /* @__PURE__ */ import_react25.default.createElement(Layer, {
         className: "recharts-brush-texts"
-      }, /* @__PURE__ */ import_react26.default.createElement(Text, _extends16({
+      }, /* @__PURE__ */ import_react25.default.createElement(Text, _extends16({
         textAnchor: "end",
         verticalAnchor: "middle",
         x: Math.min(startX, endX) - offset,
         y: y2 + height / 2
-      }, attrs), this.getTextOfTick(startIndex)), /* @__PURE__ */ import_react26.default.createElement(Text, _extends16({
+      }, attrs), this.getTextOfTick(startIndex)), /* @__PURE__ */ import_react25.default.createElement(Text, _extends16({
         textAnchor: "start",
         verticalAnchor: "middle",
         x: Math.max(startX, endX) + travellerWidth + offset,
@@ -19400,9 +19101,9 @@ var Brush = /* @__PURE__ */ function(_PureComponent) {
         return null;
       }
       var layerClass = clsx_default("recharts-brush", className);
-      var isPanoramic = import_react26.default.Children.count(children) === 1;
+      var isPanoramic = import_react25.default.Children.count(children) === 1;
       var style = generatePrefixStyle("userSelect", "none");
-      return /* @__PURE__ */ import_react26.default.createElement(Layer, {
+      return /* @__PURE__ */ import_react25.default.createElement(Layer, {
         className: layerClass,
         onMouseLeave: this.handleLeaveWrapper,
         onTouchMove: this.handleTouchMove,
@@ -19414,21 +19115,21 @@ var Brush = /* @__PURE__ */ function(_PureComponent) {
     value: function renderDefaultTraveller(props) {
       var x2 = props.x, y2 = props.y, width = props.width, height = props.height, stroke = props.stroke;
       var lineY = Math.floor(y2 + height / 2) - 1;
-      return /* @__PURE__ */ import_react26.default.createElement(import_react26.default.Fragment, null, /* @__PURE__ */ import_react26.default.createElement("rect", {
+      return /* @__PURE__ */ import_react25.default.createElement(import_react25.default.Fragment, null, /* @__PURE__ */ import_react25.default.createElement("rect", {
         x: x2,
         y: y2,
         width,
         height,
         fill: stroke,
         stroke: "none"
-      }), /* @__PURE__ */ import_react26.default.createElement("line", {
+      }), /* @__PURE__ */ import_react25.default.createElement("line", {
         x1: x2 + 1,
         y1: lineY,
         x2: x2 + width - 1,
         y2: lineY,
         fill: "none",
         stroke: "#fff"
-      }), /* @__PURE__ */ import_react26.default.createElement("line", {
+      }), /* @__PURE__ */ import_react25.default.createElement("line", {
         x1: x2 + 1,
         y1: lineY + 2,
         x2: x2 + width - 1,
@@ -19441,8 +19142,8 @@ var Brush = /* @__PURE__ */ function(_PureComponent) {
     key: "renderTraveller",
     value: function renderTraveller(option, props) {
       var rectangle;
-      if (/* @__PURE__ */ import_react26.default.isValidElement(option)) {
-        rectangle = /* @__PURE__ */ import_react26.default.cloneElement(option, props);
+      if (/* @__PURE__ */ import_react25.default.isValidElement(option)) {
+        rectangle = /* @__PURE__ */ import_react25.default.cloneElement(option, props);
       } else if ((0, import_isFunction10.default)(option)) {
         rectangle = option(props);
       } else {
@@ -19508,7 +19209,7 @@ var Brush = /* @__PURE__ */ function(_PureComponent) {
       return x2 >= valueRange[end] ? end : start;
     }
   }]);
-}(import_react26.PureComponent);
+}(import_react25.PureComponent);
 _defineProperty26(Brush, "displayName", "Brush");
 _defineProperty26(Brush, "defaultProps", {
   height: 40,
@@ -19527,7 +19228,7 @@ _defineProperty26(Brush, "defaultProps", {
 });
 
 // node_modules/recharts/es6/cartesian/ReferenceLine.js
-var import_react30 = __toESM(require_react());
+var import_react29 = __toESM(require_react());
 var import_isFunction11 = __toESM(require_isFunction());
 var import_some = __toESM(require_some());
 
@@ -19546,12 +19247,12 @@ var import_mapValues = __toESM(require_mapValues());
 var import_every = __toESM(require_every());
 
 // node_modules/recharts/es6/cartesian/Bar.js
-var import_react28 = __toESM(require_react());
+var import_react27 = __toESM(require_react());
 var import_isEqual3 = __toESM(require_isEqual());
 var import_isNil8 = __toESM(require_isNil());
 
 // node_modules/recharts/es6/util/BarUtils.js
-var import_react27 = __toESM(require_react());
+var import_react26 = __toESM(require_react());
 var _excluded14 = ["x", "y"];
 function _typeof30(o) {
   "@babel/helpers - typeof";
@@ -19674,7 +19375,7 @@ function typeguardBarRectangleProps(_ref, props) {
   });
 }
 function BarRectangle(props) {
-  return /* @__PURE__ */ import_react27.default.createElement(Shape, _extends17({
+  return /* @__PURE__ */ import_react26.default.createElement(Shape, _extends17({
     shapeType: "rectangle",
     propTransformer: typeguardBarRectangleProps,
     activeClassName: "recharts-active-bar"
@@ -19918,11 +19619,11 @@ var Bar = /* @__PURE__ */ function(_PureComponent) {
           onAnimationStart: _this2.handleAnimationStart,
           onAnimationEnd: _this2.handleAnimationEnd
         });
-        return /* @__PURE__ */ import_react28.default.createElement(Layer, _extends18({
+        return /* @__PURE__ */ import_react27.default.createElement(Layer, _extends18({
           className: "recharts-bar-rectangle"
         }, adaptEventsOfChild(_this2.props, entry, i), {
           key: "rectangle-".concat(entry === null || entry === void 0 ? void 0 : entry.x, "-").concat(entry === null || entry === void 0 ? void 0 : entry.y, "-").concat(entry === null || entry === void 0 ? void 0 : entry.value)
-        }), /* @__PURE__ */ import_react28.default.createElement(BarRectangle, props));
+        }), /* @__PURE__ */ import_react27.default.createElement(BarRectangle, props));
       });
     }
   }, {
@@ -19931,7 +19632,7 @@ var Bar = /* @__PURE__ */ function(_PureComponent) {
       var _this3 = this;
       var _this$props2 = this.props, data = _this$props2.data, layout = _this$props2.layout, isAnimationActive = _this$props2.isAnimationActive, animationBegin = _this$props2.animationBegin, animationDuration = _this$props2.animationDuration, animationEasing = _this$props2.animationEasing, animationId = _this$props2.animationId;
       var prevData = this.state.prevData;
-      return /* @__PURE__ */ import_react28.default.createElement(es6_default, {
+      return /* @__PURE__ */ import_react27.default.createElement(es6_default, {
         begin: animationBegin,
         duration: animationDuration,
         isActive: isAnimationActive,
@@ -19975,7 +19676,7 @@ var Bar = /* @__PURE__ */ function(_PureComponent) {
             width: w
           });
         });
-        return /* @__PURE__ */ import_react28.default.createElement(Layer, null, _this3.renderRectanglesStatically(stepData));
+        return /* @__PURE__ */ import_react27.default.createElement(Layer, null, _this3.renderRectanglesStatically(stepData));
       });
     }
   }, {
@@ -20008,7 +19709,7 @@ var Bar = /* @__PURE__ */ function(_PureComponent) {
           index: i,
           className: "recharts-bar-background-rectangle"
         });
-        return /* @__PURE__ */ import_react28.default.createElement(BarRectangle, _extends18({
+        return /* @__PURE__ */ import_react27.default.createElement(BarRectangle, _extends18({
           key: "background-bar-".concat(i),
           option: _this4.props.background,
           isActive: i === activeIndex
@@ -20039,8 +19740,8 @@ var Bar = /* @__PURE__ */ function(_PureComponent) {
       var errorBarProps = {
         clipPath: needClip ? "url(#clipPath-".concat(clipPathId, ")") : null
       };
-      return /* @__PURE__ */ import_react28.default.createElement(Layer, errorBarProps, errorBarItems.map(function(item) {
-        return /* @__PURE__ */ import_react28.default.cloneElement(item, {
+      return /* @__PURE__ */ import_react27.default.createElement(Layer, errorBarProps, errorBarItems.map(function(item) {
+        return /* @__PURE__ */ import_react27.default.cloneElement(item, {
           key: "error-bar-".concat(clipPathId, "-").concat(item.props.dataKey),
           data,
           xAxis,
@@ -20064,16 +19765,16 @@ var Bar = /* @__PURE__ */ function(_PureComponent) {
       var needClipY = yAxis && yAxis.allowDataOverflow;
       var needClip = needClipX || needClipY;
       var clipPathId = (0, import_isNil8.default)(id) ? this.id : id;
-      return /* @__PURE__ */ import_react28.default.createElement(Layer, {
+      return /* @__PURE__ */ import_react27.default.createElement(Layer, {
         className: layerClass
-      }, needClipX || needClipY ? /* @__PURE__ */ import_react28.default.createElement("defs", null, /* @__PURE__ */ import_react28.default.createElement("clipPath", {
+      }, needClipX || needClipY ? /* @__PURE__ */ import_react27.default.createElement("defs", null, /* @__PURE__ */ import_react27.default.createElement("clipPath", {
         id: "clipPath-".concat(clipPathId)
-      }, /* @__PURE__ */ import_react28.default.createElement("rect", {
+      }, /* @__PURE__ */ import_react27.default.createElement("rect", {
         x: needClipX ? left : left - width / 2,
         y: needClipY ? top : top - height / 2,
         width: needClipX ? width : width * 2,
         height: needClipY ? height : height * 2
-      }))) : null, /* @__PURE__ */ import_react28.default.createElement(Layer, {
+      }))) : null, /* @__PURE__ */ import_react27.default.createElement(Layer, {
         className: "recharts-bar-rectangles",
         clipPath: needClip ? "url(#clipPath-".concat(clipPathId, ")") : null
       }, background ? this.renderBackground() : null, this.renderRectangles()), this.renderErrorBar(needClip, clipPathId), (!isAnimationActive || isAnimationFinished) && LabelList.renderCallByParent(this.props, data));
@@ -20096,7 +19797,7 @@ var Bar = /* @__PURE__ */ function(_PureComponent) {
       return null;
     }
   }]);
-}(import_react28.PureComponent);
+}(import_react27.PureComponent);
 _Bar = Bar;
 _defineProperty28(Bar, "displayName", "Bar");
 _defineProperty28(Bar, "defaultProps", {
@@ -20505,7 +20206,7 @@ var getAngledRectangleWidth = function getAngledRectangleWidth2(_ref6) {
 };
 
 // node_modules/recharts/es6/context/chartLayoutContext.js
-var import_react29 = __toESM(require_react());
+var import_react28 = __toESM(require_react());
 var import_find = __toESM(require_find());
 var import_every2 = __toESM(require_every());
 
@@ -20531,34 +20232,34 @@ function _typeof33(o) {
     return o2 && "function" == typeof Symbol && o2.constructor === Symbol && o2 !== Symbol.prototype ? "symbol" : typeof o2;
   }, _typeof33(o);
 }
-var XAxisContext = /* @__PURE__ */ (0, import_react29.createContext)(void 0);
-var YAxisContext = /* @__PURE__ */ (0, import_react29.createContext)(void 0);
-var ViewBoxContext = /* @__PURE__ */ (0, import_react29.createContext)(void 0);
-var OffsetContext = /* @__PURE__ */ (0, import_react29.createContext)({});
-var ClipPathIdContext = /* @__PURE__ */ (0, import_react29.createContext)(void 0);
-var ChartHeightContext = /* @__PURE__ */ (0, import_react29.createContext)(0);
-var ChartWidthContext = /* @__PURE__ */ (0, import_react29.createContext)(0);
+var XAxisContext = /* @__PURE__ */ (0, import_react28.createContext)(void 0);
+var YAxisContext = /* @__PURE__ */ (0, import_react28.createContext)(void 0);
+var ViewBoxContext = /* @__PURE__ */ (0, import_react28.createContext)(void 0);
+var OffsetContext = /* @__PURE__ */ (0, import_react28.createContext)({});
+var ClipPathIdContext = /* @__PURE__ */ (0, import_react28.createContext)(void 0);
+var ChartHeightContext = /* @__PURE__ */ (0, import_react28.createContext)(0);
+var ChartWidthContext = /* @__PURE__ */ (0, import_react28.createContext)(0);
 var ChartLayoutContextProvider = function ChartLayoutContextProvider2(props) {
   var _props$state = props.state, xAxisMap = _props$state.xAxisMap, yAxisMap = _props$state.yAxisMap, offset = _props$state.offset, clipPathId = props.clipPathId, children = props.children, width = props.width, height = props.height;
   var viewBox = calculateViewBox(offset);
-  return /* @__PURE__ */ import_react29.default.createElement(XAxisContext.Provider, {
+  return /* @__PURE__ */ import_react28.default.createElement(XAxisContext.Provider, {
     value: xAxisMap
-  }, /* @__PURE__ */ import_react29.default.createElement(YAxisContext.Provider, {
+  }, /* @__PURE__ */ import_react28.default.createElement(YAxisContext.Provider, {
     value: yAxisMap
-  }, /* @__PURE__ */ import_react29.default.createElement(OffsetContext.Provider, {
+  }, /* @__PURE__ */ import_react28.default.createElement(OffsetContext.Provider, {
     value: offset
-  }, /* @__PURE__ */ import_react29.default.createElement(ViewBoxContext.Provider, {
+  }, /* @__PURE__ */ import_react28.default.createElement(ViewBoxContext.Provider, {
     value: viewBox
-  }, /* @__PURE__ */ import_react29.default.createElement(ClipPathIdContext.Provider, {
+  }, /* @__PURE__ */ import_react28.default.createElement(ClipPathIdContext.Provider, {
     value: clipPathId
-  }, /* @__PURE__ */ import_react29.default.createElement(ChartHeightContext.Provider, {
+  }, /* @__PURE__ */ import_react28.default.createElement(ChartHeightContext.Provider, {
     value: height
-  }, /* @__PURE__ */ import_react29.default.createElement(ChartWidthContext.Provider, {
+  }, /* @__PURE__ */ import_react28.default.createElement(ChartWidthContext.Provider, {
     value: width
   }, children)))))));
 };
 var useClipPathId = function useClipPathId2() {
-  return (0, import_react29.useContext)(ClipPathIdContext);
+  return (0, import_react28.useContext)(ClipPathIdContext);
 };
 function getKeysForDebug(object) {
   var keys2 = Object.keys(object);
@@ -20568,42 +20269,42 @@ function getKeysForDebug(object) {
   return "Available ids are: ".concat(keys2, ".");
 }
 var useXAxisOrThrow = function useXAxisOrThrow2(xAxisId) {
-  var xAxisMap = (0, import_react29.useContext)(XAxisContext);
+  var xAxisMap = (0, import_react28.useContext)(XAxisContext);
   !(xAxisMap != null) ? true ? invariant(false, "Could not find Recharts context; are you sure this is rendered inside a Recharts wrapper component?") : invariant(false) : void 0;
   var xAxis = xAxisMap[xAxisId];
   !(xAxis != null) ? true ? invariant(false, 'Could not find xAxis by id "'.concat(xAxisId, '" [').concat(_typeof33(xAxisId), "]. ").concat(getKeysForDebug(xAxisMap))) : invariant(false) : void 0;
   return xAxis;
 };
 var useArbitraryXAxis = function useArbitraryXAxis2() {
-  var xAxisMap = (0, import_react29.useContext)(XAxisContext);
+  var xAxisMap = (0, import_react28.useContext)(XAxisContext);
   return getAnyElementOfObject(xAxisMap);
 };
 var useYAxisWithFiniteDomainOrRandom = function useYAxisWithFiniteDomainOrRandom2() {
-  var yAxisMap = (0, import_react29.useContext)(YAxisContext);
+  var yAxisMap = (0, import_react28.useContext)(YAxisContext);
   var yAxisWithFiniteDomain = (0, import_find.default)(yAxisMap, function(axis) {
     return (0, import_every2.default)(axis.domain, Number.isFinite);
   });
   return yAxisWithFiniteDomain || getAnyElementOfObject(yAxisMap);
 };
 var useYAxisOrThrow = function useYAxisOrThrow2(yAxisId) {
-  var yAxisMap = (0, import_react29.useContext)(YAxisContext);
+  var yAxisMap = (0, import_react28.useContext)(YAxisContext);
   !(yAxisMap != null) ? true ? invariant(false, "Could not find Recharts context; are you sure this is rendered inside a Recharts wrapper component?") : invariant(false) : void 0;
   var yAxis = yAxisMap[yAxisId];
   !(yAxis != null) ? true ? invariant(false, 'Could not find yAxis by id "'.concat(yAxisId, '" [').concat(_typeof33(yAxisId), "]. ").concat(getKeysForDebug(yAxisMap))) : invariant(false) : void 0;
   return yAxis;
 };
 var useViewBox = function useViewBox2() {
-  var viewBox = (0, import_react29.useContext)(ViewBoxContext);
+  var viewBox = (0, import_react28.useContext)(ViewBoxContext);
   return viewBox;
 };
 var useOffset = function useOffset2() {
-  return (0, import_react29.useContext)(OffsetContext);
+  return (0, import_react28.useContext)(OffsetContext);
 };
 var useChartWidth = function useChartWidth2() {
-  return (0, import_react29.useContext)(ChartWidthContext);
+  return (0, import_react28.useContext)(ChartWidthContext);
 };
 var useChartHeight = function useChartHeight2() {
-  return (0, import_react29.useContext)(ChartHeightContext);
+  return (0, import_react28.useContext)(ChartHeightContext);
 };
 
 // node_modules/recharts/es6/cartesian/ReferenceLine.js
@@ -20805,12 +20506,12 @@ function _extends19() {
 }
 var renderLine = function renderLine2(option, props) {
   var line;
-  if (/* @__PURE__ */ import_react30.default.isValidElement(option)) {
-    line = /* @__PURE__ */ import_react30.default.cloneElement(option, props);
+  if (/* @__PURE__ */ import_react29.default.isValidElement(option)) {
+    line = /* @__PURE__ */ import_react29.default.cloneElement(option, props);
   } else if ((0, import_isFunction11.default)(option)) {
     line = option(props);
   } else {
-    line = /* @__PURE__ */ import_react30.default.createElement("line", _extends19({}, props, {
+    line = /* @__PURE__ */ import_react29.default.createElement("line", _extends19({}, props, {
       className: "recharts-reference-line-line"
     }));
   }
@@ -20899,7 +20600,7 @@ function ReferenceLineImpl(props) {
     x2,
     y2
   });
-  return /* @__PURE__ */ import_react30.default.createElement(Layer, {
+  return /* @__PURE__ */ import_react29.default.createElement(Layer, {
     className: clsx_default("recharts-reference-line", className)
   }, renderLine(shape, lineProps), Label.renderCallByParent(props, rectWithCoords({
     x1,
@@ -20917,10 +20618,10 @@ var ReferenceLine = /* @__PURE__ */ function(_React$Component) {
   return _createClass11(ReferenceLine2, [{
     key: "render",
     value: function render() {
-      return /* @__PURE__ */ import_react30.default.createElement(ReferenceLineImpl, this.props);
+      return /* @__PURE__ */ import_react29.default.createElement(ReferenceLineImpl, this.props);
     }
   }]);
-}(import_react30.default.Component);
+}(import_react29.default.Component);
 _defineProperty30(ReferenceLine, "displayName", "ReferenceLine");
 _defineProperty30(ReferenceLine, "defaultProps", {
   isFront: false,
@@ -20935,7 +20636,7 @@ _defineProperty30(ReferenceLine, "defaultProps", {
 });
 
 // node_modules/recharts/es6/cartesian/ReferenceDot.js
-var import_react31 = __toESM(require_react());
+var import_react30 = __toESM(require_react());
 var import_isFunction12 = __toESM(require_isFunction());
 function _extends20() {
   _extends20 = Object.assign ? Object.assign.bind() : function(target) {
@@ -21123,7 +20824,7 @@ var ReferenceDot = /* @__PURE__ */ function(_React$Component) {
         cx,
         cy
       });
-      return /* @__PURE__ */ import_react31.default.createElement(Layer, {
+      return /* @__PURE__ */ import_react30.default.createElement(Layer, {
         className: clsx_default("recharts-reference-dot", className)
       }, ReferenceDot2.renderDot(shape, dotProps), Label.renderCallByParent(this.props, {
         x: cx - r2,
@@ -21133,7 +20834,7 @@ var ReferenceDot = /* @__PURE__ */ function(_React$Component) {
       }));
     }
   }]);
-}(import_react31.default.Component);
+}(import_react30.default.Component);
 _defineProperty31(ReferenceDot, "displayName", "ReferenceDot");
 _defineProperty31(ReferenceDot, "defaultProps", {
   isFront: false,
@@ -21148,12 +20849,12 @@ _defineProperty31(ReferenceDot, "defaultProps", {
 });
 _defineProperty31(ReferenceDot, "renderDot", function(option, props) {
   var dot;
-  if (/* @__PURE__ */ import_react31.default.isValidElement(option)) {
-    dot = /* @__PURE__ */ import_react31.default.cloneElement(option, props);
+  if (/* @__PURE__ */ import_react30.default.isValidElement(option)) {
+    dot = /* @__PURE__ */ import_react30.default.cloneElement(option, props);
   } else if ((0, import_isFunction12.default)(option)) {
     dot = option(props);
   } else {
-    dot = /* @__PURE__ */ import_react31.default.createElement(Dot, _extends20({}, props, {
+    dot = /* @__PURE__ */ import_react30.default.createElement(Dot, _extends20({}, props, {
       cx: props.cx,
       cy: props.cy,
       className: "recharts-reference-dot-dot"
@@ -21163,7 +20864,7 @@ _defineProperty31(ReferenceDot, "renderDot", function(option, props) {
 });
 
 // node_modules/recharts/es6/cartesian/ReferenceArea.js
-var import_react32 = __toESM(require_react());
+var import_react31 = __toESM(require_react());
 var import_isFunction13 = __toESM(require_isFunction());
 function _extends21() {
   _extends21 = Object.assign ? Object.assign.bind() : function(target) {
@@ -21358,14 +21059,14 @@ var ReferenceArea = /* @__PURE__ */ function(_React$Component) {
         return null;
       }
       var clipPath = ifOverflowMatches(this.props, "hidden") ? "url(#".concat(clipPathId, ")") : void 0;
-      return /* @__PURE__ */ import_react32.default.createElement(Layer, {
+      return /* @__PURE__ */ import_react31.default.createElement(Layer, {
         className: clsx_default("recharts-reference-area", className)
       }, ReferenceArea2.renderRect(shape, _objectSpread30(_objectSpread30({
         clipPath
       }, filterProps(this.props, true)), rect)), Label.renderCallByParent(this.props, rect));
     }
   }]);
-}(import_react32.default.Component);
+}(import_react31.default.Component);
 _defineProperty32(ReferenceArea, "displayName", "ReferenceArea");
 _defineProperty32(ReferenceArea, "defaultProps", {
   isFront: false,
@@ -21380,12 +21081,12 @@ _defineProperty32(ReferenceArea, "defaultProps", {
 });
 _defineProperty32(ReferenceArea, "renderRect", function(option, props) {
   var rect;
-  if (/* @__PURE__ */ import_react32.default.isValidElement(option)) {
-    rect = /* @__PURE__ */ import_react32.default.cloneElement(option, props);
+  if (/* @__PURE__ */ import_react31.default.isValidElement(option)) {
+    rect = /* @__PURE__ */ import_react31.default.cloneElement(option, props);
   } else if ((0, import_isFunction13.default)(option)) {
     rect = option(props);
   } else {
-    rect = /* @__PURE__ */ import_react32.default.createElement(Rectangle, _extends21({}, props, {
+    rect = /* @__PURE__ */ import_react31.default.createElement(Rectangle, _extends21({}, props, {
       className: "recharts-reference-area-rect"
     }));
   }
@@ -21393,7 +21094,7 @@ _defineProperty32(ReferenceArea, "renderRect", function(option, props) {
 });
 
 // node_modules/recharts/es6/cartesian/CartesianAxis.js
-var import_react33 = __toESM(require_react());
+var import_react32 = __toESM(require_react());
 var import_isFunction15 = __toESM(require_isFunction());
 var import_get4 = __toESM(require_get());
 
@@ -22008,7 +21709,7 @@ var CartesianAxis = /* @__PURE__ */ function(_Component) {
           y2: y2 + height
         });
       }
-      return /* @__PURE__ */ import_react33.default.createElement("line", _extends22({}, props, {
+      return /* @__PURE__ */ import_react32.default.createElement("line", _extends22({}, props, {
         className: clsx_default("recharts-cartesian-axis-line", (0, import_get4.default)(axisLine, "className"))
       }));
     }
@@ -22049,14 +21750,14 @@ var CartesianAxis = /* @__PURE__ */ function(_Component) {
             visibleTicksCount: finalTicks.length,
             tickFormatter
           });
-          return /* @__PURE__ */ import_react33.default.createElement(Layer, _extends22({
+          return /* @__PURE__ */ import_react32.default.createElement(Layer, _extends22({
             className: "recharts-cartesian-axis-tick",
             key: "tick-".concat(entry.value, "-").concat(entry.coordinate, "-").concat(entry.tickCoord)
-          }, adaptEventsOfChild(_this2.props, entry, i)), tickLine && /* @__PURE__ */ import_react33.default.createElement("line", _extends22({}, tickLineProps, lineCoord, {
+          }, adaptEventsOfChild(_this2.props, entry, i)), tickLine && /* @__PURE__ */ import_react32.default.createElement("line", _extends22({}, tickLineProps, lineCoord, {
             className: clsx_default("recharts-cartesian-axis-tick-line", (0, import_get4.default)(tickLine, "className"))
           })), tick && CartesianAxis2.renderTickItem(tick, tickProps, "".concat((0, import_isFunction15.default)(tickFormatter) ? tickFormatter(entry.value, i) : entry.value).concat(unit2 || "")));
         });
-        return /* @__PURE__ */ import_react33.default.createElement("g", {
+        return /* @__PURE__ */ import_react32.default.createElement("g", {
           className: "recharts-cartesian-axis-ticks"
         }, items);
       }
@@ -22077,7 +21778,7 @@ var CartesianAxis = /* @__PURE__ */ function(_Component) {
       if (width <= 0 || height <= 0 || !finalTicks || !finalTicks.length) {
         return null;
       }
-      return /* @__PURE__ */ import_react33.default.createElement(Layer, {
+      return /* @__PURE__ */ import_react32.default.createElement(Layer, {
         className: clsx_default("recharts-cartesian-axis", className),
         ref: function ref(_ref2) {
           _this3.layerReference = _ref2;
@@ -22088,19 +21789,19 @@ var CartesianAxis = /* @__PURE__ */ function(_Component) {
     key: "renderTickItem",
     value: function renderTickItem(option, props, value) {
       var tickItem;
-      if (/* @__PURE__ */ import_react33.default.isValidElement(option)) {
-        tickItem = /* @__PURE__ */ import_react33.default.cloneElement(option, props);
+      if (/* @__PURE__ */ import_react32.default.isValidElement(option)) {
+        tickItem = /* @__PURE__ */ import_react32.default.cloneElement(option, props);
       } else if ((0, import_isFunction15.default)(option)) {
         tickItem = option(props);
       } else {
-        tickItem = /* @__PURE__ */ import_react33.default.createElement(Text, _extends22({}, props, {
+        tickItem = /* @__PURE__ */ import_react32.default.createElement(Text, _extends22({}, props, {
           className: "recharts-cartesian-axis-tick-value"
         }), value);
       }
       return tickItem;
     }
   }]);
-}(import_react33.Component);
+}(import_react32.Component);
 _defineProperty34(CartesianAxis, "displayName", "CartesianAxis");
 _defineProperty34(CartesianAxis, "defaultProps", {
   x: 0,
@@ -22130,7 +21831,7 @@ _defineProperty34(CartesianAxis, "defaultProps", {
 });
 
 // node_modules/recharts/es6/cartesian/CartesianGrid.js
-var import_react34 = __toESM(require_react());
+var import_react33 = __toESM(require_react());
 var import_isFunction16 = __toESM(require_isFunction());
 var _excluded17 = ["x1", "y1", "x2", "y2", "key"];
 var _excluded25 = ["offset"];
@@ -22239,7 +21940,7 @@ var Background = function Background2(props) {
     return null;
   }
   var fillOpacity = props.fillOpacity, x2 = props.x, y2 = props.y, width = props.width, height = props.height, ry = props.ry;
-  return /* @__PURE__ */ import_react34.default.createElement("rect", {
+  return /* @__PURE__ */ import_react33.default.createElement("rect", {
     x: x2,
     y: y2,
     ry,
@@ -22253,14 +21954,14 @@ var Background = function Background2(props) {
 };
 function renderLineItem(option, props) {
   var lineItem;
-  if (/* @__PURE__ */ import_react34.default.isValidElement(option)) {
-    lineItem = /* @__PURE__ */ import_react34.default.cloneElement(option, props);
+  if (/* @__PURE__ */ import_react33.default.isValidElement(option)) {
+    lineItem = /* @__PURE__ */ import_react33.default.cloneElement(option, props);
   } else if ((0, import_isFunction16.default)(option)) {
     lineItem = option(props);
   } else {
     var x1 = props.x1, y1 = props.y1, x2 = props.x2, y2 = props.y2, key = props.key, others = _objectWithoutProperties16(props, _excluded17);
     var _filterProps = filterProps(others, false), __ = _filterProps.offset, restOfFilteredProps = _objectWithoutProperties16(_filterProps, _excluded25);
-    lineItem = /* @__PURE__ */ import_react34.default.createElement("line", _extends23({}, restOfFilteredProps, {
+    lineItem = /* @__PURE__ */ import_react33.default.createElement("line", _extends23({}, restOfFilteredProps, {
       x1,
       y1,
       x2,
@@ -22287,7 +21988,7 @@ function HorizontalGridLines(props) {
     });
     return renderLineItem(horizontal, lineItemProps);
   });
-  return /* @__PURE__ */ import_react34.default.createElement("g", {
+  return /* @__PURE__ */ import_react33.default.createElement("g", {
     className: "recharts-cartesian-grid-horizontal"
   }, items);
 }
@@ -22307,7 +22008,7 @@ function VerticalGridLines(props) {
     });
     return renderLineItem(vertical, lineItemProps);
   });
-  return /* @__PURE__ */ import_react34.default.createElement("g", {
+  return /* @__PURE__ */ import_react33.default.createElement("g", {
     className: "recharts-cartesian-grid-vertical"
   }, items);
 }
@@ -22331,7 +22032,7 @@ function HorizontalStripes(props) {
       return null;
     }
     var colorIndex = i % horizontalFill.length;
-    return /* @__PURE__ */ import_react34.default.createElement("rect", {
+    return /* @__PURE__ */ import_react33.default.createElement("rect", {
       key: "react-".concat(i),
       y: entry,
       x: x2,
@@ -22343,7 +22044,7 @@ function HorizontalStripes(props) {
       className: "recharts-cartesian-grid-bg"
     });
   });
-  return /* @__PURE__ */ import_react34.default.createElement("g", {
+  return /* @__PURE__ */ import_react33.default.createElement("g", {
     className: "recharts-cartesian-gridstripes-horizontal"
   }, items);
 }
@@ -22367,7 +22068,7 @@ function VerticalStripes(props) {
       return null;
     }
     var colorIndex = i % verticalFill.length;
-    return /* @__PURE__ */ import_react34.default.createElement("rect", {
+    return /* @__PURE__ */ import_react33.default.createElement("rect", {
       key: "react-".concat(i),
       x: entry,
       y: y2,
@@ -22379,7 +22080,7 @@ function VerticalStripes(props) {
       className: "recharts-cartesian-grid-bg"
     });
   });
-  return /* @__PURE__ */ import_react34.default.createElement("g", {
+  return /* @__PURE__ */ import_react33.default.createElement("g", {
     className: "recharts-cartesian-gridstripes-vertical"
   }, items);
 }
@@ -22476,9 +22177,9 @@ function CartesianGrid(props) {
       verticalPoints = _generatorResult;
     }
   }
-  return /* @__PURE__ */ import_react34.default.createElement("g", {
+  return /* @__PURE__ */ import_react33.default.createElement("g", {
     className: "recharts-cartesian-grid"
-  }, /* @__PURE__ */ import_react34.default.createElement(Background, {
+  }, /* @__PURE__ */ import_react33.default.createElement(Background, {
     fill: propsIncludingDefaults.fill,
     fillOpacity: propsIncludingDefaults.fillOpacity,
     x: propsIncludingDefaults.x,
@@ -22486,26 +22187,26 @@ function CartesianGrid(props) {
     width: propsIncludingDefaults.width,
     height: propsIncludingDefaults.height,
     ry: propsIncludingDefaults.ry
-  }), /* @__PURE__ */ import_react34.default.createElement(HorizontalGridLines, _extends23({}, propsIncludingDefaults, {
+  }), /* @__PURE__ */ import_react33.default.createElement(HorizontalGridLines, _extends23({}, propsIncludingDefaults, {
     offset,
     horizontalPoints,
     xAxis,
     yAxis
-  })), /* @__PURE__ */ import_react34.default.createElement(VerticalGridLines, _extends23({}, propsIncludingDefaults, {
+  })), /* @__PURE__ */ import_react33.default.createElement(VerticalGridLines, _extends23({}, propsIncludingDefaults, {
     offset,
     verticalPoints,
     xAxis,
     yAxis
-  })), /* @__PURE__ */ import_react34.default.createElement(HorizontalStripes, _extends23({}, propsIncludingDefaults, {
+  })), /* @__PURE__ */ import_react33.default.createElement(HorizontalStripes, _extends23({}, propsIncludingDefaults, {
     horizontalPoints
-  })), /* @__PURE__ */ import_react34.default.createElement(VerticalStripes, _extends23({}, propsIncludingDefaults, {
+  })), /* @__PURE__ */ import_react33.default.createElement(VerticalStripes, _extends23({}, propsIncludingDefaults, {
     verticalPoints
   })));
 }
 CartesianGrid.displayName = "CartesianGrid";
 
 // node_modules/recharts/es6/cartesian/XAxis.js
-var import_react35 = __toESM(require_react());
+var import_react34 = __toESM(require_react());
 function _typeof40(o) {
   "@babel/helpers - typeof";
   return _typeof40 = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(o2) {
@@ -22635,7 +22336,7 @@ function XAxisImpl(_ref) {
   }
   return (
     // @ts-expect-error the axisOptions type is not exactly what CartesianAxis is expecting.
-    /* @__PURE__ */ import_react35.default.createElement(CartesianAxis, _extends24({}, axisOptions, {
+    /* @__PURE__ */ import_react34.default.createElement(CartesianAxis, _extends24({}, axisOptions, {
       className: clsx_default("recharts-".concat(axisOptions.axisType, " ").concat(axisOptions.axisType), axisOptions.className),
       viewBox: {
         x: 0,
@@ -22658,10 +22359,10 @@ var XAxis = /* @__PURE__ */ function(_React$Component) {
   return _createClass15(XAxis2, [{
     key: "render",
     value: function render() {
-      return /* @__PURE__ */ import_react35.default.createElement(XAxisImpl, this.props);
+      return /* @__PURE__ */ import_react34.default.createElement(XAxisImpl, this.props);
     }
   }]);
-}(import_react35.default.Component);
+}(import_react34.default.Component);
 _defineProperty36(XAxis, "displayName", "XAxis");
 _defineProperty36(XAxis, "defaultProps", {
   allowDecimals: true,
@@ -22684,7 +22385,7 @@ _defineProperty36(XAxis, "defaultProps", {
 });
 
 // node_modules/recharts/es6/cartesian/YAxis.js
-var import_react36 = __toESM(require_react());
+var import_react35 = __toESM(require_react());
 function _typeof41(o) {
   "@babel/helpers - typeof";
   return _typeof41 = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(o2) {
@@ -22814,7 +22515,7 @@ var YAxisImpl = function YAxisImpl2(_ref) {
   }
   return (
     // @ts-expect-error the axisOptions type is not exactly what CartesianAxis is expecting.
-    /* @__PURE__ */ import_react36.default.createElement(CartesianAxis, _extends25({}, axisOptions, {
+    /* @__PURE__ */ import_react35.default.createElement(CartesianAxis, _extends25({}, axisOptions, {
       className: clsx_default("recharts-".concat(axisOptions.axisType, " ").concat(axisOptions.axisType), axisOptions.className),
       viewBox: {
         x: 0,
@@ -22837,10 +22538,10 @@ var YAxis = /* @__PURE__ */ function(_React$Component) {
   return _createClass16(YAxis2, [{
     key: "render",
     value: function render() {
-      return /* @__PURE__ */ import_react36.default.createElement(YAxisImpl, this.props);
+      return /* @__PURE__ */ import_react35.default.createElement(YAxisImpl, this.props);
     }
   }]);
-}(import_react36.default.Component);
+}(import_react35.default.Component);
 _defineProperty37(YAxis, "displayName", "YAxis");
 _defineProperty37(YAxis, "defaultProps", {
   allowDuplicatedCategory: true,
@@ -22863,7 +22564,7 @@ _defineProperty37(YAxis, "defaultProps", {
 });
 
 // node_modules/recharts/es6/chart/generateCategoricalChart.js
-var import_react38 = __toESM(require_react());
+var import_react37 = __toESM(require_react());
 var import_isNil9 = __toESM(require_isNil());
 var import_isFunction17 = __toESM(require_isFunction());
 var import_range3 = __toESM(require_range());
@@ -23102,7 +22803,7 @@ function isDomainSpecifiedByUser(domain, allowDataOverflow, axisType) {
 }
 
 // node_modules/recharts/es6/component/Cursor.js
-var import_react37 = __toESM(require_react());
+var import_react36 = __toESM(require_react());
 
 // node_modules/recharts/es6/util/cursor/getCursorRectangle.js
 function getCursorRectangle(layout, activeCoordinate, offset, tooltipAxisBandSize) {
@@ -23262,7 +22963,7 @@ function Cursor(props) {
     payloadIndex: activeTooltipIndex,
     className: clsx_default("recharts-tooltip-cursor", elementPropsCursor.className)
   });
-  return /* @__PURE__ */ (0, import_react37.isValidElement)(elementPropsCursor) ? /* @__PURE__ */ (0, import_react37.cloneElement)(elementPropsCursor, cursorProps) : /* @__PURE__ */ (0, import_react37.createElement)(cursorComp, cursorProps);
+  return /* @__PURE__ */ (0, import_react36.isValidElement)(elementPropsCursor) ? /* @__PURE__ */ (0, import_react36.cloneElement)(elementPropsCursor, cursorProps) : /* @__PURE__ */ (0, import_react36.createElement)(cursorComp, cursorProps);
 }
 
 // node_modules/recharts/es6/chart/generateCategoricalChart.js
@@ -24330,7 +24031,7 @@ var generateCategoricalChart = function generateCategoricalChart2(_ref6) {
         var isActive = (_element$props$active = element.props.active) !== null && _element$props$active !== void 0 ? _element$props$active : isTooltipActive;
         var layout = _this.props.layout;
         var key = element.key || "_recharts-cursor";
-        return /* @__PURE__ */ import_react38.default.createElement(Cursor, {
+        return /* @__PURE__ */ import_react37.default.createElement(Cursor, {
           key,
           activeCoordinate,
           activePayload,
@@ -24350,7 +24051,7 @@ var generateCategoricalChart = function generateCategoricalChart2(_ref6) {
         var elementDefaultProps = element.type.defaultProps;
         var elementProps = elementDefaultProps !== void 0 ? _objectSpread35(_objectSpread35({}, elementDefaultProps), element.props) : element.props;
         var axisOption = axisMap && axisMap[elementProps["".concat(axisType, "Id")]];
-        return /* @__PURE__ */ (0, import_react38.cloneElement)(element, _objectSpread35(_objectSpread35({}, axisOption), {}, {
+        return /* @__PURE__ */ (0, import_react37.cloneElement)(element, _objectSpread35(_objectSpread35({}, axisOption), {}, {
           className: clsx_default(axisType, axisOption.className),
           key: element.key || "".concat(displayName, "-").concat(index),
           ticks: getTicksOfAxis(axisOption, true)
@@ -24362,7 +24063,7 @@ var generateCategoricalChart = function generateCategoricalChart2(_ref6) {
         var radiusAxis = getAnyElementOfObject(radiusAxisMap);
         var angleAxis = getAnyElementOfObject(angleAxisMap);
         var cx = angleAxis.cx, cy = angleAxis.cy, innerRadius = angleAxis.innerRadius, outerRadius = angleAxis.outerRadius;
-        return /* @__PURE__ */ (0, import_react38.cloneElement)(element, {
+        return /* @__PURE__ */ (0, import_react37.cloneElement)(element, {
           polarAngles: Array.isArray(polarAngles) ? polarAngles : getTicksOfAxis(angleAxis, true).map(function(entry) {
             return entry.coordinate;
           }),
@@ -24392,7 +24093,7 @@ var generateCategoricalChart = function generateCategoricalChart2(_ref6) {
           return null;
         }
         var item = props.item, otherProps = _objectWithoutProperties17(props, _excluded18);
-        return /* @__PURE__ */ (0, import_react38.cloneElement)(item, _objectSpread35(_objectSpread35({}, otherProps), {}, {
+        return /* @__PURE__ */ (0, import_react37.cloneElement)(item, _objectSpread35(_objectSpread35({}, otherProps), {}, {
           chartWidth: width,
           chartHeight: height,
           margin,
@@ -24408,7 +24109,7 @@ var generateCategoricalChart = function generateCategoricalChart2(_ref6) {
         }
         var _this$state5 = _this.state, isTooltipActive = _this$state5.isTooltipActive, activeCoordinate = _this$state5.activeCoordinate, activePayload = _this$state5.activePayload, activeLabel = _this$state5.activeLabel, offset = _this$state5.offset;
         var isActive = (_tooltipItem$props$ac = tooltipItem.props.active) !== null && _tooltipItem$props$ac !== void 0 ? _tooltipItem$props$ac : isTooltipActive;
-        return /* @__PURE__ */ (0, import_react38.cloneElement)(tooltipItem, {
+        return /* @__PURE__ */ (0, import_react37.cloneElement)(tooltipItem, {
           viewBox: _objectSpread35(_objectSpread35({}, offset), {}, {
             x: offset.left,
             y: offset.top
@@ -24423,7 +24124,7 @@ var generateCategoricalChart = function generateCategoricalChart2(_ref6) {
       _defineProperty40(_this, "renderBrush", function(element) {
         var _this$props4 = _this.props, margin = _this$props4.margin, data = _this$props4.data;
         var _this$state6 = _this.state, offset = _this$state6.offset, dataStartIndex = _this$state6.dataStartIndex, dataEndIndex = _this$state6.dataEndIndex, updateId = _this$state6.updateId;
-        return /* @__PURE__ */ (0, import_react38.cloneElement)(element, {
+        return /* @__PURE__ */ (0, import_react37.cloneElement)(element, {
           key: element.key || "_recharts-brush",
           onChange: combineEventHandlers(_this.handleBrushChange, element.props.onChange),
           data,
@@ -24443,7 +24144,7 @@ var generateCategoricalChart = function generateCategoricalChart2(_ref6) {
         var _this$state7 = _this.state, xAxisMap = _this$state7.xAxisMap, yAxisMap = _this$state7.yAxisMap, offset = _this$state7.offset;
         var elementDefaultProps = element.type.defaultProps || {};
         var _element$props2 = element.props, _element$props2$xAxis = _element$props2.xAxisId, xAxisId = _element$props2$xAxis === void 0 ? elementDefaultProps.xAxisId : _element$props2$xAxis, _element$props2$yAxis = _element$props2.yAxisId, yAxisId = _element$props2$yAxis === void 0 ? elementDefaultProps.yAxisId : _element$props2$yAxis;
-        return /* @__PURE__ */ (0, import_react38.cloneElement)(element, {
+        return /* @__PURE__ */ (0, import_react37.cloneElement)(element, {
           key: element.key || "".concat(displayName, "-").concat(index),
           xAxis: xAxisMap[xAxisId],
           yAxis: yAxisMap[yAxisId],
@@ -24509,7 +24210,7 @@ var generateCategoricalChart = function generateCategoricalChart2(_ref6) {
             onMouseEnter: combineEventHandlers(_this.handleItemMouseEnter, element.props.onMouseEnter)
           };
         }
-        var graphicalItem = /* @__PURE__ */ (0, import_react38.cloneElement)(element, _objectSpread35(_objectSpread35({}, item.props), itemEvents));
+        var graphicalItem = /* @__PURE__ */ (0, import_react37.cloneElement)(element, _objectSpread35(_objectSpread35({}, item.props), itemEvents));
         function findWithPayload(entry) {
           return typeof tooltipAxis.dataKey === "function" ? tooltipAxis.dataKey(entry.payload) : null;
         }
@@ -24526,7 +24227,7 @@ var generateCategoricalChart = function generateCategoricalChart2(_ref6) {
             }
             if (activeShape || activeBar) {
               var activeIndex = element.props.activeIndex !== void 0 ? element.props.activeIndex : activeTooltipIndex;
-              return [/* @__PURE__ */ (0, import_react38.cloneElement)(element, _objectSpread35(_objectSpread35(_objectSpread35({}, item.props), itemEvents), {}, {
+              return [/* @__PURE__ */ (0, import_react37.cloneElement)(element, _objectSpread35(_objectSpread35(_objectSpread35({}, item.props), itemEvents), {}, {
                 activeIndex
               })), null, null];
             }
@@ -24547,7 +24248,7 @@ var generateCategoricalChart = function generateCategoricalChart2(_ref6) {
             var elementProps = _objectSpread35(_objectSpread35(_objectSpread35({}, item.props), itemEvents), {}, {
               activeIndex: childIndex
             });
-            return [/* @__PURE__ */ (0, import_react38.cloneElement)(xyItem, elementProps), null, null];
+            return [/* @__PURE__ */ (0, import_react37.cloneElement)(xyItem, elementProps), null, null];
           }
         }
         if (isRange) {
@@ -24556,7 +24257,7 @@ var generateCategoricalChart = function generateCategoricalChart2(_ref6) {
         return [graphicalItem, null];
       });
       _defineProperty40(_this, "renderCustomized", function(element, displayName, index) {
-        return /* @__PURE__ */ (0, import_react38.cloneElement)(element, _objectSpread35(_objectSpread35({
+        return /* @__PURE__ */ (0, import_react37.cloneElement)(element, _objectSpread35(_objectSpread35({
           key: "recharts-customized-".concat(index)
         }, _this.props), _this.state));
       });
@@ -24862,9 +24563,9 @@ var generateCategoricalChart = function generateCategoricalChart2(_ref6) {
       value: function renderClipPath() {
         var clipPathId = this.clipPathId;
         var _this$state$offset = this.state.offset, left = _this$state$offset.left, top = _this$state$offset.top, height = _this$state$offset.height, width = _this$state$offset.width;
-        return /* @__PURE__ */ import_react38.default.createElement("defs", null, /* @__PURE__ */ import_react38.default.createElement("clipPath", {
+        return /* @__PURE__ */ import_react37.default.createElement("defs", null, /* @__PURE__ */ import_react37.default.createElement("clipPath", {
           id: clipPathId
-        }, /* @__PURE__ */ import_react38.default.createElement("rect", {
+        }, /* @__PURE__ */ import_react37.default.createElement("rect", {
           x: left,
           y: top,
           height,
@@ -24959,12 +24660,12 @@ var generateCategoricalChart = function generateCategoricalChart2(_ref6) {
         var _this$props6 = this.props, children = _this$props6.children, className = _this$props6.className, width = _this$props6.width, height = _this$props6.height, style = _this$props6.style, compact = _this$props6.compact, title = _this$props6.title, desc = _this$props6.desc, others = _objectWithoutProperties17(_this$props6, _excluded26);
         var attrs = filterProps(others, false);
         if (compact) {
-          return /* @__PURE__ */ import_react38.default.createElement(ChartLayoutContextProvider, {
+          return /* @__PURE__ */ import_react37.default.createElement(ChartLayoutContextProvider, {
             state: this.state,
             width: this.props.width,
             height: this.props.height,
             clipPathId: this.clipPathId
-          }, /* @__PURE__ */ import_react38.default.createElement(Surface, _extends26({}, attrs, {
+          }, /* @__PURE__ */ import_react37.default.createElement(Surface, _extends26({}, attrs, {
             width,
             height,
             title,
@@ -24983,12 +24684,12 @@ var generateCategoricalChart = function generateCategoricalChart2(_ref6) {
           };
         }
         var events = this.parseEventsOfWrapper();
-        return /* @__PURE__ */ import_react38.default.createElement(ChartLayoutContextProvider, {
+        return /* @__PURE__ */ import_react37.default.createElement(ChartLayoutContextProvider, {
           state: this.state,
           width: this.props.width,
           height: this.props.height,
           clipPathId: this.clipPathId
-        }, /* @__PURE__ */ import_react38.default.createElement("div", _extends26({
+        }, /* @__PURE__ */ import_react37.default.createElement("div", _extends26({
           className: clsx_default("recharts-wrapper", className),
           style: _objectSpread35({
             position: "relative",
@@ -25000,7 +24701,7 @@ var generateCategoricalChart = function generateCategoricalChart2(_ref6) {
           ref: function ref(node) {
             _this3.container = node;
           }
-        }), /* @__PURE__ */ import_react38.default.createElement(Surface, _extends26({}, attrs, {
+        }), /* @__PURE__ */ import_react37.default.createElement(Surface, _extends26({}, attrs, {
           width,
           height,
           title,
@@ -25009,7 +24710,7 @@ var generateCategoricalChart = function generateCategoricalChart2(_ref6) {
         }), this.renderClipPath(), renderByOrder(children, this.renderMap)), this.renderLegend(), this.renderTooltip()));
       }
     }]);
-  }(import_react38.Component);
+  }(import_react37.Component);
   _defineProperty40(CategoricalChartWrapper, "displayName", chartName);
   _defineProperty40(CategoricalChartWrapper, "defaultProps", _objectSpread35({
     layout: "horizontal",
@@ -25101,20 +24802,20 @@ var generateCategoricalChart = function generateCategoricalChart2(_ref6) {
   });
   _defineProperty40(CategoricalChartWrapper, "renderActiveDot", function(option, props, key) {
     var dot;
-    if (/* @__PURE__ */ (0, import_react38.isValidElement)(option)) {
-      dot = /* @__PURE__ */ (0, import_react38.cloneElement)(option, props);
+    if (/* @__PURE__ */ (0, import_react37.isValidElement)(option)) {
+      dot = /* @__PURE__ */ (0, import_react37.cloneElement)(option, props);
     } else if ((0, import_isFunction17.default)(option)) {
       dot = option(props);
     } else {
-      dot = /* @__PURE__ */ import_react38.default.createElement(Dot, props);
+      dot = /* @__PURE__ */ import_react37.default.createElement(Dot, props);
     }
-    return /* @__PURE__ */ import_react38.default.createElement(Layer, {
+    return /* @__PURE__ */ import_react37.default.createElement(Layer, {
       className: "recharts-active-dot",
       key
     }, dot);
   });
-  var CategoricalChart = /* @__PURE__ */ (0, import_react38.forwardRef)(function CategoricalChart2(props, ref) {
-    return /* @__PURE__ */ import_react38.default.createElement(CategoricalChartWrapper, _extends26({}, props, {
+  var CategoricalChart = /* @__PURE__ */ (0, import_react37.forwardRef)(function CategoricalChart2(props, ref) {
+    return /* @__PURE__ */ import_react37.default.createElement(CategoricalChartWrapper, _extends26({}, props, {
       ref
     }));
   });
@@ -25139,7 +24840,7 @@ var BarChart = generateCategoricalChart({
 });
 
 // app/components/MetricsChart.tsx
-var import_jsx_dev_runtime2 = __toESM(require_jsx_dev_runtime(), 1);
+var import_jsx_dev_runtime = __toESM(require_jsx_dev_runtime(), 1);
 if (!window.$RefreshReg$ || !window.$RefreshSig$ || !window.$RefreshRuntime$) {
   console.warn("remix:hmr: React Fast Refresh only works when the Remix compiler is running in development mode.");
 } else {
@@ -25152,7 +24853,7 @@ if (!window.$RefreshReg$ || !window.$RefreshSig$ || !window.$RefreshRuntime$) {
 }
 var prevRefreshReg;
 var prevRefreshSig;
-var _s2 = $RefreshSig$();
+var _s = $RefreshSig$();
 if (import.meta) {
   import.meta.hot = createHotContext(
     //@ts-expect-error
@@ -25164,14 +24865,14 @@ function MetricsChart({
   data,
   title
 }) {
-  _s2();
-  const maxValue = (0, import_react39.useMemo)(() => {
+  _s();
+  const maxValue = (0, import_react38.useMemo)(() => {
     return Math.max(...data.map((item) => Math.max(item.averageAllowedAmount, item.minAllowedAmount, item.maxAllowedAmount, item.medianAllowedAmount, item.modeAllowedAmount)));
   }, [data]);
-  const roundedMaxValue = (0, import_react39.useMemo)(() => {
+  const roundedMaxValue = (0, import_react38.useMemo)(() => {
     return Math.ceil(maxValue / 5e4) * 5e4;
   }, [maxValue]);
-  const [yAxisScale, setYAxisScale] = (0, import_react39.useState)(1);
+  const [yAxisScale, setYAxisScale] = (0, import_react38.useState)(1);
   const chartData = data.map((item) => ({
     name: item.LOC,
     Average: item.averageAllowedAmount,
@@ -25186,13 +24887,13 @@ function MetricsChart({
     label
   }) => {
     if (active && payload && payload.length) {
-      return /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("div", { className: "bg-white p-3 border border-gray-200 shadow-md rounded-md", children: [
-        /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("p", { className: "font-bold text-gray-700", children: label }, void 0, false, {
+      return /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { className: "bg-white p-3 border border-gray-200 shadow-md rounded-md", children: [
+        /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("p", { className: "font-bold text-gray-700", children: label }, void 0, false, {
           fileName: "app/components/MetricsChart.tsx",
           lineNumber: 61,
           columnNumber: 11
         }, this),
-        payload.map((entry, index) => /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("p", { style: {
+        payload.map((entry, index) => /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("p", { style: {
           color: entry.color
         }, children: `${entry.name}: ${formatCurrency(entry.value)}` }, `item-${index}`, false, {
           fileName: "app/components/MetricsChart.tsx",
@@ -25207,40 +24908,40 @@ function MetricsChart({
     }
     return null;
   };
-  const calculatedYAxisMax = (0, import_react39.useMemo)(() => {
+  const calculatedYAxisMax = (0, import_react38.useMemo)(() => {
     return roundedMaxValue * yAxisScale;
   }, [roundedMaxValue, yAxisScale]);
-  return /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("div", { className: "w-full", children: [
-    /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("div", { className: "flex items-center space-x-4", children: /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("div", { className: "flex-grow h-[500px]", children: [
-      title && /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("h3", { className: "text-lg font-medium text-gray-900 mb-4", children: title }, void 0, false, {
+  return /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { className: "w-full", children: [
+    /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { className: "flex items-center space-x-4", children: /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { className: "flex-grow h-[500px]", children: [
+      title && /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("h3", { className: "text-lg font-medium text-gray-900 mb-4", children: title }, void 0, false, {
         fileName: "app/components/MetricsChart.tsx",
         lineNumber: 79,
         columnNumber: 21
       }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(ResponsiveContainer, { width: "100%", height: "90%", children: /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(BarChart, { data: chartData, margin: {
+      /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)(ResponsiveContainer, { width: "100%", height: "90%", children: /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)(BarChart, { data: chartData, margin: {
         top: 20,
         right: 30,
         left: 20,
         bottom: 50
       }, children: [
-        /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(CartesianGrid, { strokeDasharray: "3 3" }, void 0, false, {
+        /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)(CartesianGrid, { strokeDasharray: "3 3" }, void 0, false, {
           fileName: "app/components/MetricsChart.tsx",
           lineNumber: 87,
           columnNumber: 15
         }, this),
-        /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(XAxis, { dataKey: "name" }, void 0, false, {
+        /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)(XAxis, { dataKey: "name" }, void 0, false, {
           fileName: "app/components/MetricsChart.tsx",
           lineNumber: 88,
           columnNumber: 15
         }, this),
-        /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(YAxis, { domain: [0, calculatedYAxisMax], ticks: [0, calculatedYAxisMax * 0.25, calculatedYAxisMax * 0.5, calculatedYAxisMax * 0.75, calculatedYAxisMax], tickFormatter: (value) => formatCurrency(value, {
+        /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)(YAxis, { domain: [0, calculatedYAxisMax], ticks: [0, calculatedYAxisMax * 0.25, calculatedYAxisMax * 0.5, calculatedYAxisMax * 0.75, calculatedYAxisMax], tickFormatter: (value) => formatCurrency(value, {
           notation: "compact"
         }) }, void 0, false, {
           fileName: "app/components/MetricsChart.tsx",
           lineNumber: 89,
           columnNumber: 15
         }, this),
-        /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(Tooltip, { content: /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(CustomTooltip, {}, void 0, false, {
+        /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)(Tooltip, { content: /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)(CustomTooltip, {}, void 0, false, {
           fileName: "app/components/MetricsChart.tsx",
           lineNumber: 92,
           columnNumber: 33
@@ -25249,7 +24950,7 @@ function MetricsChart({
           lineNumber: 92,
           columnNumber: 15
         }, this),
-        /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(Legend, { layout: "horizontal", align: "center", verticalAlign: "bottom", wrapperStyle: {
+        /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)(Legend, { layout: "horizontal", align: "center", verticalAlign: "bottom", wrapperStyle: {
           paddingTop: "10px",
           paddingBottom: "10px"
         } }, void 0, false, {
@@ -25257,27 +24958,27 @@ function MetricsChart({
           lineNumber: 93,
           columnNumber: 15
         }, this),
-        /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(Bar, { dataKey: "Average", fill: "#8884d8", name: "Average" }, void 0, false, {
+        /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)(Bar, { dataKey: "Average", fill: "#8884d8", name: "Average" }, void 0, false, {
           fileName: "app/components/MetricsChart.tsx",
           lineNumber: 97,
           columnNumber: 15
         }, this),
-        /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(Bar, { dataKey: "Minimum", fill: "#82ca9d", name: "Minimum" }, void 0, false, {
+        /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)(Bar, { dataKey: "Minimum", fill: "#82ca9d", name: "Minimum" }, void 0, false, {
           fileName: "app/components/MetricsChart.tsx",
           lineNumber: 98,
           columnNumber: 15
         }, this),
-        /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(Bar, { dataKey: "Maximum", fill: "#ffc658", name: "Maximum" }, void 0, false, {
+        /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)(Bar, { dataKey: "Maximum", fill: "#ffc658", name: "Maximum" }, void 0, false, {
           fileName: "app/components/MetricsChart.tsx",
           lineNumber: 99,
           columnNumber: 15
         }, this),
-        /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(Bar, { dataKey: "Median", fill: "#ff8042", name: "Median" }, void 0, false, {
+        /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)(Bar, { dataKey: "Median", fill: "#ff8042", name: "Median" }, void 0, false, {
           fileName: "app/components/MetricsChart.tsx",
           lineNumber: 100,
           columnNumber: 15
         }, this),
-        /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(Bar, { dataKey: "Mode", fill: "#0088FE", name: "Mode" }, void 0, false, {
+        /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)(Bar, { dataKey: "Mode", fill: "#0088FE", name: "Mode" }, void 0, false, {
           fileName: "app/components/MetricsChart.tsx",
           lineNumber: 101,
           columnNumber: 15
@@ -25300,18 +25001,18 @@ function MetricsChart({
       lineNumber: 77,
       columnNumber: 7
     }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("div", { className: "flex items-center justify-center space-x-4 mt-4", children: [
-      /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("span", { className: "text-sm text-gray-600", children: "Scale:" }, void 0, false, {
+    /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { className: "flex items-center justify-center space-x-4 mt-4", children: [
+      /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("span", { className: "text-sm text-gray-600", children: "Scale:" }, void 0, false, {
         fileName: "app/components/MetricsChart.tsx",
         lineNumber: 109,
         columnNumber: 9
       }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("input", { type: "range", min: "0.5", max: "2", step: "0.1", value: yAxisScale, onChange: (e) => setYAxisScale(parseFloat(e.target.value)), className: "w-64" }, void 0, false, {
+      /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("input", { type: "range", min: "0.5", max: "2", step: "0.1", value: yAxisScale, onChange: (e) => setYAxisScale(parseFloat(e.target.value)), className: "w-64" }, void 0, false, {
         fileName: "app/components/MetricsChart.tsx",
         lineNumber: 110,
         columnNumber: 9
       }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("span", { className: "text-sm text-gray-600 w-12 text-center", children: [
+      /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("span", { className: "text-sm text-gray-600 w-12 text-center", children: [
         yAxisScale.toFixed(1),
         "x"
       ] }, void 0, true, {
@@ -25330,16 +25031,16 @@ function MetricsChart({
     columnNumber: 10
   }, this);
 }
-_s2(MetricsChart, "tGj2bDrCvh0FwvL9Pnxe8rEC3ek=");
-_c2 = MetricsChart;
-var _c2;
-$RefreshReg$(_c2, "MetricsChart");
+_s(MetricsChart, "tGj2bDrCvh0FwvL9Pnxe8rEC3ek=");
+_c = MetricsChart;
+var _c;
+$RefreshReg$(_c, "MetricsChart");
 window.$RefreshReg$ = prevRefreshReg;
 window.$RefreshSig$ = prevRefreshSig;
 
 // app/components/RevenueProjection.tsx
-var import_react40 = __toESM(require_react(), 1);
-var import_jsx_dev_runtime3 = __toESM(require_jsx_dev_runtime(), 1);
+var import_react39 = __toESM(require_react(), 1);
+var import_jsx_dev_runtime2 = __toESM(require_jsx_dev_runtime(), 1);
 if (!window.$RefreshReg$ || !window.$RefreshSig$ || !window.$RefreshRuntime$) {
   console.warn("remix:hmr: React Fast Refresh only works when the Remix compiler is running in development mode.");
 } else {
@@ -25352,7 +25053,7 @@ if (!window.$RefreshReg$ || !window.$RefreshSig$ || !window.$RefreshRuntime$) {
 }
 var prevRefreshReg;
 var prevRefreshSig;
-var _s3 = $RefreshSig$();
+var _s2 = $RefreshSig$();
 if (import.meta) {
   import.meta.hot = createHotContext(
     //@ts-expect-error
@@ -25370,12 +25071,12 @@ var locOrder = ["DTX", "RTC", "PHP", "IOP"];
 function RevenueProjection({
   metrics
 }) {
-  _s3();
-  const [daysMap, setDaysMap] = (0, import_react40.useState)(() => {
+  _s2();
+  const [daysMap, setDaysMap] = (0, import_react39.useState)(() => {
     const storedDaysMap = typeof window !== "undefined" ? localStorage.getItem("revenueDaysMap") : null;
     return storedDaysMap ? JSON.parse(storedDaysMap) : defaultDaysMap;
   });
-  const [metricType, setMetricType] = (0, import_react40.useState)("average");
+  const [metricType, setMetricType] = (0, import_react39.useState)("average");
   const getMetricValue = (metric, type) => {
     switch (type) {
       case "average":
@@ -25430,14 +25131,14 @@ function RevenueProjection({
   const handleMetricTypeChange = (type) => {
     setMetricType(type);
   };
-  return /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("div", { className: "bg-white rounded-lg shadow", children: [
-    /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("div", { className: "px-4 py-5 sm:px-6 border-b border-gray-200", children: [
-      /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("h3", { className: "text-lg font-medium text-gray-900", children: "Revenue Projections" }, void 0, false, {
+  return /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("div", { className: "bg-white rounded-lg shadow", children: [
+    /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("div", { className: "px-4 py-5 sm:px-6 border-b border-gray-200", children: [
+      /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("h3", { className: "text-lg font-medium text-gray-900", children: "Revenue Projections" }, void 0, false, {
         fileName: "app/components/RevenueProjection.tsx",
         lineNumber: 113,
         columnNumber: 9
       }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("p", { className: "mt-1 text-sm text-gray-500", children: "Projected revenue based on selected metric and treatment days" }, void 0, false, {
+      /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("p", { className: "mt-1 text-sm text-gray-500", children: "Projected revenue based on selected metric and treatment days" }, void 0, false, {
         fileName: "app/components/RevenueProjection.tsx",
         lineNumber: 114,
         columnNumber: 9
@@ -25447,35 +25148,35 @@ function RevenueProjection({
       lineNumber: 112,
       columnNumber: 7
     }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("div", { className: "px-4 py-5 sm:p-6", children: [
-      /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("div", { className: "mb-4", children: [
-        /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("label", { htmlFor: "metricType", className: "block text-sm font-medium text-gray-700", children: "Select Metric" }, void 0, false, {
+    /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("div", { className: "px-4 py-5 sm:p-6", children: [
+      /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("div", { className: "mb-4", children: [
+        /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("label", { htmlFor: "metricType", className: "block text-sm font-medium text-gray-700", children: "Select Metric" }, void 0, false, {
           fileName: "app/components/RevenueProjection.tsx",
           lineNumber: 120,
           columnNumber: 11
         }, this),
-        /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("select", { id: "metricType", value: metricType, onChange: (e) => handleMetricTypeChange(e.target.value), className: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm", children: [
-          /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("option", { value: "average", children: "Average Allowed Amount" }, void 0, false, {
+        /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("select", { id: "metricType", value: metricType, onChange: (e) => handleMetricTypeChange(e.target.value), className: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm", children: [
+          /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("option", { value: "average", children: "Average Allowed Amount" }, void 0, false, {
             fileName: "app/components/RevenueProjection.tsx",
             lineNumber: 124,
             columnNumber: 13
           }, this),
-          /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("option", { value: "minimum", children: "Minimum Allowed Amount" }, void 0, false, {
+          /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("option", { value: "minimum", children: "Minimum Allowed Amount" }, void 0, false, {
             fileName: "app/components/RevenueProjection.tsx",
             lineNumber: 125,
             columnNumber: 13
           }, this),
-          /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("option", { value: "maximum", children: "Maximum Allowed Amount" }, void 0, false, {
+          /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("option", { value: "maximum", children: "Maximum Allowed Amount" }, void 0, false, {
             fileName: "app/components/RevenueProjection.tsx",
             lineNumber: 126,
             columnNumber: 13
           }, this),
-          /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("option", { value: "median", children: "Median Allowed Amount" }, void 0, false, {
+          /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("option", { value: "median", children: "Median Allowed Amount" }, void 0, false, {
             fileName: "app/components/RevenueProjection.tsx",
             lineNumber: 127,
             columnNumber: 13
           }, this),
-          /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("option", { value: "mode", children: "Mode Allowed Amount" }, void 0, false, {
+          /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("option", { value: "mode", children: "Mode Allowed Amount" }, void 0, false, {
             fileName: "app/components/RevenueProjection.tsx",
             lineNumber: 128,
             columnNumber: 13
@@ -25490,14 +25191,14 @@ function RevenueProjection({
         lineNumber: 119,
         columnNumber: 9
       }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("div", { className: "overflow-x-auto", children: /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("table", { className: "min-w-full divide-y divide-gray-200", children: [
-        /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("thead", { className: "bg-gray-50", children: /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("tr", { children: [
-          /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("th", { scope: "col", className: "px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider", children: "Level of Care" }, void 0, false, {
+      /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("div", { className: "overflow-x-auto", children: /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("table", { className: "min-w-full divide-y divide-gray-200", children: [
+        /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("thead", { className: "bg-gray-50", children: /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("tr", { children: [
+          /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("th", { scope: "col", className: "px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider", children: "Level of Care" }, void 0, false, {
             fileName: "app/components/RevenueProjection.tsx",
             lineNumber: 135,
             columnNumber: 17
           }, this),
-          /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("th", { scope: "col", className: "px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider", children: [
+          /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("th", { scope: "col", className: "px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider", children: [
             metricType.charAt(0).toUpperCase() + metricType.slice(1),
             " Allowed Amount"
           ] }, void 0, true, {
@@ -25505,17 +25206,17 @@ function RevenueProjection({
             lineNumber: 138,
             columnNumber: 17
           }, this),
-          /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("th", { scope: "col", className: "px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider", children: "Count" }, void 0, false, {
+          /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("th", { scope: "col", className: "px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider", children: "Count" }, void 0, false, {
             fileName: "app/components/RevenueProjection.tsx",
             lineNumber: 141,
             columnNumber: 17
           }, this),
-          /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("th", { scope: "col", className: "px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider", children: "Days" }, void 0, false, {
+          /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("th", { scope: "col", className: "px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider", children: "Days" }, void 0, false, {
             fileName: "app/components/RevenueProjection.tsx",
             lineNumber: 144,
             columnNumber: 17
           }, this),
-          /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("th", { scope: "col", className: "px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider", children: "Projected Revenue" }, void 0, false, {
+          /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("th", { scope: "col", className: "px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider", children: "Projected Revenue" }, void 0, false, {
             fileName: "app/components/RevenueProjection.tsx",
             lineNumber: 147,
             columnNumber: 17
@@ -25529,24 +25230,24 @@ function RevenueProjection({
           lineNumber: 133,
           columnNumber: 13
         }, this),
-        /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("tbody", { className: "bg-white divide-y divide-gray-200", children: [
-          projections.map((projection) => /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("tr", { children: [
-            /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("td", { className: "px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900", children: projection.LOC }, void 0, false, {
+        /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("tbody", { className: "bg-white divide-y divide-gray-200", children: [
+          projections.map((projection) => /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("tr", { children: [
+            /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("td", { className: "px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900", children: projection.LOC }, void 0, false, {
               fileName: "app/components/RevenueProjection.tsx",
               lineNumber: 154,
               columnNumber: 19
             }, this),
-            /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("td", { className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500", children: formatCurrency(projection.metricValue) }, void 0, false, {
+            /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("td", { className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500", children: formatCurrency(projection.metricValue) }, void 0, false, {
               fileName: "app/components/RevenueProjection.tsx",
               lineNumber: 157,
               columnNumber: 19
             }, this),
-            /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("td", { className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500", children: projection.countOfObservation }, void 0, false, {
+            /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("td", { className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500", children: projection.countOfObservation }, void 0, false, {
               fileName: "app/components/RevenueProjection.tsx",
               lineNumber: 160,
               columnNumber: 19
             }, this),
-            /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("td", { className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500", children: /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("input", { type: "number", min: "0", value: projection.days, onChange: (e) => handleDaysChange(projection.LOC, parseInt(e.target.value) || 0), className: "w-20 rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500" }, void 0, false, {
+            /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("td", { className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500", children: /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("input", { type: "number", min: "0", value: projection.days, onChange: (e) => handleDaysChange(projection.LOC, parseInt(e.target.value) || 0), className: "w-20 rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500" }, void 0, false, {
               fileName: "app/components/RevenueProjection.tsx",
               lineNumber: 164,
               columnNumber: 21
@@ -25555,7 +25256,7 @@ function RevenueProjection({
               lineNumber: 163,
               columnNumber: 19
             }, this),
-            /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("td", { className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500", children: formatCurrency(projection.projectedRevenue) }, void 0, false, {
+            /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("td", { className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500", children: formatCurrency(projection.projectedRevenue) }, void 0, false, {
               fileName: "app/components/RevenueProjection.tsx",
               lineNumber: 166,
               columnNumber: 19
@@ -25565,13 +25266,13 @@ function RevenueProjection({
             lineNumber: 153,
             columnNumber: 46
           }, this)),
-          /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("tr", { className: "bg-gray-50", children: [
-            /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("td", { colSpan: 4, className: "px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-900 text-right", children: "Total:" }, void 0, false, {
+          /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("tr", { className: "bg-gray-50", children: [
+            /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("td", { colSpan: 4, className: "px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-900 text-right", children: "Total:" }, void 0, false, {
               fileName: "app/components/RevenueProjection.tsx",
               lineNumber: 173,
               columnNumber: 17
             }, this),
-            /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("td", { className: "px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-900", children: formatCurrency(totalProjectedRevenue) }, void 0, false, {
+            /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("td", { className: "px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-900", children: formatCurrency(totalProjectedRevenue) }, void 0, false, {
               fileName: "app/components/RevenueProjection.tsx",
               lineNumber: 176,
               columnNumber: 17
@@ -25606,17 +25307,17 @@ function RevenueProjection({
     columnNumber: 10
   }, this);
 }
-_s3(RevenueProjection, "LxBodEmCThrrO0MqhdHyO5sGjKY=");
-_c3 = RevenueProjection;
-var _c3;
-$RefreshReg$(_c3, "RevenueProjection");
+_s2(RevenueProjection, "LxBodEmCThrrO0MqhdHyO5sGjKY=");
+_c2 = RevenueProjection;
+var _c2;
+$RefreshReg$(_c2, "RevenueProjection");
 window.$RefreshReg$ = prevRefreshReg;
 window.$RefreshSig$ = prevRefreshSig;
 
 // app/routes/dashboard.tsx
 var import_dataService = __toESM(require_dataService(), 1);
 var import_metricsService = __toESM(require_metricsService(), 1);
-var import_jsx_dev_runtime4 = __toESM(require_jsx_dev_runtime(), 1);
+var import_jsx_dev_runtime3 = __toESM(require_jsx_dev_runtime(), 1);
 if (!window.$RefreshReg$ || !window.$RefreshSig$ || !window.$RefreshRuntime$) {
   console.warn("remix:hmr: React Fast Refresh only works when the Remix compiler is running in development mode.");
 } else {
@@ -25629,13 +25330,13 @@ if (!window.$RefreshReg$ || !window.$RefreshSig$ || !window.$RefreshRuntime$) {
 }
 var prevRefreshReg;
 var prevRefreshSig;
-var _s4 = $RefreshSig$();
+var _s3 = $RefreshSig$();
 if (import.meta) {
   import.meta.hot = createHotContext(
     //@ts-expect-error
     "app\\routes\\dashboard.tsx"
   );
-  import.meta.hot.lastModified = "1742557462042.0432";
+  import.meta.hot.lastModified = "1742743869326.7703";
 }
 var meta = () => {
   return [{
@@ -25646,7 +25347,7 @@ var meta = () => {
   }];
 };
 function Dashboard() {
-  _s4();
+  _s3();
   const {
     dashboardStats,
     metricsStatus,
@@ -25656,7 +25357,7 @@ function Dashboard() {
   } = useLoaderData();
   const navigation = useNavigation();
   const isLoading = navigation.state === "loading";
-  const [currentFilters, setCurrentFilters] = (0, import_react41.useState)({
+  const [currentFilters, setCurrentFilters] = (0, import_react40.useState)({
     levelOfCare: null,
     payer: null,
     payerClass: null,
@@ -25664,9 +25365,9 @@ function Dashboard() {
     serviceYear: null,
     paymentYear: null
   });
-  const [filteredClaimData, setFilteredClaimData] = (0, import_react41.useState)(allClaimData || []);
-  const [filteredStats, setFilteredStats] = (0, import_react41.useState)(dashboardStats);
-  (0, import_react41.useEffect)(() => {
+  const [filteredClaimData, setFilteredClaimData] = (0, import_react40.useState)(allClaimData || []);
+  const [filteredStats, setFilteredStats] = (0, import_react40.useState)(dashboardStats);
+  (0, import_react40.useEffect)(() => {
     console.log("Dashboard loaded with options:", {
       filterOptions,
       totalClaimRecords: allClaimData?.length || 0,
@@ -25712,7 +25413,7 @@ function Dashboard() {
   const handlePrint = () => {
     window.print();
   };
-  (0, import_react41.useEffect)(() => {
+  (0, import_react40.useEffect)(() => {
     if (!allClaimData || allClaimData.length === 0) {
       console.log("No claim data available for filtering");
       return;
@@ -25841,15 +25542,15 @@ function Dashboard() {
       locMetrics: filteredMetrics.length > 0 ? filteredMetrics : dashboardStats.locMetrics
     });
   };
-  return /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(Layout, { children: /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { className: "max-w-7xl mx-auto", children: [
-    /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { className: "flex justify-between items-center mb-6", children: [
-      /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { children: [
-        /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("h1", { className: "text-3xl font-bold text-gray-900", children: "Analytics Dashboard" }, void 0, false, {
+  return /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(Layout, { children: /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("div", { className: "max-w-7xl mx-auto", children: [
+    /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("div", { className: "flex justify-between items-center mb-6", children: [
+      /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("div", { children: [
+        /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("h1", { className: "text-3xl font-bold text-gray-900", children: "Analytics Dashboard" }, void 0, false, {
           fileName: "app/routes/dashboard.tsx",
           lineNumber: 348,
           columnNumber: 13
         }, this),
-        /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("p", { className: "mt-2 text-gray-600", children: "Overview of key metrics and revenue projections from your healthcare data." }, void 0, false, {
+        /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("p", { className: "mt-2 text-gray-600", children: "Overview of key metrics and revenue projections from your healthcare data." }, void 0, false, {
           fileName: "app/routes/dashboard.tsx",
           lineNumber: 349,
           columnNumber: 13
@@ -25859,9 +25560,9 @@ function Dashboard() {
         lineNumber: 347,
         columnNumber: 11
       }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { className: "flex space-x-4", children: [
-        /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("button", { onClick: handlePrint, className: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500", children: [
-          /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("svg", { className: "h-5 w-5 mr-2", xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" }, void 0, false, {
+      /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("div", { className: "flex space-x-4", children: [
+        /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("button", { onClick: handlePrint, className: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500", children: [
+          /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("svg", { className: "h-5 w-5 mr-2", xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" }, void 0, false, {
             fileName: "app/routes/dashboard.tsx",
             lineNumber: 358,
             columnNumber: 17
@@ -25876,14 +25577,14 @@ function Dashboard() {
           lineNumber: 356,
           columnNumber: 13
         }, this),
-        (isLoading || calculationResult) && /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { className: "flex items-center", children: isLoading ? /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { className: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-primary-600", children: [
-          /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("svg", { className: "animate-spin -ml-1 mr-2 h-4 w-4 text-white", xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", children: [
-            /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("circle", { className: "opacity-25", cx: "12", cy: "12", r: "10", stroke: "currentColor", strokeWidth: "4" }, void 0, false, {
+        (isLoading || calculationResult) && /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("div", { className: "flex items-center", children: isLoading ? /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("div", { className: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-primary-600", children: [
+          /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("svg", { className: "animate-spin -ml-1 mr-2 h-4 w-4 text-white", xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", children: [
+            /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("circle", { className: "opacity-25", cx: "12", cy: "12", r: "10", stroke: "currentColor", strokeWidth: "4" }, void 0, false, {
               fileName: "app/routes/dashboard.tsx",
               lineNumber: 367,
               columnNumber: 23
             }, this),
-            /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("path", { className: "opacity-75", fill: "currentColor", d: "M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" }, void 0, false, {
+            /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("path", { className: "opacity-75", fill: "currentColor", d: "M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" }, void 0, false, {
               fileName: "app/routes/dashboard.tsx",
               lineNumber: 368,
               columnNumber: 23
@@ -25898,8 +25599,8 @@ function Dashboard() {
           fileName: "app/routes/dashboard.tsx",
           lineNumber: 365,
           columnNumber: 30
-        }, this) : calculationResult && /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { className: `inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md ${calculationResult.success ? "text-green-800 bg-green-100" : "text-red-800 bg-red-100"}`, children: [
-          calculationResult.success ? /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("svg", { className: "h-5 w-5 mr-2 text-green-500", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: "2", d: "M5 13l4 4L19 7" }, void 0, false, {
+        }, this) : calculationResult && /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("div", { className: `inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md ${calculationResult.success ? "text-green-800 bg-green-100" : "text-red-800 bg-red-100"}`, children: [
+          calculationResult.success ? /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("svg", { className: "h-5 w-5 mr-2 text-green-500", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: "2", d: "M5 13l4 4L19 7" }, void 0, false, {
             fileName: "app/routes/dashboard.tsx",
             lineNumber: 373,
             columnNumber: 25
@@ -25907,7 +25608,7 @@ function Dashboard() {
             fileName: "app/routes/dashboard.tsx",
             lineNumber: 372,
             columnNumber: 50
-          }, this) : /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("svg", { className: "h-5 w-5 mr-2 text-red-500", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: "2", d: "M6 18L18 6M6 6l12 12" }, void 0, false, {
+          }, this) : /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("svg", { className: "h-5 w-5 mr-2 text-red-500", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: "2", d: "M6 18L18 6M6 6l12 12" }, void 0, false, {
             fileName: "app/routes/dashboard.tsx",
             lineNumber: 375,
             columnNumber: 25
@@ -25936,7 +25637,7 @@ function Dashboard() {
       lineNumber: 346,
       columnNumber: 9
     }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { className: "print:hidden", children: filterOptions && Object.keys(filterOptions).length > 0 && /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(DashboardFilters, { filterOptions, currentFilters, onFilterChange: handleFilterChange }, void 0, false, {
+    /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("div", { className: "print:hidden", children: filterOptions && Object.keys(filterOptions).length > 0 && /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(DashboardFilters, { filterOptions, currentFilters, onFilterChange: handleFilterChange }, void 0, false, {
       fileName: "app/routes/dashboard.tsx",
       lineNumber: 385,
       columnNumber: 70
@@ -25945,8 +25646,8 @@ function Dashboard() {
       lineNumber: 384,
       columnNumber: 9
     }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { className: "grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 mb-8", children: [
-      /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(StatsCard, { title: "Total Records", value: filteredStats.totalRecords.toLocaleString(), description: "", icon: /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("svg", { className: "h-6 w-6", xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" }, void 0, false, {
+    /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("div", { className: "grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 mb-8", children: [
+      /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(StatsCard, { title: "Total Records", value: filteredStats.totalRecords.toLocaleString(), description: "", icon: /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("svg", { className: "h-6 w-6", xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" }, void 0, false, {
         fileName: "app/routes/dashboard.tsx",
         lineNumber: 391,
         columnNumber: 17
@@ -25959,7 +25660,7 @@ function Dashboard() {
         lineNumber: 390,
         columnNumber: 11
       }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(StatsCard, { title: "Unique Patients", value: filteredStats.uniquePatients.toLocaleString(), description: "", icon: /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("svg", { className: "h-6 w-6", xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" }, void 0, false, {
+      /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(StatsCard, { title: "Unique Patients", value: filteredStats.uniquePatients.toLocaleString(), description: "", icon: /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("svg", { className: "h-6 w-6", xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" }, void 0, false, {
         fileName: "app/routes/dashboard.tsx",
         lineNumber: 394,
         columnNumber: 17
@@ -25972,7 +25673,7 @@ function Dashboard() {
         lineNumber: 393,
         columnNumber: 11
       }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(StatsCard, { title: "Total Payments", value: formatCurrency(filteredStats.totalPayments), description: "", icon: /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("svg", { className: "h-6 w-6", xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" }, void 0, false, {
+      /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(StatsCard, { title: "Total Payments", value: formatCurrency(filteredStats.totalPayments), description: "", icon: /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("svg", { className: "h-6 w-6", xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" }, void 0, false, {
         fileName: "app/routes/dashboard.tsx",
         lineNumber: 397,
         columnNumber: 17
@@ -25985,7 +25686,7 @@ function Dashboard() {
         lineNumber: 396,
         columnNumber: 11
       }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(StatsCard, { title: "Average Allowed Amount", value: formatCurrency(filteredStats.totalRecords > 0 ? filteredStats.totalAllowed / filteredStats.totalRecords : 0), description: "", icon: /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("svg", { className: "h-6 w-6", xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" }, void 0, false, {
+      /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(StatsCard, { title: "Average Allowed Amount", value: formatCurrency(filteredStats.totalRecords > 0 ? filteredStats.totalAllowed / filteredStats.totalRecords : 0), description: "", icon: /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("svg", { className: "h-6 w-6", xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" }, void 0, false, {
         fileName: "app/routes/dashboard.tsx",
         lineNumber: 400,
         columnNumber: 17
@@ -26003,7 +25704,7 @@ function Dashboard() {
       lineNumber: 389,
       columnNumber: 9
     }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { className: "mb-8 bg-white rounded-lg shadow p-6", children: /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(MetricsChart, { data: metricsData, title: "Amount Metrics by Level of Care" }, void 0, false, {
+    /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("div", { className: "mb-8 bg-white rounded-lg shadow p-6", children: /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(MetricsChart, { data: metricsData, title: "Amount Metrics by Level of Care" }, void 0, false, {
       fileName: "app/routes/dashboard.tsx",
       lineNumber: 406,
       columnNumber: 11
@@ -26012,7 +25713,7 @@ function Dashboard() {
       lineNumber: 405,
       columnNumber: 9
     }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { className: "mb-8", children: /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(RevenueProjection, { metrics: filteredStats.locMetrics.map((metric) => ({
+    /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("div", { className: "mb-8", children: /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(RevenueProjection, { metrics: filteredStats.locMetrics.map((metric) => ({
       LOC: metric.LOC,
       averageAllowedAmount: metric.averageAllowedAmount,
       minAllowedAmount: metric.minAllowedAmount,
@@ -26039,12 +25740,12 @@ function Dashboard() {
     columnNumber: 10
   }, this);
 }
-_s4(Dashboard, "k5aR7kVJK98zFOofWiTMKNgmx+A=", false, function() {
+_s3(Dashboard, "k5aR7kVJK98zFOofWiTMKNgmx+A=", false, function() {
   return [useLoaderData, useNavigation];
 });
-_c4 = Dashboard;
-var _c4;
-$RefreshReg$(_c4, "Dashboard");
+_c3 = Dashboard;
+var _c3;
+$RefreshReg$(_c3, "Dashboard");
 window.$RefreshReg$ = prevRefreshReg;
 window.$RefreshSig$ = prevRefreshSig;
 export {
@@ -26084,4 +25785,4 @@ object-assign/index.js:
   @license MIT
   *)
 */
-//# sourceMappingURL=/build/routes/dashboard-VMFVRFEP.js.map
+//# sourceMappingURL=/build/routes/dashboard-LZTQ52DH.js.map

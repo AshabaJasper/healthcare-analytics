@@ -1,16 +1,6 @@
 import {
   createHotContext
 } from "/build/_shared/chunk-QKULS72H.js";
-import {
-  __commonJS
-} from "/build/_shared/chunk-PNG5AS42.js";
-
-// empty-module:@remix-run/node
-var require_node = __commonJS({
-  "empty-module:@remix-run/node"(exports, module) {
-    module.exports = {};
-  }
-});
 
 // node_modules/date-fns/constants.js
 var daysInYear = 365.2425;
@@ -1546,8 +1536,7 @@ function formatCurrency(amount, options) {
 }
 
 export {
-  require_node,
   formatDate,
   formatCurrency
 };
-//# sourceMappingURL=/build/_shared/chunk-SQT7BTI5.js.map
+//# sourceMappingURL=/build/_shared/chunk-7CY77EVC.js.map
